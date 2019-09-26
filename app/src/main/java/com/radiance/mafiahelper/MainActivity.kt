@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.playerInfo.PlayerInfoFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -15,9 +18,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        add_new_player.setOnClickListener { view ->
-            toast("Hello")
-        }
+        val player = Player(
+            name = "Long long long name",
+            votingDeaths = 44
+        )
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.root_layout, PlayerInfoFragment.newInstance(player), "Player")
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">MafiaHelper</string>
     <string name="action_settings">Settings</string>
+    <string name="games_for_reds">Games for reds :</string>
+    <string name="games_for_blacks">Games for blacks :</string>
+    <string name="games_ter_sheriff">Games ter sheriff :</string>
+    <string name="games_per_doctor">Games per doctor :</string>
+    <string name="victories_for_reds">Victories for reds :</string>
+    <string name="victories_for_black">Victories for blacks :</string>
+
+    <string name="victories_per_sheriff">Victories per sheriff :</string>
+    <string name="victories_per_doctor">Victories per doctor :</string>
+    <string name="first_nigh_deaths">First night deaths :</string>
+    <string name="first_voting_deaths">First voting deaths :</string>
+    <string name="night_deaths">Night deaths</string>
+    <string name="voting_deaths">Voting deaths</string>
 </resources>

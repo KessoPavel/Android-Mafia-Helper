@@ -1,0 +1,344 @@
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="player"
+            type="com.radiance.mafiahelper.player.Player" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--            val name: String,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{player.name}"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <!--            val gamesForReds: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/gamesForRedsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/games_for_reds" />
+                <TextView
+                    android:id="@+id/gamesForReds"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.gamesForReds)}" />
+            </LinearLayout>
+
+            <!--            val gamesForBlack: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/gamesForBlackTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/games_for_blacks" />
+                <TextView
+                    android:id="@+id/gamesForBlack"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.gamesForBlacks)}" />
+            </LinearLayout>
+
+            <!--            val gamesPerSheriff: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/gamesPerSheriffTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/games_ter_sheriff" />
+                <TextView
+                    android:id="@+id/gamesPerSheriff"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.gamesPerSheriff)}" />
+            </LinearLayout>
+
+            <!--            val gamesPerDoctor: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/gamesPerDoctorTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/games_per_doctor" />
+                <TextView
+                    android:id="@+id/gamesPerDoctor"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.gamesPerDoctor)}" />
+            </LinearLayout>
+
+            <!--            val victoriesForReds: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/victoriesForRedsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/victories_for_reds" />
+                <TextView
+                    android:id="@+id/victoriesForReds"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.victoriesForReds)}" />
+            </LinearLayout>
+
+            <!--            val victoriesForBlack: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/victoriesForBlackTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/victories_for_black" />
+                <TextView
+                    android:id="@+id/victoriesForBlack"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.victoriesForBlacks)}" />
+            </LinearLayout>
+
+            <!--            val victoriesPerSheriff: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/victoriesPerSheriffTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/victories_per_sheriff" />
+                <TextView
+                    android:id="@+id/victoriesPerSheriff"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.victoriesPerSheriff)}" />
+            </LinearLayout>
+
+            <!--            val victoriesPerDoctor: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/victoriesPerDoctorTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/victories_per_doctor" />
+                <TextView
+                    android:id="@+id/victoriesPerDoctor"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.victoriesPerDoctor)}" />
+            </LinearLayout>
+
+            <!--            var firstNightDeaths: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/firstNightDeathsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/first_nigh_deaths" />
+                <TextView
+                    android:id="@+id/firstNightDeaths"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.firstNightDeaths)}" />
+            </LinearLayout>
+
+            <!--            var firstVotingDeaths: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/firstVotingDeathsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/first_voting_deaths" />
+                <TextView
+                    android:id="@+id/firstVotingDeaths"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.firstVotingDeaths)}" />
+            </LinearLayout>
+
+            <!--            var nightDeaths: Int,-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/nightDeathsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/night_deaths" />
+                <TextView
+                    android:id="@+id/nightDeaths"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.nightDeaths)}" />
+            </LinearLayout>
+
+            <!--            var votingDeaths: Int-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/votingDeathsTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/voting_deaths" />
+                <TextView
+                    android:id="@+id/votingDeaths"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="@{Integer.toString(player.votingDeaths)}" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

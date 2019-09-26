@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerInfo.PlayerInfoFragment
+import com.radiance.mafiahelper.playerList.PlayerListFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -18,14 +19,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val player = Player(
+        val player1 = Player(
             name = "Long long long name",
+            votingDeaths = 44
+        )
+        val player2 = Player(
+            name = "Long long long name 1 ",
+            votingDeaths = 44
+        )
+        val player3 = Player(
+            name = "Long long long name 2",
             votingDeaths = 44
         )
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.root_layout, PlayerInfoFragment.newInstance(player), "Player")
+            .add(R.id.root_layout, PlayerListFragment.newInstance(arrayOf(player3, player1, player3, player2, player3)), "Player")
             .addToBackStack(null)
             .commit()
     }

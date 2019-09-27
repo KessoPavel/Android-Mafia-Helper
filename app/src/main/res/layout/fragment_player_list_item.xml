@@ -17,8 +17,7 @@
             android:paddingEnd="10dp"
             android:layout_gravity="end"
             android:adjustViewBounds="true"
-            android:contentDescription="@null"
-            app:srcCompat="@drawable/detective" />
+            android:contentDescription="@null" />
 
         <TextView
             android:id="@+id/fpli_name"
@@ -27,7 +26,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="player name"
-            android:textColor="#A3A3A3"
+            android:textColor="#929292"
             android:textSize="30sp" />
 
         <TextView
@@ -37,7 +36,7 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="#E2E2E2"
+            android:textColor="#969696"
             android:text="statistic" />
     </FrameLayout>
 </layout>

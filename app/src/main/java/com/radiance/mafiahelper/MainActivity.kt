@@ -35,10 +35,20 @@ class MainActivity : AppCompatActivity() {
             isBestDoctor = true
         )
 
+        val player4 = Player(
+            name = "Катя",
+            statistic = "6/3",
+            isBestDetective = true
+        )
+
+        val player5 = Player(
+            name = "Надя",
+            statistic = "6/3"
+        )
+
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.root_layout, PlayerListFragment.newInstance(arrayOf(player1, player3, player2)), "Player")
-            .addToBackStack(null)
+            .add(R.id.root_layout, PlayerListFragment.newInstance(arrayOf(player1, player3, player2, player4, player5)), "Player")
             .commit()
     }
 

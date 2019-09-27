@@ -20,21 +20,24 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val player1 = Player(
-            name = "Long long long name",
-            votingDeaths = 44
+            name = "Паша",
+            statistic = "4/5",
+            isBestBlack = true
         )
         val player2 = Player(
-            name = "Long long long name 1 ",
-            votingDeaths = 44
+            name = "Коля",
+            statistic = "7/13",
+            isBestRed = true
         )
         val player3 = Player(
-            name = "Long long long name 2",
-            votingDeaths = 44
+            name = "Радион",
+            statistic = "6/3",
+            isBestDoctor = true
         )
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.root_layout, PlayerListFragment.newInstance(arrayOf(player3, player1, player3, player2, player3)), "Player")
+            .add(R.id.root_layout, PlayerListFragment.newInstance(arrayOf(player1, player3, player2)), "Player")
             .addToBackStack(null)
             .commit()
     }

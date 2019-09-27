@@ -39,7 +39,7 @@ class PlayerListFragment : Fragment() {
         players = arguments!!.getSerializable(PLAYER_LIST) as Array<Player>
 
         val view = inflater.inflate(R.layout.fragment_player_list, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.player_list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = PlayerListAdapter(players, context!!)
         return view

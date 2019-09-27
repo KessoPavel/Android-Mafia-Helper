@@ -29,7 +29,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/fpi_name"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/gamesForRedsTitle"
+                    android:id="@+id/fpi_gamesForRedsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/games_for_reds" />
                 <TextView
-                    android:id="@+id/gamesForReds"
+                    android:id="@+id/fpi_gamesForReds"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/gamesForBlackTitle"
+                    android:id="@+id/fpi_gamesForBlackTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/games_for_blacks" />
                 <TextView
-                    android:id="@+id/gamesForBlack"
+                    android:id="@+id/fpi_gamesForBlack"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/gamesPerSheriffTitle"
+                    android:id="@+id/fpi_gamesPerSheriffTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/games_ter_sheriff" />
                 <TextView
-                    android:id="@+id/gamesPerSheriff"
+                    android:id="@+id/fpi_gamesPerSheriff"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/gamesPerDoctorTitle"
+                    android:id="@+id/fpi_gamesPerDoctorTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/games_per_doctor" />
                 <TextView
-                    android:id="@+id/gamesPerDoctor"
+                    android:id="@+id/fpi_gamesPerDoctor"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/victoriesForRedsTitle"
+                    android:id="@+id/fpi_victoriesForRedsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/victories_for_reds" />
                 <TextView
-                    android:id="@+id/victoriesForReds"
+                    android:id="@+id/fpi_victoriesForReds"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/victoriesForBlackTitle"
+                    android:id="@+id/fpi_victoriesForBlackTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/victories_for_black" />
                 <TextView
-                    android:id="@+id/victoriesForBlack"
+                    android:id="@+id/fpi_victoriesForBlack"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/victoriesPerSheriffTitle"
+                    android:id="@+id/fpi_victoriesPerSheriffTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/victories_per_sheriff" />
                 <TextView
-                    android:id="@+id/victoriesPerSheriff"
+                    android:id="@+id/fpi_victoriesPerSheriff"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/victoriesPerDoctorTitle"
+                    android:id="@+id/fpi_victoriesPerDoctorTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/victories_per_doctor" />
                 <TextView
-                    android:id="@+id/victoriesPerDoctor"
+                    android:id="@+id/fpi_victoriesPerDoctor"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/firstNightDeathsTitle"
+                    android:id="@+id/fpi_firstNightDeathsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -256,7 +256,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/first_nigh_deaths" />
                 <TextView
-                    android:id="@+id/firstNightDeaths"
+                    android:id="@+id/fpi_firstNightDeaths"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/firstVotingDeathsTitle"
+                    android:id="@+id/fpi_firstVotingDeathsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -281,7 +281,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/first_voting_deaths" />
                 <TextView
-                    android:id="@+id/firstVotingDeaths"
+                    android:id="@+id/fpi_firstVotingDeaths"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/nightDeathsTitle"
+                    android:id="@+id/fpi_nightDeathsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -306,7 +306,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/night_deaths" />
                 <TextView
-                    android:id="@+id/nightDeaths"
+                    android:id="@+id/fpi_nightDeaths"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,7 +323,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/votingDeathsTitle"
+                    android:id="@+id/fpi_votingDeathsTitle"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -332,7 +332,7 @@
                     android:layout_marginBottom="0dp"
                     android:text="@string/voting_deaths" />
                 <TextView
-                    android:id="@+id/votingDeaths"
+                    android:id="@+id/fpi_votingDeaths"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

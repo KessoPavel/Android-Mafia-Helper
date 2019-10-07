@@ -21,9 +21,11 @@ data class Player (
     var nightDeaths: Int = 0,
     var votingDeaths: Int = 0,
 
-    var statistic: String = "",
+    var gameCount: Int = 0,
+    var victoriesCount: Int = 0,
     var isBestRed: Boolean = false,
     var isBestBlack: Boolean = false,
     var isBestDoctor: Boolean = false,
-    var isBestDetective: Boolean = false
+    var isBestSheriff: Boolean = false,
+    var isSelecter: Boolean = false
     ): Serializable

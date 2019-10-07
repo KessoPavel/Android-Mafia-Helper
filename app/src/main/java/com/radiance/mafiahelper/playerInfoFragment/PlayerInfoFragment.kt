@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.playerInfo
+package com.radiance.mafiahelper.playerInfoFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.radiance.mafiahelper.databinding.FragmentPlayerInfoBinding
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerList.PlayerListFragment
 
 class PlayerInfoFragment: Fragment() {
     private lateinit var player: Player

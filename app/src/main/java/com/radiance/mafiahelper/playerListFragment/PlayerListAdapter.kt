@@ -15,6 +15,8 @@ class PlayerListAdapter(
     private val listener: PlayerListFragmentListener) : RecyclerView.Adapter<PlayerListAdapter.PlayerHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
+        //todo create [ItemState] with active and pasive images
+
         val inflationView = parent.inflate(R.layout.fragment_player_list_item, false)
         return PlayerHolder(inflationView, listener)
     }

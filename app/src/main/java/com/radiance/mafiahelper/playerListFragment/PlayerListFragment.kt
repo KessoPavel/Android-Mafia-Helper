@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.addPlayerFragment.AddPlayerFragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
 
-class PlayerListFragment : Fragment(),  PlayerListFragmentListener {
+class PlayerListFragment : Fragment(),  ListItemListener {
     private lateinit var players: Array<Player>
     private lateinit var listener: GameStartListener
     private val game: Game = Game()
@@ -39,7 +40,7 @@ class PlayerListFragment : Fragment(),  PlayerListFragmentListener {
         if (context is GameStartListener){
             listener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement PlayerListFragmentListener.")
+            throw ClassCastException(context.toString() + " must implement ListItemListener.")
         }
     }
 
@@ -62,6 +63,11 @@ class PlayerListFragment : Fragment(),  PlayerListFragmentListener {
         super.onViewCreated(view, savedInstanceState)
 
         fpl_add_player.setOnClickListener{ _ -> context?.runOnUiThread {
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.root_layout, AddPlayerFragment.newInstance(), "Add Player")
+                ?.addToBackStack(null)
+                ?.commit()
             toast("ADD PLAYER") } }
 
         fpl_start_game.setOnClickListener{_ -> listener.gameStarted(game)}

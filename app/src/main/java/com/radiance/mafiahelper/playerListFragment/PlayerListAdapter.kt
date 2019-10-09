@@ -8,14 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.PlayersManager
 import com.radiance.mafiahelper.playerDisplayManager.PlayerListDisplayManager
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 
 class PlayerListAdapter(
     private val players: Array<Player>,
-    private val listener: PlayerListFragmentListener,
+    private val listener: ListItemListener,
     context: Context) : RecyclerView.Adapter<PlayerListAdapter.PlayerHolder>() {
 
     private val inactiveBackground: Drawable = ContextCompat.getDrawable(context, R.drawable.rounded_figure)!!
@@ -81,9 +80,9 @@ class PlayerListAdapter(
         return answer
     }
 
-    class PlayerHolder(v: View, l: PlayerListFragmentListener) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class PlayerHolder(v: View, l: ListItemListener) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
-        private val listener: PlayerListFragmentListener = l
+        private val listener: ListItemListener = l
         private lateinit var displayManager: PlayerListDisplayManager
 
         init {

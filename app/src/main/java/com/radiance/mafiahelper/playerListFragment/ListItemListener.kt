@@ -2,7 +2,7 @@ package com.radiance.mafiahelper.playerListFragment
 
 import com.radiance.mafiahelper.player.Player
 
-interface PlayerListFragmentListener {
+interface ListItemListener {
     fun onPlayerSelect(player: Player)
     fun onPlayerUnSelect(player: Player)
 }

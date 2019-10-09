@@ -15,4 +15,7 @@
     <string name="night_deaths">Night deaths</string>
     <string name="voting_deaths">Voting deaths</string>
     <string name="start_game">start game</string>
+    <string name="name_title">Name :</string>
+    <string name="add">Add</string>
+    <string name="exit">Exit</string>
 </resources>

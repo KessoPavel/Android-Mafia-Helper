@@ -26,8 +26,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="player name"
-            android:textColor="#929292"
-            android:textSize="30sp" />
+            android:textColor="@color/base_text"
+            android:textSize="@dimen/base_text" />
 
         <TextView
             android:id="@+id/fpli_statistic"
@@ -36,7 +36,8 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="#969696"
+            android:textColor="@color/sub_text"
+            android:textSize="@dimen/sub_text_size"
             android:text="statistic" />
     </FrameLayout>
 </layout>

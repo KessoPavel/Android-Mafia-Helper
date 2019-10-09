@@ -6,9 +6,12 @@ class Game (){
     private val players: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
+    val playersCont: Int
+        get() = players.size
+
     fun addPlayer(player: Player){
         if (!isStarted){
-            if (players.contains(player))
+            if (!players.contains(player))
                 players.add(player)
         }
     }

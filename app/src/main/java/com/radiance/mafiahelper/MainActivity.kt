@@ -11,6 +11,7 @@ import com.radiance.mafiahelper.playerListFragment.PlayerListFragmentListener
 import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), PlayerListFragmentListener {
@@ -44,11 +45,13 @@ class MainActivity : AppCompatActivity(), PlayerListFragmentListener {
     override fun onPlayerSelect(player: Player) {
         toast("Player ${player.name} added to game")
         game.addPlayer(player)
+        fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
     }
 
     override fun onPlayerUnSelect(player: Player) {
         toast("Player ${player.name} removed from thr game")
         game.removePlayer(player)
+        fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
     }
 
 }

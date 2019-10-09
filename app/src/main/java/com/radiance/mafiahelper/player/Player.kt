@@ -26,6 +26,5 @@ data class Player (
     var isBestRed: Boolean = false,
     var isBestBlack: Boolean = false,
     var isBestDoctor: Boolean = false,
-    var isBestSheriff: Boolean = false,
-    var isSelecter: Boolean = false
+    var isBestSheriff: Boolean = false
     ): Serializable

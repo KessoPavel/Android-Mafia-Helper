@@ -14,4 +14,5 @@
     <string name="first_voting_deaths">First voting deaths :</string>
     <string name="night_deaths">Night deaths</string>
     <string name="voting_deaths">Voting deaths</string>
+    <string name="start_game">start game</string>
 </resources>

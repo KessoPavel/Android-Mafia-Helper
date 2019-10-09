@@ -1,5 +1,7 @@
 package com.radiance.mafiahelper.playerListFragment
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -7,37 +9,82 @@ import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayersManager
+import com.radiance.mafiahelper.playerDisplayManager.PlayerListDisplayManager
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 
 class PlayerListAdapter(
     private val players: Array<Player>,
-    private val listener: PlayerListFragmentListener) : RecyclerView.Adapter<PlayerListAdapter.PlayerHolder>() {
+    private val listener: PlayerListFragmentListener,
+    context: Context) : RecyclerView.Adapter<PlayerListAdapter.PlayerHolder>() {
+
+    private val inactiveBackground: Drawable = ContextCompat.getDrawable(context, R.drawable.rounded_figure)!!
+    private val activeBackground = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected)
+    private val activeBackgroundRed = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_red)
+    private val activeBackgroundBlack = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_black)
+    private val activeBackgroundSheriff = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_detective)
+    private val activeBackgroundDoctor = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_doctor)
+    private val activeIconRed = R.drawable.red
+    private val inactiveIconRed = R.drawable.red_gray
+    private val activeIconBlack = R.drawable.mafia
+    private val inactiveIconBlack = R.drawable.mafia_gray
+    private val activeIconSheriff = R.drawable.sheriff
+    private val inactiveIconSheriff = R.drawable.sheriff_gray
+    private val activeIconDoctor = R.drawable.doctor
+    private val inactiveIconDoctor = R.drawable.doctor_gray
+    private val emptyIcon = R.drawable.empty
+
+    private val displayPlayers = createDisplayManagers()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
-        //todo create [ItemState] with active and pasive images
-
         val inflationView = parent.inflate(R.layout.fragment_player_list_item, false)
         return PlayerHolder(inflationView, listener)
     }
 
-    override fun getItemCount() = players.size
+    override fun getItemCount() = displayPlayers.size
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
-        holder.bindPlayer(player = players[position])
+        holder.bindPlayer(displayManager = displayPlayers[position])
+    }
+
+    private fun createDisplayManagers(): ArrayList<PlayerListDisplayManager>{
+        val answer = ArrayList<PlayerListDisplayManager>()
+
+        for (player in players){
+            val builder = PlayerListDisplayManager.Builder(player= player)
+            builder.inactiveBackground = inactiveBackground
+            builder.activeBackground = activeBackground
+            builder.activeIcon = emptyIcon
+            builder.inactiveIcon = emptyIcon
+
+            if (player.isBestBlack){
+                builder.activeBackground = activeBackgroundBlack
+                builder.activeIcon = activeIconBlack
+                builder.inactiveIcon = inactiveIconBlack
+            } else if (player.isBestRed) {
+                builder.activeBackground = activeBackgroundRed
+                builder.activeIcon = activeIconRed
+                builder.inactiveIcon = inactiveIconRed
+            } else if (player.isBestDoctor){
+                builder.activeBackground = activeBackgroundDoctor
+                builder.activeIcon = activeIconDoctor
+                builder.inactiveIcon = inactiveIconDoctor
+            } else if (player.isBestSheriff) {
+                builder.activeBackground = activeBackgroundSheriff
+                builder.activeIcon = activeIconSheriff
+                builder.inactiveIcon = inactiveIconSheriff
+            }
+
+            answer.add(builder.build())
+        }
+
+        return answer
     }
 
     class PlayerHolder(v: View, l: PlayerListFragmentListener) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
         private val listener: PlayerListFragmentListener = l
-        private lateinit var player: Player
-
-        private val AN_SELECTED_BACKGRAUND = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure)
-        private val SELECTED_BACKGRAUND = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure_selected)
-        private val SELECTED_BACKGRAUND_RED = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure_selected_red)
-        private val SELECTED_BACKGRAUND_BLACK = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure_selected_black)
-        private val SELECTED_BACKGRAUND_SHERIFF = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure_selected_detective)
-        private val SELECTED_BACKGRAUND_DOCTOR = ContextCompat.getDrawable(view.context, R.drawable.rounded_figure_selected_doctor)
+        private lateinit var displayManager: PlayerListDisplayManager
 
         init {
             v.setOnClickListener(this)
@@ -46,64 +93,37 @@ class PlayerListAdapter(
         override fun onClick(p0: View?) {
             view.click(0.95f, 1.005f, 225)
 
-            if (player.isSelecter) {
-                notSelectedStyle()
-                listener.onPlayerUnSelect(player)
+            if (displayManager.isSelected) {
+                inactive()
+                listener.onPlayerUnSelect(displayManager.player)
             } else {
-                selectedStyle()
-                listener.onPlayerSelect(player)
+                active()
+                listener.onPlayerSelect(displayManager.player)
             }
-            player.isSelecter = !player.isSelecter
+            displayManager.isSelected = !displayManager.isSelected
         }
 
-        fun bindPlayer(player: Player){
-            this.player = player
+        fun bindPlayer(displayManager: PlayerListDisplayManager){
+            this.displayManager = displayManager
 
-            view.fpli_name.text = player.name
-            view.fpli_statistic.text = PlayersManager.getStatistic(player)
+            view.fpli_name.text = displayManager.name
+            view.fpli_statistic.text = displayManager.statistic
 
-            if (player.isSelecter){
-                selectedStyle()
+            if (displayManager.isSelected){
+                active()
             } else {
-                notSelectedStyle()
+                inactive()
             }
         }
 
-        private fun selectedStyle(){
-            when {
-                player.isBestRed -> {
-                    view.fpli_image.setImageResource(R.drawable.red)
-                    view.fpli_frame.background = SELECTED_BACKGRAUND_RED
-                }
-                player.isBestBlack -> {
-                    view.fpli_image.setImageResource(R.drawable.mafia)
-                    view.fpli_frame.background = SELECTED_BACKGRAUND_BLACK
-                }
-                player.isBestSheriff -> {
-                    view.fpli_image.setImageResource(R.drawable.sheriff)
-                    view.fpli_frame.background = SELECTED_BACKGRAUND_SHERIFF
-                }
-                player.isBestDoctor -> {
-                    view.fpli_image.setImageResource(R.drawable.doctor)
-                    view.fpli_frame.background = SELECTED_BACKGRAUND_DOCTOR
-                }
-                else -> view.fpli_frame.background = SELECTED_BACKGRAUND
-            }
+        private fun active() {
+            view.fpli_image.setImageResource(displayManager.activeIcon)
+            view.fpli_frame.background = displayManager.activeBackground
         }
 
-        private fun notSelectedStyle(){
-            view.fpli_frame.background = AN_SELECTED_BACKGRAUND
-
-            when {
-                player.isBestRed ->
-                    view.fpli_image.setImageResource(R.drawable.red_gray)
-                player.isBestBlack ->
-                    view.fpli_image.setImageResource(R.drawable.mafia_gray)
-                player.isBestSheriff ->
-                    view.fpli_image.setImageResource(R.drawable.sheriff_gray)
-                player.isBestDoctor ->
-                    view.fpli_image.setImageResource(R.drawable.doctor_gray)
-            }
+        private fun inactive(){
+            view.fpli_image.setImageResource(displayManager.inactiveIcon)
+            view.fpli_frame.background = displayManager.inactiveBackground
         }
     }
 }

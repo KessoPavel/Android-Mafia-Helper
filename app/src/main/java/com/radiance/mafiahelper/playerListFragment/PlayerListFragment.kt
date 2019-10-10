@@ -65,10 +65,10 @@ class PlayerListFragment : Fragment(),  ListItemListener {
         fpl_add_player.setOnClickListener{ _ -> context?.runOnUiThread {
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.root_layout, AddPlayerFragment.newInstance(), "Add Player")
+                ?.add(R.id.root_layout, AddPlayerFragment.newInstance(), "Add Player")
                 ?.addToBackStack(null)
                 ?.commit()
-            toast("ADD PLAYER") } }
+        } }
 
         fpl_start_game.setOnClickListener{_ -> listener.gameStarted(game)}
     }

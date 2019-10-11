@@ -47,7 +47,7 @@ class AddPlayerFragment: Fragment() {
             fap_name.clearFocus()
 
             val name = fap_name.text.toString()
-            if (name.equals(""))
+            if (name == "")
                 return@setOnClickListener
 
             listener.playerAdded(Player(name= name))

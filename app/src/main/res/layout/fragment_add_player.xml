@@ -35,9 +35,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/fap_name"
             android:layout_width="@dimen/input_field_width"
             android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textShortMessage"
             android:textColor="@color/base_text"
             android:textSize="@dimen/input_field"
             app:layout_constraintEnd_toEndOf="parent"

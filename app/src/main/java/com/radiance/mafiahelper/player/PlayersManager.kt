@@ -3,13 +3,13 @@ package com.radiance.mafiahelper.player
 import kotlin.random.Random
 
 object PlayersManager {
-    fun loadPlayers(): Array<Player>{
-        val players = generateRandomPlayers(25)
+    fun loadPlayers(): ArrayList<Player>{
+        val players = generateRandomPlayers(0)
         setStatistic(players)
         return players
     }
 
-    private fun setStatistic(players: Array<Player>){
+    private fun setStatistic(players: ArrayList<Player>){
         var bestRedIndex = 0
         var bestRedVictories = 0
         var bestBlackIndex = 0
@@ -60,7 +60,7 @@ object PlayersManager {
     }
 
     //region DEBUG
-    private fun generateRandomPlayers(count : Int): Array<Player>{
+    private fun generateRandomPlayers(count : Int): ArrayList<Player>{
         val players = ArrayList<Player>()
 
         for (i in 0 until count){
@@ -77,7 +77,7 @@ object PlayersManager {
             players.add(player)
         }
 
-        return players.toTypedArray()
+        return players
     }
     //endregion
 }

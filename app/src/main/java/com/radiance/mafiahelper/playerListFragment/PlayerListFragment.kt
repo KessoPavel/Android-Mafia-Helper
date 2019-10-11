@@ -10,22 +10,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.addPlayerFragment.AddPlayerFragment
+import com.radiance.mafiahelper.addPlayerFragment.AddPlayerListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
 
-class PlayerListFragment : Fragment(),  ListItemListener {
-    private lateinit var players: Array<Player>
+class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
+    private lateinit var players: ArrayList<Player>
     private lateinit var listener: GameStartListener
+    private lateinit var adapter: PlayerListAdapter
     private val game: Game = Game()
 
 
     companion object {
         private const val PLAYER_LIST = "PLAYER_LIST"
 
-        fun newInstance(players: Array<Player>): PlayerListFragment{
+        fun newInstance(players: ArrayList<Player>): PlayerListFragment{
             val args = Bundle()
             args.putSerializable(PLAYER_LIST, players)
             val fragment = PlayerListFragment()
@@ -49,12 +51,13 @@ class PlayerListFragment : Fragment(),  ListItemListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        players = arguments!!.getSerializable(PLAYER_LIST) as Array<Player>
+        players = arguments!!.getSerializable(PLAYER_LIST) as ArrayList<Player>
 
         val view = inflater.inflate(R.layout.fragment_player_list, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = PlayerListAdapter(players, this, context!!)
+        adapter =  PlayerListAdapter(players, this, context!!)
+        recyclerView.adapter = adapter
 
         return view
     }
@@ -65,7 +68,7 @@ class PlayerListFragment : Fragment(),  ListItemListener {
         fpl_add_player.setOnClickListener{ _ -> context?.runOnUiThread {
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.add(R.id.root_layout, AddPlayerFragment.newInstance(), "Add Player")
+                ?.add(R.id.root_layout, AddPlayerFragment.newInstance(this@PlayerListFragment), "Add Player")
                 ?.addToBackStack(null)
                 ?.commit()
         } }
@@ -83,4 +86,10 @@ class PlayerListFragment : Fragment(),  ListItemListener {
         fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
     }
 
+    override fun playerAdded(player: Player) {
+        players.add(player)
+        adapter.updatePlayerList(players)
+        adapter.notifyItemInserted(players.size - 1)
+        adapter.notifyDataSetChanged()
+    }
 }

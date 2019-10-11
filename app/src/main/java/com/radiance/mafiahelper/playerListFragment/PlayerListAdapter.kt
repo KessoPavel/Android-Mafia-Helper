@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 
 class PlayerListAdapter(
-    private val players: Array<Player>,
+    private var players: ArrayList<Player>,
     private val listener: ListItemListener,
     context: Context) : RecyclerView.Adapter<PlayerListAdapter.PlayerHolder>() {
 
@@ -33,7 +33,7 @@ class PlayerListAdapter(
     private val inactiveIconDoctor = R.drawable.doctor_gray
     private val emptyIcon = R.drawable.empty
 
-    private val displayPlayers = createDisplayManagers()
+    private var displayPlayers = createDisplayManagers()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
         val inflationView = parent.inflate(R.layout.fragment_player_list_item, false)
@@ -44,6 +44,11 @@ class PlayerListAdapter(
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         holder.bindPlayer(displayManager = displayPlayers[position])
+    }
+
+    fun updatePlayerList(newPlayers: ArrayList<Player>){
+        players = newPlayers
+        displayPlayers = createDisplayManagers()
     }
 
     private fun createDisplayManagers(): ArrayList<PlayerListDisplayManager>{

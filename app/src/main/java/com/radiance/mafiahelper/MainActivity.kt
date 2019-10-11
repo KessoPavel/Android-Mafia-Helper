@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), GameStartListener{
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.root_layout, PlayerListFragment.newInstance(players), "Player")
+            .add(R.id.root_layout, PlayerListFragment.newInstance(players), PlayerListFragment.TAG)
             .commit()
     }
 
@@ -39,7 +39,13 @@ class MainActivity : AppCompatActivity(), GameStartListener{
     }
 
     override fun gameStarted(game: Game) {
-        toast("GAME IS STARTED")
+        supportFragmentManager.findFragmentByTag(PlayerListFragment.TAG)?.let {
+            supportFragmentManager
+                .beginTransaction()
+                .remove(it)
+                .commit()
+        }
+
     }
 
 }

@@ -26,6 +26,7 @@ class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
 
     companion object {
         private const val PLAYER_LIST = "PLAYER_LIST"
+        const val TAG = "PlayerListFragment"
 
         fun newInstance(players: ArrayList<Player>): PlayerListFragment{
             val args = Bundle()

@@ -13,6 +13,7 @@ import com.radiance.mafiahelper.addPlayerFragment.AddPlayerFragment
 import com.radiance.mafiahelper.addPlayerFragment.AddPlayerListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.playerInfoFragment.PlayerInfoFragment
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
@@ -87,9 +88,18 @@ class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
         fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
     }
 
+    override fun onLongClick(player: Player) {
+        context?.runOnUiThread {
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.add(R.id.root_layout, PlayerInfoFragment.newInstance(player), "PlayerInfo")
+                ?.addToBackStack(null)
+                ?.commit()
+        }
+    }
+
     override fun playerAdded(player: Player) {
-        players.add(player)
-        adapter.updatePlayerList(players)
+        adapter.addPlayer(player)
         adapter.notifyItemInserted(players.size - 1)
         adapter.notifyDataSetChanged()
     }

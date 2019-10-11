@@ -45,7 +45,5 @@ class MainActivity : AppCompatActivity(), GameStartListener{
                 .remove(it)
                 .commit()
         }
-
     }
-
 }

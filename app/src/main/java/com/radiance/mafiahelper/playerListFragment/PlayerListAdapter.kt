@@ -51,6 +51,36 @@ class PlayerListAdapter(
         displayPlayers = createDisplayManagers()
     }
 
+    fun addPlayer(player: Player){
+        players.add(player)
+
+        val builder = PlayerListDisplayManager.Builder(player= player)
+        builder.inactiveBackground = inactiveBackground
+        builder.activeBackground = activeBackground
+        builder.activeIcon = emptyIcon
+        builder.inactiveIcon = emptyIcon
+
+        if (player.isBestBlack){
+            builder.activeBackground = activeBackgroundBlack
+            builder.activeIcon = activeIconBlack
+            builder.inactiveIcon = inactiveIconBlack
+        } else if (player.isBestRed) {
+            builder.activeBackground = activeBackgroundRed
+            builder.activeIcon = activeIconRed
+            builder.inactiveIcon = inactiveIconRed
+        } else if (player.isBestDoctor){
+            builder.activeBackground = activeBackgroundDoctor
+            builder.activeIcon = activeIconDoctor
+            builder.inactiveIcon = inactiveIconDoctor
+        } else if (player.isBestSheriff) {
+            builder.activeBackground = activeBackgroundSheriff
+            builder.activeIcon = activeIconSheriff
+            builder.inactiveIcon = inactiveIconSheriff
+        }
+
+        displayPlayers.add(builder.build())
+    }
+
     private fun createDisplayManagers(): ArrayList<PlayerListDisplayManager>{
         val answer = ArrayList<PlayerListDisplayManager>()
 
@@ -85,13 +115,14 @@ class PlayerListAdapter(
         return answer
     }
 
-    class PlayerHolder(v: View, l: ListItemListener) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class PlayerHolder(v: View, l: ListItemListener) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener {
         private var view: View = v
         private val listener: ListItemListener = l
         private lateinit var displayManager: PlayerListDisplayManager
 
         init {
             v.setOnClickListener(this)
+            v.setOnLongClickListener(this)
         }
 
         override fun onClick(p0: View?) {
@@ -105,6 +136,11 @@ class PlayerListAdapter(
                 listener.onPlayerSelect(displayManager.player)
             }
             displayManager.isSelected = !displayManager.isSelected
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            listener.onLongClick(displayManager.player)
+            return true
         }
 
         fun bindPlayer(displayManager: PlayerListDisplayManager){

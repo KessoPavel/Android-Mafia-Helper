@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fgo_mafia_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/base_text"
+        android:textSize="@dimen/base_text"
+        android:text="@string/number_of_mafia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/fgo_number_piker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fgo_mafia_title" />
+
+    <CheckBox
+        android:id="@+id/fgo_doctor_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text"
+        android:textColor="@color/base_text"
+        android:layout_marginTop="24dp"
+        android:text="@string/doctor"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="490dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fgo_number_piker"/>
+
+    <CheckBox
+        android:id="@+id/fgo_sheriff_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/base_text"
+        android:textColor="@color/base_text"
+        android:layout_marginTop="24dp"
+        android:text="@string/sheriff"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="490dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fgo_doctor_check_box"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fgo_sheriff_check_box">
+
+        <TextView
+            android:id="@+id/fgo_black_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fgo_deliver_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/deliver"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@+id/fgo_black_count"
+            app:layout_constraintTop_toTopOf="@id/fgo_black_count" />
+
+        <TextView
+            android:id="@+id/fgo_red_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0"
+            android:textColor="@color/red"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@+id/fgo_deliver_0"
+            app:layout_constraintTop_toTopOf="@id/fgo_deliver_0" />
+
+        <TextView
+            android:id="@+id/fgo_deliver_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/deliver"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@+id/fgo_red_count"
+            app:layout_constraintTop_toTopOf="@id/fgo_red_count" />
+
+        <TextView
+            android:id="@+id/fgo_doctor_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0"
+            android:textColor="@color/green"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@+id/fgo_deliver_1"
+            app:layout_constraintTop_toTopOf="@id/fgo_deliver_1" />
+
+        <TextView
+            android:id="@+id/fgo_deliver_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/deliver"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@id/fgo_doctor_count"
+            app:layout_constraintTop_toTopOf="@id/fgo_doctor_count" />
+
+        <TextView
+            android:id="@+id/fgo_sheriff_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="0"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/base_text"
+            app:layout_constraintStart_toEndOf="@id/fgo_deliver_2"
+            app:layout_constraintTop_toTopOf="@id/fgo_deliver_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

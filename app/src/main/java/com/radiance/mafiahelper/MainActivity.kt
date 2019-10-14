@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.radiance.mafiahelper.game.Game
+import com.radiance.mafiahelper.gameOptionsFragment.GameOptionsFragment
 import com.radiance.mafiahelper.player.PlayersManager
 import com.radiance.mafiahelper.playerListFragment.GameStartListener
 import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
@@ -39,11 +40,17 @@ class MainActivity : AppCompatActivity(), GameStartListener{
     }
 
     override fun gameStarted(game: Game) {
-        supportFragmentManager.findFragmentByTag(PlayerListFragment.TAG)?.let {
-            supportFragmentManager
-                .beginTransaction()
-                .remove(it)
-                .commit()
-        }
+//        supportFragmentManager.findFragmentByTag(PlayerListFragment.TAG)?.let {
+//            supportFragmentManager
+//                .beginTransaction()
+//                .remove(it)
+//                .commit()
+//        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, GameOptionsFragment.newInstance(game), GameOptionsFragment.TAG)
+            .addToBackStack(null)
+            .commit()
     }
 }

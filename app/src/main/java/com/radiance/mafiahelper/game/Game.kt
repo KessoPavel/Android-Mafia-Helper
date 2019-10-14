@@ -9,6 +9,16 @@ class Game (){
     val playersCont: Int
         get() = players.size
 
+    val maxBlackCount: Int
+        get() = playersCont / 4
+
+    val minBlackCount: Int
+        get() = 1
+
+    var blackCount: Int = 0
+    var doctorInGame: Boolean = false
+    var sheriffInGame: Boolean = false
+
     fun addPlayer(player: Player){
         if (!isStarted){
             if (!players.contains(player))

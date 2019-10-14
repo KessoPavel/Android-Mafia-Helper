@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="base_text">#929292</color>
     <color name="sub_text">#969696</color>
+    <color name="black">#000000</color>
+    <color name="red">#FD4949</color>
+    <color name="blue">#446CE6</color>
+    <color name="green">#128F23</color>
 </resources>

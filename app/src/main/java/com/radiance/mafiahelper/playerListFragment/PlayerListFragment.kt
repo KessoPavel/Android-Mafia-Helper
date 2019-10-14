@@ -16,11 +16,10 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerInfoFragment.PlayerInfoFragment
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
-import org.jetbrains.anko.toast
 
 class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
     private lateinit var players: ArrayList<Player>
-    private lateinit var listener: GameStartListener
+    private lateinit var listener: GoToOptionListener
     private lateinit var adapter: PlayerListAdapter
     private val game: Game = Game()
 
@@ -41,7 +40,7 @@ class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        if (context is GameStartListener){
+        if (context is GoToOptionListener){
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement ListItemListener.")
@@ -75,17 +74,17 @@ class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
                 ?.commit()
         } }
 
-        fpl_start_game.setOnClickListener{_ -> listener.gameStarted(game)}
+        fpl_select_options.setOnClickListener{ _ -> listener.goToOptions(game)}
     }
 
     override fun onPlayerSelect(player: Player) {
         game.addPlayer(player)
-        fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
+        fpl_select_options.text = "${getString(R.string.select_game_options)} | ${game.playersCont} players"
     }
 
     override fun onPlayerUnSelect(player: Player) {
         game.removePlayer(player)
-        fpl_start_game.text = "${getString(R.string.start_game)} | ${game.playersCont} players"
+        fpl_select_options.text = "${getString(R.string.select_game_options)} | ${game.playersCont} players"
     }
 
     override fun onLongClick(player: Player) {

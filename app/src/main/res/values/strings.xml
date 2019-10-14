@@ -22,4 +22,5 @@
     <string name="doctor">Doctor</string>
     <string name="sheriff">Sheriff</string>
     <string name="deliver">/</string>
+    <string name="select_game_options">select game options</string>
 </resources>

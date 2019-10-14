@@ -36,9 +36,6 @@ class GameOptionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fgo_number_piker.maxValue = game.maxBlackCount
-        fgo_number_piker.minValue = game.minBlackCount
-
         fgo_number_piker.setOnValueChangedListener { ignored0, ignored1, newVal ->
             game.blackCount = newVal
             updateCounts()
@@ -54,6 +51,11 @@ class GameOptionsFragment : Fragment() {
             game.sheriffInGame = isChecked
             updateCounts()
         }
+
+        fgo_number_piker.maxValue = game.maxBlackCount
+        fgo_number_piker.minValue = game.minBlackCount
+
+        game.blackCount = game.minBlackCount
 
         updateCounts()
     }

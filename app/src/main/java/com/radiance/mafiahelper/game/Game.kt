@@ -3,7 +3,7 @@ package com.radiance.mafiahelper.game
 import com.radiance.mafiahelper.player.Player
 
 class Game (){
-    val players: ArrayList<Player> = ArrayList()
+    var players: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
     val playersCont: Int

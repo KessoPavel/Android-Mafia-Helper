@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.playerListFragment.GoToOptionListener
 import kotlinx.android.synthetic.main.fragment_game_options.*
 
 class GameOptionsFragment : Fragment() {
@@ -63,7 +62,7 @@ class GameOptionsFragment : Fragment() {
         }
 
         fgo_start_game.setOnClickListener{
-            listener.startGame(game)
+            listener.goToGettingToKnow(game)
         }
 
         fgo_number_piker.maxValue = game.maxBlackCount

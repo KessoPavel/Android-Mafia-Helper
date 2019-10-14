@@ -25,4 +25,5 @@
     <string name="select_game_options">select game options</string>
     <string name="go_to_first_day">go to first day</string>
     <string name="pseudonym">Alias :</string>
+    <string name="go_to_first_night">go to first night</string>
 </resources>

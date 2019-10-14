@@ -1,9 +1,11 @@
 package com.radiance.mafiahelper.gettingToKnowFrgment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +21,7 @@ class GettingToKnowFragment: Fragment(), GettingToKnownItemListener, SetPseudony
     private lateinit var game: Game
     private lateinit var adapter: GettingToKnowAdapter
     private lateinit var selectedPlayer: Player
+    private lateinit var listener: FirstNightStartListener
     private val playerWithPseudonym = ArrayList<Player>()
 
     companion object {
@@ -44,10 +47,20 @@ class GettingToKnowFragment: Fragment(), GettingToKnownItemListener, SetPseudony
         return view
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if (context is FirstNightStartListener){
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " must implement FirstNightStartListener.")
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         game.cleatPseudonym()
-        fgtk_first_gay.visibility = View.INVISIBLE
+        fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
     }
 
     override fun clickToPlayer(player: Player) {
@@ -56,7 +69,7 @@ class GettingToKnowFragment: Fragment(), GettingToKnownItemListener, SetPseudony
         activity?.runOnUiThread{
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.add(R.id.root_layout, SetPseudonymFragment.newInstance(this, selectedPlayer.pseudonym), "Add Player")
+                ?.add(R.id.root_layout, SetPseudonymFragment.newInstance(this, selectedPlayer.pseudonym), "SetPseudonymFragment")
                 ?.addToBackStack(null)
                 ?.commit()
         }
@@ -75,7 +88,11 @@ class GettingToKnowFragment: Fragment(), GettingToKnownItemListener, SetPseudony
         adapter.notifyDataSetChanged()
 
         if (playerWithPseudonym.size == game.playersCont){
-            fgtk_first_gay.visibility = View.VISIBLE
+            fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
+            fgtk_first_gay.setOnClickListener{
+                game.players = playerWithPseudonym
+                listener.startFirstNight(game)
+            }
         }
     }
 

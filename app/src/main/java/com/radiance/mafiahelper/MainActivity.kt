@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.gameOptionsFragment.GameOptionsFragment
 import com.radiance.mafiahelper.gameOptionsFragment.StartGameListener
+import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnowFragment
 import com.radiance.mafiahelper.player.PlayersManager
 import com.radiance.mafiahelper.playerListFragment.GoToOptionListener
 import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
@@ -48,9 +49,11 @@ class MainActivity : AppCompatActivity(), GoToOptionListener, StartGameListener{
     }
 
     override fun startGame(game: Game) {
-        runOnUiThread{
-            toast("Start game")
-        }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, GettingToKnowFragment.newInstance(game), GettingToKnowFragment.TAG)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

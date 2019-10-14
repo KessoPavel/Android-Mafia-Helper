@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.click
+import com.radiance.mafiahelper.inflate
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerDisplayManager.PlayerListDisplayManager
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
@@ -44,11 +46,6 @@ class PlayerListAdapter(
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         holder.bindPlayer(displayManager = displayPlayers[position])
-    }
-
-    fun updatePlayerList(newPlayers: ArrayList<Player>){
-        players = newPlayers
-        displayPlayers = createDisplayManagers()
     }
 
     fun addPlayer(player: Player){

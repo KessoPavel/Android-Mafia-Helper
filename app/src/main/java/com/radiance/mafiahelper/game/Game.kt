@@ -3,7 +3,7 @@ package com.radiance.mafiahelper.game
 import com.radiance.mafiahelper.player.Player
 
 class Game (){
-    private val players: ArrayList<Player> = ArrayList()
+    val players: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
     val playersCont: Int
@@ -30,5 +30,10 @@ class Game (){
         if (!isStarted){
             players.remove(player)
         }
+    }
+
+    fun cleatPseudonym(){
+        for (player in players)
+            player.pseudonym = ""
     }
 }

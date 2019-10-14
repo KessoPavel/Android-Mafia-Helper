@@ -23,4 +23,6 @@
     <string name="sheriff">Sheriff</string>
     <string name="deliver">/</string>
     <string name="select_game_options">select game options</string>
+    <string name="go_to_first_day">go to first day</string>
+    <string name="pseudonym">Alias :</string>
 </resources>

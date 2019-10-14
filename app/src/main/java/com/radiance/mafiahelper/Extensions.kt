@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.playerListFragment
+package com.radiance.mafiahelper
 
 import android.view.LayoutInflater
 import android.view.View

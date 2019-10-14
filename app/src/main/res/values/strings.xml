@@ -27,4 +27,5 @@
     <string name="pseudonym">Alias :</string>
     <string name="go_to_first_night">go to first night</string>
     <string name="mafia">Mafia</string>
+    <string name="go_to_day">go to day</string>
 </resources>

@@ -5,6 +5,8 @@ import java.io.Serializable
 data class Player (
     var name: String = "",
     var pseudonym: String = "",
+    var role: Role = Role.Red,
+    var isDeath: Boolean = false,
 
     var gamesForReds: Int = 0,
     var gamesForBlacks: Int = 0,

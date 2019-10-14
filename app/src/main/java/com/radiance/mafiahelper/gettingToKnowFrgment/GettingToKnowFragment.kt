@@ -70,7 +70,6 @@ class GettingToKnowFragment: Fragment(), GettingToKnownItemListener, SetPseudony
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.add(R.id.root_layout, SetPseudonymFragment.newInstance(this, selectedPlayer.pseudonym), "SetPseudonymFragment")
-                ?.addToBackStack(null)
                 ?.commit()
         }
     }

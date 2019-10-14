@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.radiance.mafiahelper.firstNightFragment.FirstNightFragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.gameOptionsFragment.GameOptionsFragment
 import com.radiance.mafiahelper.gameOptionsFragment.StartGameListener
@@ -59,6 +60,10 @@ class MainActivity : AppCompatActivity(), GoToOptionListener, StartGameListener,
     }
 
     override fun startFirstNight(game: Game) {
-        toast("FFFFFIRST Night")
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, FirstNightFragment.newInstance(game), FirstNightFragment.TAG)
+            .addToBackStack(null)
+            .commit()
     }
 }

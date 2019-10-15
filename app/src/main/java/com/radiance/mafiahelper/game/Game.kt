@@ -132,6 +132,12 @@ class Game() {
 
         deathPlayer?.isDeath = true
         deathPlayers.add(deathPlayer!!)
+
+
+        val position = players.indexOf(deathPlayer)
+        if (position <= currentPlayerIndex - 1)
+            currentPlayerIndex--
+
         players.remove(deathPlayer)
 
         votingMap.clear()

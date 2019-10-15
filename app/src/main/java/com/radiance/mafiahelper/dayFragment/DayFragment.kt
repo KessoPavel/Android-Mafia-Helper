@@ -69,7 +69,7 @@ class DayFragment: Fragment(), DayPlayerClickListener {
     private fun nextPlayer(){
         currentPlayerIndex++
 
-        if (currentPlayerIndex >= game.playersCont) {
+        if (currentPlayerIndex >= game.playersCont - 1) {
             fd_next_player.setOnClickListener(null)
             fd_next_player.visibility = View.INVISIBLE
             fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)

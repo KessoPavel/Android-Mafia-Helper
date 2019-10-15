@@ -16,6 +16,7 @@ import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnowFragment
 import com.radiance.mafiahelper.player.PlayersManager
 import com.radiance.mafiahelper.playerListFragment.GoToOptionListener
 import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
+import com.radiance.mafiahelper.votingFragment.VotingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
@@ -83,6 +84,10 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun startVoting(game: Game) {
-        toast("Start vouting")
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, VotingFragment.newInstance(game), VotingFragment.TAG)
+            .addToBackStack(null)
+            .commit()
     }
 }

@@ -21,7 +21,20 @@ class Game() {
     var sheriffInGame: Boolean = false
 
     var currentPlayerIndex = 0
-    var votingList: ArrayList<Player> = ArrayList<Player>()
+    var votingList: ArrayList<Player> = ArrayList()
+    var votingMap: HashMap<Player, Int> = HashMap<Player, Int>()
+
+    val livePlayersCount: Int
+        get() {
+            var answer = 0
+
+            for (player in players){
+                if (!player.isDeath)
+                    answer++
+            }
+
+            return answer
+        }
 
     fun addPlayer(player: Player) {
         if (!isStarted) {

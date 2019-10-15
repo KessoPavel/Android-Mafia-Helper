@@ -14,7 +14,6 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerDisplayManager.DayDisplayManager
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
-import kotlin.concurrent.fixedRateTimer
 
 class DayFragment: Fragment(), DayPlayerClickListener {
     private lateinit var game: Game
@@ -72,6 +71,7 @@ class DayFragment: Fragment(), DayPlayerClickListener {
 
         if (currentPlayerIndex >= game.playersCont) {
             fd_next_player.setOnClickListener(null)
+            fd_next_player.visibility = View.INVISIBLE
             fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fd_button.setOnClickListener{
                 game.currentPlayerIndex++

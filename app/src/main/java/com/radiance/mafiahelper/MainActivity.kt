@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.radiance.mafiahelper.dayFragment.DayFragment
+import com.radiance.mafiahelper.dayFragment.StartVotingListener
 import com.radiance.mafiahelper.firstNightFragment.FirstNightFragment
 import com.radiance.mafiahelper.firstNightFragment.StartDayListener
 import com.radiance.mafiahelper.game.Game
@@ -21,7 +23,8 @@ class MainActivity : AppCompatActivity(),
     GoToOptionListener,
     StartGameListener,
     FirstNightStartListener,
-    StartDayListener {
+    StartDayListener,
+    StartVotingListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -72,6 +75,14 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun startDay(game: Game) {
-        toast("START DAY")
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, DayFragment.newInstance(game), DayFragment.TAG)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun startVoting(game: Game) {
+        toast("Start vouting")
     }
 }

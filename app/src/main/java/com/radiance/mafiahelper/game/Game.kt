@@ -20,6 +20,8 @@ class Game() {
     var doctorInGame: Boolean = false
     var sheriffInGame: Boolean = false
 
+    var currentPlayerIndex = 0
+
     fun addPlayer(player: Player) {
         if (!isStarted) {
             if (!players.contains(player))
@@ -97,4 +99,6 @@ class Game() {
 
         return (sheriffIsReady or !sheriffInGame) and (doctorIsReady or !doctorInGame) and (mafiaReadyCount == blackCount)
     }
+
+
 }

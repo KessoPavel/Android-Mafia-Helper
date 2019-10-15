@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.radiance.mafiahelper.firstNightFragment.FirstNightFragment
+import com.radiance.mafiahelper.firstNightFragment.StartDayListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.gameOptionsFragment.GameOptionsFragment
 import com.radiance.mafiahelper.gameOptionsFragment.StartGameListener
@@ -16,8 +17,11 @@ import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity(), GoToOptionListener, StartGameListener,
-    FirstNightStartListener {
+class MainActivity : AppCompatActivity(),
+    GoToOptionListener,
+    StartGameListener,
+    FirstNightStartListener,
+    StartDayListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -65,5 +69,9 @@ class MainActivity : AppCompatActivity(), GoToOptionListener, StartGameListener,
             .replace(R.id.root_layout, FirstNightFragment.newInstance(game), FirstNightFragment.TAG)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun startDay(game: Game) {
+        toast("START DAY")
     }
 }

@@ -1,8 +1,9 @@
 package com.radiance.mafiahelper.game
 
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.player.Role
 
-class Game (){
+class Game() {
     var players: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
@@ -19,21 +20,81 @@ class Game (){
     var doctorInGame: Boolean = false
     var sheriffInGame: Boolean = false
 
-    fun addPlayer(player: Player){
-        if (!isStarted){
+    fun addPlayer(player: Player) {
+        if (!isStarted) {
             if (!players.contains(player))
                 players.add(player)
         }
     }
 
-    fun removePlayer(player: Player){
-        if (!isStarted){
+    fun removePlayer(player: Player) {
+        if (!isStarted) {
             players.remove(player)
         }
     }
 
-    fun cleatPseudonym(){
+    fun cleatPseudonym() {
         for (player in players)
             player.pseudonym = ""
+    }
+
+    fun setPlayerRole(player: Player, role: Role) {
+        if (role == Role.Doctor) {
+            if (doctorInGame) {
+                for (p in players) {
+                    if (p.role == Role.Doctor)
+                        p.role = Role.Red
+                }
+                player.role = role
+            }
+        }
+
+        if (role == Role.Sheriff) {
+            if (sheriffInGame) {
+                for (p in players) {
+                    if (p.role == Role.Sheriff)
+                        p.role = Role.Red
+                }
+                player.role = role
+            }
+        }
+
+        if (role == Role.Black) {
+            var realBlackCount = 0
+
+            for (p in players) {
+                if (p.role == Role.Black) {
+                    if (realBlackCount == blackCount - 1) {
+                        p.role = Role.Red
+                    } else {
+                        realBlackCount++
+                    }
+                }
+            }
+
+            player.role = role
+        }
+        if (role == Role.Red)
+            player.role = role
+    }
+
+    fun checkPlayersRoles(): Boolean {
+        var gameIsReady = false
+
+        var sheriffIsReady = false
+        var doctorIsReady = false
+        var mafiaReadyCount = 0
+
+        for (player in players) {
+            if (player.role == Role.Doctor) {
+                doctorIsReady = true
+            }
+            if (player.role == Role.Sheriff)
+                sheriffIsReady = true
+            if (player.role == Role.Black)
+                mafiaReadyCount++
+        }
+
+        return (sheriffIsReady or !sheriffInGame) and (doctorIsReady or !doctorInGame) and (mafiaReadyCount == blackCount)
     }
 }

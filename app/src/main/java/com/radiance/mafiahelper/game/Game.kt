@@ -21,6 +21,7 @@ class Game() {
     var sheriffInGame: Boolean = false
 
     var currentPlayerIndex = 0
+    var votingList: ArrayList<Player> = ArrayList<Player>()
 
     fun addPlayer(player: Player) {
         if (!isStarted) {

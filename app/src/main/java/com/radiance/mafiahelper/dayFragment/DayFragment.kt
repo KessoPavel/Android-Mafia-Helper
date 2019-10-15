@@ -7,15 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.playerDisplayManager.DayDisplayManager
 import kotlinx.android.synthetic.main.fragment_day.*
+import kotlinx.android.synthetic.main.fragment_day.view.*
+import kotlin.concurrent.fixedRateTimer
 
-class DayFragment: Fragment() {
+class DayFragment: Fragment(), DayPlayerClickListener {
     private lateinit var game: Game
     private lateinit var listener: StartVotingListener
     private var currentPlayerIndex = 0
+    private lateinit var adapter: DayFragmentAdapter
+
+    private val votingList = ArrayList<Player>()
+    private val newInVoting = ArrayList<Player>()
 
     companion object{
         const val TAG = "DayFragment"
@@ -42,19 +50,20 @@ class DayFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_day, container, false)
+        val view = inflater.inflate(R.layout.fragment_day, container, false)
+        view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
+        adapter = DayFragmentAdapter(createDisplayManagers(), this)
+        view.fd_recycler_view.adapter = adapter
+        return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setCurrentPlayer(game.players[game.currentPlayerIndex + currentPlayerIndex])
-
         fd_next_player.setOnClickListener{
             nextPlayer()
         }
-
         fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
     }
 
@@ -65,6 +74,12 @@ class DayFragment: Fragment() {
             fd_next_player.setOnClickListener(null)
             fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fd_button.setOnClickListener{
+                game.currentPlayerIndex++
+                if (game.currentPlayerIndex == game.playersCont)
+                    game.currentPlayerIndex = 0
+
+                game.votingList = votingList
+
                 listener.startVoting(game)
             }
         }
@@ -78,10 +93,49 @@ class DayFragment: Fragment() {
         }
 
         setCurrentPlayer(player = game.players[nextIndex])
+
+        newInVoting.clear()
+        adapter.setData(createDisplayManagers())
+        adapter.notifyDataSetChanged()
     }
 
     private fun setCurrentPlayer(player: Player){
         fd_current_name.text = player.name
         fd_current_pseudonym.text = player.pseudonym
+    }
+
+    private fun createDisplayManagers(): ArrayList<DayDisplayManager>{
+        val answer = ArrayList<DayDisplayManager>()
+
+        for (player in game.players){
+            if (!player.isDeath){
+                var isClickable = true
+                var number = ""
+                var status = ""
+
+                if (votingList.contains(player)){
+                    isClickable = newInVoting.contains(player)
+                    number = (votingList.indexOf(player) + 1).toString()
+                    status = if (newInVoting.contains(player)) "" else "in voting"
+                }
+
+                answer.add(DayDisplayManager(player, status, isClickable, number))
+            }
+        }
+
+        return answer
+    }
+
+    override fun click(player: Player) {
+        if (votingList.contains(player)){
+            votingList.remove(player)
+            newInVoting.remove(player)
+        } else {
+            votingList.add(player)
+            newInVoting.add(player)
+        }
+
+        adapter.setData(createDisplayManagers())
+        adapter.notifyDataSetChanged()
     }
 }

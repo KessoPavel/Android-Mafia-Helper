@@ -5,16 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.playerDisplayManager.VotingDisplayManager
 import kotlinx.android.synthetic.main.fragment_voting.*
+import kotlinx.android.synthetic.main.fragment_voting.view.*
 
 class VotingFragment: Fragment() {
     private lateinit var game: Game
     private var votingList: ArrayList<Player> = ArrayList<Player>()
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
+    private lateinit var adapter: VotingAdapter
 
     companion object{
         const val TAG = "VotingFragment"
@@ -31,7 +35,22 @@ class VotingFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_voting, container, false)
+        val view = inflater.inflate(R.layout.fragment_voting, container, false)
+        view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
+        adapter = VotingAdapter(createDisplayManagers())
+        view.fv_recycler_view.adapter = adapter
+        return view
+    }
+
+    private fun createDisplayManagers(): java.util.ArrayList<VotingDisplayManager> {
+        val answer = ArrayList<VotingDisplayManager>()
+
+        for (player in game.votingMap.keys){
+            val manager = VotingDisplayManager(player, game.votingMap[player].toString())
+            answer.add(manager)
+        }
+
+        return answer
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +71,9 @@ class VotingFragment: Fragment() {
     private fun nextPlayer(){
         game.votingMap[votingList[currentPlayerIndex]] = currentVotingNumber
         currentVotingNumber = 0
+
+        adapter.setData(createDisplayManagers())
+        adapter.notifyDataSetChanged()
 
         currentPlayerIndex++
         if (currentPlayerIndex == votingList.size) {

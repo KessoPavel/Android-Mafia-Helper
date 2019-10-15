@@ -1,5 +1,6 @@
 package com.radiance.mafiahelper.votingFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class VotingFragment: Fragment() {
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
     private lateinit var adapter: VotingAdapter
+    private lateinit var listener: StartNightListener
 
     companion object{
         const val TAG = "VotingFragment"
@@ -27,6 +29,16 @@ class VotingFragment: Fragment() {
             val fragment = VotingFragment()
             fragment.game = game
             return fragment
+        }
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if (context is StartNightListener){
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " must implement StartNightListener.")
         }
     }
 
@@ -77,6 +89,10 @@ class VotingFragment: Fragment() {
 
         currentPlayerIndex++
         if (currentPlayerIndex == votingList.size) {
+            fv_button.setOnClickListener{
+                game.endVoting()
+                listener.startNight(game)
+            }
             fv_next_player.visibility = View.INVISIBLE
             fv_next_player.setOnClickListener(null)
             return
@@ -88,8 +104,11 @@ class VotingFragment: Fragment() {
         }
 
         var min = 0
-        if (currentPlayerIndex == votingList.size - 1)
+        if (currentPlayerIndex == votingList.size - 1) {
             min = max
+            fv_number_picker.value = min
+            currentVotingNumber = min
+        }
 
         setCurrentPlayer(votingList[currentPlayerIndex], max, min)
     }

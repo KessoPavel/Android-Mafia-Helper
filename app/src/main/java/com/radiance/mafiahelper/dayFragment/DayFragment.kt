@@ -74,10 +74,6 @@ class DayFragment: Fragment(), DayPlayerClickListener {
             fd_next_player.visibility = View.INVISIBLE
             fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fd_button.setOnClickListener{
-                game.currentPlayerIndex++
-                if (game.currentPlayerIndex == game.playersCont)
-                    game.currentPlayerIndex = 0
-
                 game.votingList = votingList
 
                 listener.startVoting(game)

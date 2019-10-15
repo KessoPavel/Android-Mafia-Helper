@@ -5,6 +5,7 @@ import com.radiance.mafiahelper.player.Role
 
 class Game() {
     var players: ArrayList<Player> = ArrayList()
+    var deathPlayers: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
     val playersCont: Int
@@ -114,5 +115,27 @@ class Game() {
         return (sheriffIsReady or !sheriffInGame) and (doctorIsReady or !doctorInGame) and (mafiaReadyCount == blackCount)
     }
 
+    fun endVoting(){
+        currentPlayerIndex++
+        if (currentPlayerIndex == playersCont)
+            currentPlayerIndex = 0
+
+
+        var deathPlayer: Player? = null
+        var max = 0
+        for (player in votingMap.keys){
+            if (votingMap[player]!! > max){
+                max = votingMap[player]!!
+                deathPlayer = player
+            }
+        }
+
+        deathPlayer?.isDeath = true
+        deathPlayers.add(deathPlayer!!)
+        players.remove(deathPlayer)
+
+        votingMap.clear()
+        votingList.clear()
+    }
 
 }

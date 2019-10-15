@@ -16,6 +16,7 @@ import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnowFragment
 import com.radiance.mafiahelper.player.PlayersManager
 import com.radiance.mafiahelper.playerListFragment.GoToOptionListener
 import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
+import com.radiance.mafiahelper.votingFragment.StartNightListener
 import com.radiance.mafiahelper.votingFragment.VotingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity(),
     StartGameListener,
     FirstNightStartListener,
     StartDayListener,
-    StartVotingListener {
+    StartVotingListener,
+    StartNightListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity(),
     override fun startDay(game: Game) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, DayFragment.newInstance(game), DayFragment.TAG)
+            .replace(R.id.root_layout, DayFragment.newInstance(game), null)
             .addToBackStack(null)
             .commit()
     }
@@ -86,7 +88,15 @@ class MainActivity : AppCompatActivity(),
     override fun startVoting(game: Game) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, VotingFragment.newInstance(game), VotingFragment.TAG)
+            .replace(R.id.root_layout, VotingFragment.newInstance(game), null)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun startNight(game: Game) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.root_layout, DayFragment.newInstance(game), null)
             .addToBackStack(null)
             .commit()
     }

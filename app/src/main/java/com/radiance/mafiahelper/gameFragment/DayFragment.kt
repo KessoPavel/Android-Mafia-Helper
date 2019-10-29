@@ -1,23 +1,30 @@
-package com.radiance.mafiahelper.dayFragment
+package com.radiance.mafiahelper.gameFragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.dayFragment.DayFragmentAdapter
+import com.radiance.mafiahelper.dayFragment.DayPlayerClickListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerDisplayManager.DayDisplayManager
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
 
-class DayFragment: Fragment(), DayPlayerClickListener {
+class DayFragment: GameFragment(), DayPlayerClickListener {
+    override val layoutId: Int = R.layout.fragment_day
+
+    override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
+        adapter =
+            DayFragmentAdapter(createDisplayManagers(), this)
+        view.fd_recycler_view.adapter = adapter
+        return view
+    }
+
     private lateinit var game: Game
-    private lateinit var listener: StartVotingListener
     private var currentPlayerIndex = 0
     private lateinit var adapter: DayFragmentAdapter
 
@@ -25,35 +32,11 @@ class DayFragment: Fragment(), DayPlayerClickListener {
     private val newInVoting = ArrayList<Player>()
 
     companion object{
-        const val TAG = "DayFragment"
-
         fun newInstance(game: Game): DayFragment {
             val fragment = DayFragment()
             fragment.game = game
             return fragment
         }
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (context is StartVotingListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement StartVotingListener.")
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_day, container, false)
-        view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter = DayFragmentAdapter(createDisplayManagers(), this)
-        view.fd_recycler_view.adapter = adapter
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

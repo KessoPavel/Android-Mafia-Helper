@@ -1,58 +1,42 @@
-package com.radiance.mafiahelper.votingFragment
+package com.radiance.mafiahelper.gameFragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.playerDisplayManager.VotingDisplayManager
+import com.radiance.mafiahelper.votingFragment.VotingAdapter
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*
 
-class VotingFragment: Fragment() {
+class VotingFragment: GameFragment(){
+    override val layoutId: Int = R.layout.fragment_voting
+
+    override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
+        adapter = VotingAdapter(createDisplayManagers())
+        view.fv_recycler_view.adapter = adapter
+        return view
+    }
+
     private lateinit var game: Game
     private var votingList: ArrayList<Player> = ArrayList<Player>()
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
     private lateinit var adapter: VotingAdapter
-    private lateinit var listener: StartNightListener
 
     companion object{
         const val TAG = "VotingFragment"
 
-        fun newInstance(game: Game): VotingFragment{
+        fun newInstance(game: Game): VotingFragment {
             val fragment = VotingFragment()
             fragment.game = game
             return fragment
         }
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (context is StartNightListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement StartNightListener.")
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_voting, container, false)
-        view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter = VotingAdapter(createDisplayManagers())
-        view.fv_recycler_view.adapter = adapter
-        return view
-    }
 
     private fun createDisplayManagers(): java.util.ArrayList<VotingDisplayManager> {
         val answer = ArrayList<VotingDisplayManager>()

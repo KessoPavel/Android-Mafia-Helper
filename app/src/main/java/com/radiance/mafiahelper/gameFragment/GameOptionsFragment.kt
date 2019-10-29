@@ -1,17 +1,18 @@
-package com.radiance.mafiahelper.gameOptionsFragment
+package com.radiance.mafiahelper.gameFragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import kotlinx.android.synthetic.main.fragment_game_options.*
 
-class GameOptionsFragment : Fragment() {
-    private lateinit var listener: StartGameListener
+class GameOptionsFragment : GameFragment() {
+    override val layoutId: Int = R.layout.fragment_game_options
+
+    override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        return view
+    }
+
     private lateinit var game: Game
 
     companion object {
@@ -22,24 +23,6 @@ class GameOptionsFragment : Fragment() {
             fragment.game = game
             return fragment
         }
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (context is StartGameListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement ListItemListener.")
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_game_options, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +45,7 @@ class GameOptionsFragment : Fragment() {
         }
 
         fgo_start_game.setOnClickListener{
-            listener.goToGettingToKnow(game)
+            listener.startGettingToKnown(game)
         }
 
         fgo_number_piker.maxValue = game.maxBlackCount

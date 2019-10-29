@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.setPseudonymFragment
+package com.radiance.mafiahelper.dialogSetPseudonym
 
 interface SetPseudonymListener {
     fun playerGotAnPseudonym(pseudonym: String)

@@ -1,11 +1,7 @@
-package com.radiance.mafiahelper.firstNightFragment
+package com.radiance.mafiahelper.gameFragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
@@ -15,13 +11,27 @@ import kotlinx.android.synthetic.main.fragment_first_night.view.*
 import android.os.Handler
 import androidx.core.content.ContextCompat
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.firstNightFragment.FirstNightAdapter
+import com.radiance.mafiahelper.firstNightFragment.PlayerRoleChangeListener
 import kotlinx.android.synthetic.main.fragment_first_night.*
 
 
-class FirstNightFragment: Fragment(), PlayerRoleChangeListener {
+class FirstNightFragment: GameFragment(),
+    PlayerRoleChangeListener {
+    override val layoutId: Int = R.layout.fragment_first_night
+
+    override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        view.ffn_player_list.layoutManager = LinearLayoutManager(context)
+        adapter = FirstNightAdapter(
+            createDisplayManagers(),
+            this
+        )
+        view.ffn_player_list.adapter = adapter
+        return view
+    }
+
     private lateinit var adapter: FirstNightAdapter
     private lateinit var game: Game
-    private lateinit var listener: StartDayListener
 
     companion object{
         const val TAG = "FirstNightFragment"
@@ -30,28 +40,6 @@ class FirstNightFragment: Fragment(), PlayerRoleChangeListener {
             val fragment = FirstNightFragment()
             fragment.game = game
             return fragment
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(com.radiance.mafiahelper.R.layout.fragment_first_night, container, false)
-        view.ffn_player_list.layoutManager = LinearLayoutManager(context)
-        adapter = FirstNightAdapter(createDisplayManagers(), this)
-        view.ffn_player_list.adapter = adapter
-        return view
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (context is StartDayListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement StartDayListener.")
         }
     }
 

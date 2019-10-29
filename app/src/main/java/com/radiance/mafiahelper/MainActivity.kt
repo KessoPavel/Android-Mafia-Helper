@@ -4,30 +4,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.radiance.mafiahelper.dayFragment.DayFragment
-import com.radiance.mafiahelper.dayFragment.StartVotingListener
-import com.radiance.mafiahelper.firstNightFragment.FirstNightFragment
-import com.radiance.mafiahelper.firstNightFragment.StartDayListener
+import com.radiance.mafiahelper.gameFragment.DayFragment
+import com.radiance.mafiahelper.gameFragment.FirstNightFragment
 import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.gameOptionsFragment.GameOptionsFragment
-import com.radiance.mafiahelper.gameOptionsFragment.StartGameListener
-import com.radiance.mafiahelper.gettingToKnowFrgment.FirstNightStartListener
-import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnowFragment
+import com.radiance.mafiahelper.game.GameListener
+import com.radiance.mafiahelper.gameFragment.GameOptionsFragment
+import com.radiance.mafiahelper.gameFragment.GettingToKnowFragment
 import com.radiance.mafiahelper.player.PlayersManager
-import com.radiance.mafiahelper.playerListFragment.GoToOptionListener
-import com.radiance.mafiahelper.playerListFragment.PlayerListFragment
-import com.radiance.mafiahelper.votingFragment.StartNightListener
-import com.radiance.mafiahelper.votingFragment.VotingFragment
+import com.radiance.mafiahelper.gameFragment.PlayerListFragment
+import com.radiance.mafiahelper.gameFragment.VotingFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(),
-    GoToOptionListener,
-    StartGameListener,
-    FirstNightStartListener,
-    StartDayListener,
-    StartVotingListener,
-    StartNightListener{
+    GameListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,9 +24,11 @@ class MainActivity : AppCompatActivity(),
 
         val players = PlayersManager.loadPlayers()
 
+        val playerListFragment = PlayerListFragment.newInstance(players)
+
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.root_layout, PlayerListFragment.newInstance(players), PlayerListFragment.TAG)
+            .add(R.id.root_layout, playerListFragment, playerListFragment.tag)
             .commit()
     }
 
@@ -53,7 +44,7 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun goToOptions(game: Game) {
+    override fun openGameOption(game: Game) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.root_layout, GameOptionsFragment.newInstance(game), GameOptionsFragment.TAG)
@@ -61,7 +52,7 @@ class MainActivity : AppCompatActivity(),
             .commit()
     }
 
-    override fun goToGettingToKnow(game: Game) {
+    override fun startGettingToKnown(game: Game) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.root_layout, GettingToKnowFragment.newInstance(game), GettingToKnowFragment.TAG)

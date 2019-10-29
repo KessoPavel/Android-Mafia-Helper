@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.addPlayerFragment
+package com.radiance.mafiahelper.dialogAddFragment
 
 import com.radiance.mafiahelper.player.Player
 

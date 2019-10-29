@@ -1,65 +1,41 @@
-package com.radiance.mafiahelper.playerListFragment
+package com.radiance.mafiahelper.gameFragment
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.addPlayerFragment.AddPlayerFragment
-import com.radiance.mafiahelper.addPlayerFragment.AddPlayerListener
+import com.radiance.mafiahelper.dialogAddFragment.AddPlayerFragment
+import com.radiance.mafiahelper.dialogAddFragment.AddPlayerListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerInfoFragment.PlayerInfoFragment
+import com.radiance.mafiahelper.dialogPlayerInfo.PlayerInfoFragment
+import com.radiance.mafiahelper.playerListFragment.ListItemListener
+import com.radiance.mafiahelper.playerListFragment.PlayerListAdapter
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
-class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
+class PlayerListFragment : GameFragment(),
+    ListItemListener, AddPlayerListener {
+    override val layoutId: Int = R.layout.fragment_player_list
     private lateinit var players: ArrayList<Player>
-    private lateinit var listener: GoToOptionListener
     private lateinit var adapter: PlayerListAdapter
     private val game: Game = Game()
 
-
     companion object {
-        private const val PLAYER_LIST = "PLAYER_LIST"
-        const val TAG = "PlayerListFragment"
-
-        fun newInstance(players: ArrayList<Player>): PlayerListFragment{
-            val args = Bundle()
-            args.putSerializable(PLAYER_LIST, players)
+        fun newInstance(players: ArrayList<Player>): PlayerListFragment {
             val fragment = PlayerListFragment()
-            fragment.arguments = args
+            fragment.players = players
             return fragment
         }
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-        if (context is GoToOptionListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement ListItemListener.")
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        players = arguments!!.getSerializable(PLAYER_LIST) as ArrayList<Player>
-
-        val view = inflater.inflate(R.layout.fragment_player_list, container, false)
+    override fun initUi(view: View, savedInstanceState: Bundle?): View {
         val recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter =  PlayerListAdapter(players, this, context!!)
+        adapter =
+            PlayerListAdapter(players, this, context!!)
         recyclerView.adapter = adapter
-
         return view
     }
 
@@ -74,7 +50,7 @@ class PlayerListFragment : Fragment(),  ListItemListener, AddPlayerListener {
                 ?.commit()
         } }
 
-        fpl_select_options.setOnClickListener{ _ -> listener.goToOptions(game)}
+        fpl_select_options.setOnClickListener{ _ -> listener.openGameOption(game)}
     }
 
     override fun onPlayerSelect(player: Player) {

@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.setPseudonymFragment
+package com.radiance.mafiahelper.dialogAddFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,18 +8,16 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.player.Player
 import kotlinx.android.synthetic.main.fragment_add_player.*
-import kotlinx.android.synthetic.main.fragment_set_pseudionym.*
 
-class SetPseudonymFragment: Fragment() {
-    private lateinit var listener: SetPseudonymListener
-    private lateinit var prefab: String
+class AddPlayerFragment: Fragment() {
+    private lateinit var listener: AddPlayerListener
 
-    companion object{
-        fun newInstance(listener: SetPseudonymListener, pseudonym: String): SetPseudonymFragment {
-            val fragment = SetPseudonymFragment()
+    companion object {
+        fun newInstance(listener: AddPlayerListener): AddPlayerFragment {
+            val fragment = AddPlayerFragment()
             fragment.listener = listener
-            fragment.prefab = pseudonym
             return fragment
         }
     }
@@ -29,33 +27,30 @@ class SetPseudonymFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_set_pseudionym, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_player, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fsp_pseudonym.setText(this.prefab)
 
-        fsp_main.setOnClickListener{
-            Log.d("SetPseudonymFragment", "Click")
+        fap_main.setOnClickListener{_ ->
+            Log.d("AddPlayerFragment", "Click")
         }
+        fap_ok.setOnClickListener{_ ->
+            fap_name.clearFocus()
 
-        fsp__ok.setOnClickListener{
-            fsp_pseudonym.clearFocus()
-
-            val pseudonym = fsp_pseudonym.text.toString()
-
-            if (pseudonym == "")
+            val name = fap_name.text.toString()
+            if (name == "")
                 return@setOnClickListener
 
-            listener.playerGotAnPseudonym(pseudonym)
+            listener.playerAdded(Player(name= name))
             activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
-
-        fsp_exit.setOnClickListener{_ ->
-            fsp_pseudonym.clearFocus()
+        fap_exit.setOnClickListener{_ ->
+            fap_name.clearFocus()
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
     }

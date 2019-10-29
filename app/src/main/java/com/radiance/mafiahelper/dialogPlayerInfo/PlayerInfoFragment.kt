@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.playerInfoFragment
+package com.radiance.mafiahelper.dialogPlayerInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerDisplayManager.VotingDisplayManager
+import com.radiance.mafiahelper.playerProvider.VotingDisplayManager
 import com.radiance.mafiahelper.votingFragment.VotingAdapter
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*

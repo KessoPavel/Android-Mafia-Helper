@@ -10,7 +10,7 @@ import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnowAdapter
 import com.radiance.mafiahelper.gettingToKnowFrgment.GettingToKnownItemListener
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerDisplayManager.GettingToKnownDisplayManager
+import com.radiance.mafiahelper.playerProvider.GettingToKnownDisplayManager
 import com.radiance.mafiahelper.dialogSetPseudonym.SetPseudonymFragment
 import com.radiance.mafiahelper.dialogSetPseudonym.SetPseudonymListener
 import kotlinx.android.synthetic.main.fragment_getting_to_known.*

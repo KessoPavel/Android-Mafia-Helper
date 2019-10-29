@@ -10,7 +10,7 @@ import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.click
 import com.radiance.mafiahelper.inflate
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerDisplayManager.PlayerListDisplayManager
+import com.radiance.mafiahelper.playerProvider.PlayerListDisplayManager
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 

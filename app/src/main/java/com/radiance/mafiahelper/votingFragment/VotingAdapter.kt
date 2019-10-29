@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.inflate
-import com.radiance.mafiahelper.playerDisplayManager.VotingDisplayManager
+import com.radiance.mafiahelper.playerProvider.VotingDisplayManager
 import kotlinx.android.synthetic.main.fragment_voting_item.view.*
 
 class VotingAdapter(

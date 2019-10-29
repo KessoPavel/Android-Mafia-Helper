@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.playerDisplayManager
+package com.radiance.mafiahelper.playerProvider
 
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role

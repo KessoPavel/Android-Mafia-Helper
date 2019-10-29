@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.playerDisplayManager.FirstNightDisplayManager
+import com.radiance.mafiahelper.playerProvider.FirstNightDisplayManager
 import kotlinx.android.synthetic.main.fragment_first_night.view.*
 import android.os.Handler
 import androidx.core.content.ContextCompat

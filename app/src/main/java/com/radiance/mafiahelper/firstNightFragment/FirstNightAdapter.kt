@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.inflate
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.playerDisplayManager.FirstNightDisplayManager
+import com.radiance.mafiahelper.playerProvider.FirstNightDisplayManager
 import kotlinx.android.synthetic.main.fragment_first_night_item.view.*
 
 class FirstNightAdapter(

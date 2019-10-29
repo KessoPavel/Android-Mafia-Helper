@@ -2,11 +2,10 @@ package com.radiance.mafiahelper.dayFragment
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.inflate
-import com.radiance.mafiahelper.playerDisplayManager.DayDisplayManager
+import com.radiance.mafiahelper.playerProvider.DayDisplayManager
 import kotlinx.android.synthetic.main.fragment_day_item.view.*
 
 class DayFragmentAdapter(

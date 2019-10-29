@@ -9,7 +9,7 @@ import com.radiance.mafiahelper.dayFragment.DayFragmentAdapter
 import com.radiance.mafiahelper.dayFragment.DayPlayerClickListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerDisplayManager.DayDisplayManager
+import com.radiance.mafiahelper.playerProvider.DayDisplayManager
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
 

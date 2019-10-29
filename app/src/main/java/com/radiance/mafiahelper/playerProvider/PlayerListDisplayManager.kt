@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.playerDisplayManager
+package com.radiance.mafiahelper.playerProvider
 
 import android.graphics.drawable.Drawable
 import com.radiance.mafiahelper.player.Player

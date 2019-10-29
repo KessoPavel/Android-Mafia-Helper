@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.inflate
-import com.radiance.mafiahelper.playerDisplayManager.GettingToKnownDisplayManager
+import com.radiance.mafiahelper.playerProvider.GettingToKnownDisplayManager
 import kotlinx.android.synthetic.main.fragment_getting_to_known_item.view.*
-import javax.xml.transform.ErrorListener
 
 class GettingToKnowAdapter(
     private var players: List<GettingToKnownDisplayManager>,

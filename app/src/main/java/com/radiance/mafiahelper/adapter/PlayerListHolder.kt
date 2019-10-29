@@ -1,0 +1,49 @@
+package com.radiance.mafiahelper.adapter
+
+import android.view.View
+import com.radiance.mafiahelper.click
+import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.playerProvider.PlayerListProvider
+import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
+
+class PlayerListHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener, View.OnLongClickListener {
+    private lateinit var provider: PlayerListProvider
+
+    init {
+        view.setOnClickListener(this)
+        view.setOnLongClickListener(this)
+    }
+
+    override fun bind(provider: BasePlayerProvider) {
+        this.provider = provider
+
+        view.fpli_name.text = provider.name
+        view.fpli_statistic.text = provider.statistic
+
+        if (provider.isSelected){
+            active()
+        } else {
+            inactive()
+        }
+    }
+
+    override fun onClick(p0: View?) {
+        view.click(0.95f, 1.005f, 225)
+        listener.onClick(provider.player)
+    }
+
+    override fun onLongClick(v: View?): Boolean {
+        listener.onLongClick(provider.player)
+        return true
+    }
+
+    private fun active() {
+        view.fpli_image.setImageResource(provider.activeIcon)
+        view.fpli_frame.background = provider.activeBackground
+    }
+
+    private fun inactive(){
+        view.fpli_image.setImageResource(provider.inactiveIcon)
+        view.fpli_frame.background = provider.inactiveBackground
+    }
+}

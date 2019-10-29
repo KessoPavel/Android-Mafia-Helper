@@ -113,6 +113,14 @@ class PlayerListAdapter(
     }
 
     class PlayerHolder(v: View, l: ListItemListener) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener {
+        override fun onLongClick(v: View?): Boolean {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onClick(v: View?) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         private var view: View = v
         private val listener: ListItemListener = l
         private lateinit var displayManager: PlayerListDisplayManager
@@ -122,23 +130,7 @@ class PlayerListAdapter(
             v.setOnLongClickListener(this)
         }
 
-        override fun onClick(p0: View?) {
-            view.click(0.95f, 1.005f, 225)
 
-            if (displayManager.isSelected) {
-                inactive()
-                listener.onPlayerUnSelect(displayManager.player)
-            } else {
-                active()
-                listener.onPlayerSelect(displayManager.player)
-            }
-            displayManager.isSelected = !displayManager.isSelected
-        }
-
-        override fun onLongClick(v: View?): Boolean {
-            listener.onLongClick(displayManager.player)
-            return true
-        }
 
         fun bindPlayer(displayManager: PlayerListDisplayManager){
             this.displayManager = displayManager

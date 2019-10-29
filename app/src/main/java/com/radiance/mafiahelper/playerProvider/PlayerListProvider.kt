@@ -7,4 +7,5 @@ interface PlayerListProvider: PlayerProvider {
     val activeBackground: Drawable?
     val inactiveIcon: Int
     val activeIcon: Int
+    var isSelected: Boolean
 }

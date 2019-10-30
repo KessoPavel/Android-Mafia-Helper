@@ -3,11 +3,10 @@ package com.radiance.mafiahelper.adapter
 import android.view.View
 import com.radiance.mafiahelper.click
 import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
-import com.radiance.mafiahelper.playerProvider.PlayerListProvider
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 class PlayerListHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener, View.OnLongClickListener {
-    private lateinit var provider: PlayerListProvider
+    private lateinit var provider: BasePlayerProvider
 
     init {
         view.setOnClickListener(this)
@@ -29,11 +28,11 @@ class PlayerListHolder(view: View, listener: Adapter.ClickListener): BaseHolder(
 
     override fun onClick(p0: View?) {
         view.click(0.95f, 1.005f, 225)
-        listener.onClick(provider.player)
+        listener.onClick(provider)
     }
 
     override fun onLongClick(v: View?): Boolean {
-        listener.onLongClick(provider.player)
+        listener.onLongClick(provider)
         return true
     }
 

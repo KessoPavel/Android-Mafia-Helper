@@ -28,7 +28,7 @@ class Adapter(
     }
 
     interface ClickListener{
-        fun onClick(player: Player)
-        fun onLongClick(player: Player)
+        fun onClick(basePlayerProvider: BasePlayerProvider)
+        fun onLongClick(basePlayerProvider: BasePlayerProvider)
     }
 }

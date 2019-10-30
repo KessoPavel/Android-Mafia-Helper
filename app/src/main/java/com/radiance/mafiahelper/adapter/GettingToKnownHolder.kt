@@ -1,7 +1,7 @@
 package com.radiance.mafiahelper.adapter
 
 import android.view.View
-import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_getting_to_known_item.view.*
 
 class GettingToKnownHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener {

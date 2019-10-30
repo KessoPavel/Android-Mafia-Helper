@@ -3,9 +3,9 @@ package com.radiance.mafiahelper.adapter
 import android.view.View
 import android.view.ViewGroup
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.gameFragment.GameFragment
-import com.radiance.mafiahelper.gameFragment.GettingToKnowFragment
-import com.radiance.mafiahelper.gameFragment.PlayerListFragment
+import com.radiance.mafiahelper.fragment.GameFragment
+import com.radiance.mafiahelper.fragment.GettingToKnowFragment
+import com.radiance.mafiahelper.fragment.PlayerListFragment
 import com.radiance.mafiahelper.inflate
 
 object HolderWrapper {

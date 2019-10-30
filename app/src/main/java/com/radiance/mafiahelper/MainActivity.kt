@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.radiance.mafiahelper.gameFragment.DayFragment
-import com.radiance.mafiahelper.gameFragment.FirstNightFragment
+import com.radiance.mafiahelper.fragment.DayFragment
+import com.radiance.mafiahelper.fragment.FirstNightFragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.game.GameListener
-import com.radiance.mafiahelper.gameFragment.GameOptionsFragment
-import com.radiance.mafiahelper.gameFragment.GettingToKnowFragment
+import com.radiance.mafiahelper.fragment.GameOptionsFragment
+import com.radiance.mafiahelper.fragment.GettingToKnowFragment
 import com.radiance.mafiahelper.player.PlayersManager
-import com.radiance.mafiahelper.gameFragment.PlayerListFragment
-import com.radiance.mafiahelper.gameFragment.VotingFragment
+import com.radiance.mafiahelper.fragment.PlayerListFragment
+import com.radiance.mafiahelper.fragment.VotingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),

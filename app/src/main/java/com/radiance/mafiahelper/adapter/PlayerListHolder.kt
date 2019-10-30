@@ -2,7 +2,7 @@ package com.radiance.mafiahelper.adapter
 
 import android.view.View
 import com.radiance.mafiahelper.click
-import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 class PlayerListHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener, View.OnLongClickListener {

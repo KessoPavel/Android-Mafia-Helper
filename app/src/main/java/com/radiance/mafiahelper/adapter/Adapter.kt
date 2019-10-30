@@ -2,9 +2,8 @@ package com.radiance.mafiahelper.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.radiance.mafiahelper.gameFragment.GameFragment
-import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.fragment.GameFragment
+import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlin.collections.ArrayList
 
 class Adapter(

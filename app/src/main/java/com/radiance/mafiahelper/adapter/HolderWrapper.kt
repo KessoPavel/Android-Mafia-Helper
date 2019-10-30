@@ -7,7 +7,7 @@ import com.radiance.mafiahelper.fragment.*
 import com.radiance.mafiahelper.inflate
 
 object HolderWrapper {
-    fun createHolder(parent: ViewGroup, listener: Adapter.HolderListener, fragment: GameFragment): BaseHolder {
+    fun createHolder(parent: ViewGroup, listener: Adapter.HolderListener, fragment: BaseFragment): BaseHolder {
         val inflationView: View?
         when (fragment) {
             is PlayerListFragment -> {

@@ -1,10 +1,10 @@
-package com.radiance.mafiahelper.player.playerProvider
+package com.radiance.mafiahelper.player
 
 import android.graphics.drawable.Drawable
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
 
-class BasePlayerProvider(
+class PlayerHolder(
     val player: Player,
     var isClickable: Boolean = false,
     val number: String = "",

@@ -2,15 +2,15 @@ package com.radiance.mafiahelper.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.radiance.mafiahelper.fragment.GameFragment
+import com.radiance.mafiahelper.fragment.BaseFragment
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlin.collections.ArrayList
 
 class Adapter(
-    private var players: ArrayList<BasePlayerProvider>,
+    private var players: ArrayList<PlayerHolder>,
     private val listener: HolderListener,
-    private val fragment: GameFragment
+    private val fragment: BaseFragment
 ) :  RecyclerView.Adapter<BaseHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
@@ -23,13 +23,13 @@ class Adapter(
         holder.bind(players[position])
     }
 
-    fun setData(players: ArrayList<BasePlayerProvider>){
+    fun setData(players: ArrayList<PlayerHolder>){
         this.players = players
     }
 
     interface HolderListener{
-        fun onClick(basePlayerProvider: BasePlayerProvider)
-        fun onLongClick(basePlayerProvider: BasePlayerProvider)
-        fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role)
+        fun onClick(playerHolder: PlayerHolder)
+        fun onLongClick(playerHolder: PlayerHolder)
+        fun playerRoleChanged(playerHolder: PlayerHolder, role: Role)
     }
 }

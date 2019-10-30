@@ -8,31 +8,22 @@ import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*
 
-class VotingFragment: GameFragment(), Adapter.HolderListener{
-    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
-    }
-
-    override fun onClick(basePlayerProvider: BasePlayerProvider) {
-    }
-
-    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
-    }
-
+class VotingFragment: BaseFragment(){
     override val layoutId: Int = R.layout.fragment_voting
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter = Adapter(createDisplayManagers(), this, this)
+        adapter = Adapter(createProviders(), this, this)
         view.fv_recycler_view.adapter = adapter
         return view
     }
 
     private lateinit var game: Game
-    private var votingList: ArrayList<Player> = ArrayList<Player>()
+    private var votingList: ArrayList<Player> = ArrayList()
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
     private lateinit var adapter: Adapter
@@ -47,12 +38,14 @@ class VotingFragment: GameFragment(), Adapter.HolderListener{
         }
     }
 
-
-    private fun createDisplayManagers(): java.util.ArrayList<BasePlayerProvider> {
-        val answer = ArrayList<BasePlayerProvider>()
+    private fun createProviders(): java.util.ArrayList<PlayerHolder> {
+        val answer = ArrayList<PlayerHolder>()
 
         for (player in game.votingMap.keys){
-            val manager = BasePlayerProvider(player, votingCount =  game.votingMap[player].toString())
+            val manager = PlayerHolder(
+                player,
+                votingCount = game.votingMap[player].toString()
+            )
             answer.add(manager)
         }
 
@@ -78,7 +71,7 @@ class VotingFragment: GameFragment(), Adapter.HolderListener{
         game.votingMap[votingList[currentPlayerIndex]] = currentVotingNumber
         currentVotingNumber = 0
 
-        adapter.setData(createDisplayManagers())
+        adapter.setData(createProviders())
         adapter.notifyDataSetChanged()
 
         currentPlayerIndex++
@@ -98,7 +91,7 @@ class VotingFragment: GameFragment(), Adapter.HolderListener{
         }
 
         var min = 0
-        if (currentPlayerIndex == votingList.size - 1) {
+        if (currentPlayerIndex == votingList.size - 1 || votingList.size == 1) {
             min = max
             fv_number_picker.value = min
             currentVotingNumber = min
@@ -111,6 +104,7 @@ class VotingFragment: GameFragment(), Adapter.HolderListener{
         fv_current_name.text = player.name
         fv_current_pseudonym.text = player.pseudonym
         fv_number_picker.maxValue = max
-        fv_number_picker.minValue = min
+        fv_number_picker.minValue = if (votingList.size == 1) max else min
+        currentVotingNumber = if (votingList.size == 1) max else min
     }
 }

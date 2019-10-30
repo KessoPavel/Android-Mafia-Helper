@@ -10,20 +10,13 @@ import android.os.Handler
 import androidx.core.content.ContextCompat
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_first_night.*
 
 
-class FirstNightFragment: GameFragment(),
-    Adapter.HolderListener {
-    override fun onClick(basePlayerProvider: BasePlayerProvider) {
-    }
-
-    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
-    }
-
-    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
-        game.setPlayerRole(basePlayerProvider.player, role)
+class FirstNightFragment: BaseFragment() {
+    override fun playerRoleChanged(playerHolder: PlayerHolder, role: Role) {
+        game.setPlayerRole(playerHolder.player, role)
 
         if (game.checkPlayersRoles()){
             ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
@@ -35,7 +28,7 @@ class FirstNightFragment: GameFragment(),
             ffn_button.setOnClickListener(null)
         }
 
-        adapter.setData(createDisplayManagers())
+        adapter.setData(createProviders(game.players))
 
 
         Handler().post {
@@ -47,7 +40,7 @@ class FirstNightFragment: GameFragment(),
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.ffn_player_list.layoutManager = LinearLayoutManager(context)
-        adapter = Adapter(createDisplayManagers(), this, this)
+        adapter = Adapter(createProviders(game.players), this, this)
         view.ffn_player_list.adapter = adapter
         return view
     }
@@ -69,15 +62,5 @@ class FirstNightFragment: GameFragment(),
         super.onViewCreated(view, savedInstanceState)
 
         ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
-    }
-
-    private fun createDisplayManagers(): ArrayList<BasePlayerProvider> {
-        val answer = ArrayList<BasePlayerProvider>()
-
-        for (player in game.players){
-            answer.add(BasePlayerProvider(player))
-        }
-
-        return answer
     }
 }

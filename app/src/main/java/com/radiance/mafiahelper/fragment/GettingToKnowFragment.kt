@@ -12,14 +12,10 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymFragment
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymListener
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_getting_to_known.*
 
-class GettingToKnowFragment: GameFragment(),
-    Adapter.HolderListener, SetPseudonymListener {
-    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
-    }
-
+class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
     override val layoutId: Int = R.layout.fragment_getting_to_known
     private lateinit var game: Game
     private lateinit var adapter: Adapter
@@ -51,8 +47,8 @@ class GettingToKnowFragment: GameFragment(),
         fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
     }
 
-    override fun onClick(basePlayerProvider: BasePlayerProvider) {
-        selectedPlayer = basePlayerProvider.player
+    override fun onClick(playerHolder: PlayerHolder) {
+        selectedPlayer = playerHolder.player
 
         activity?.runOnUiThread{
             activity?.supportFragmentManager
@@ -62,7 +58,7 @@ class GettingToKnowFragment: GameFragment(),
         }
     }
 
-    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
+    override fun onLongClick(playerHolder: PlayerHolder) {
     }
 
 
@@ -86,17 +82,21 @@ class GettingToKnowFragment: GameFragment(),
         }
     }
 
-    private fun createProviders(): ArrayList<BasePlayerProvider> {
-        val answer = ArrayList<BasePlayerProvider>()
+    private fun createProviders(): ArrayList<PlayerHolder> {
+        val answer = ArrayList<PlayerHolder>()
 
         for (i in 0 until  playerWithPseudonym.size){
-            val manager = BasePlayerProvider(playerWithPseudonym[i], number =  (i + 1).toString())
+            val manager = PlayerHolder(
+                playerWithPseudonym[i],
+                number = (i + 1).toString()
+            )
             answer.add(manager)
         }
 
         for (player in game.players){
             if (!playerWithPseudonym.contains(player)){
-                val manager = BasePlayerProvider(player, number =  "")
+                val manager =
+                    PlayerHolder(player, number = "")
                 answer.add(manager)
             }
         }

@@ -6,12 +6,8 @@ import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import kotlinx.android.synthetic.main.fragment_game_options.*
 
-class GameOptionsFragment : GameFragment() {
+class GameOptionsFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_game_options
-
-    override fun initUi(view: View, savedInstanceState: Bundle?): View {
-        return view
-    }
 
     private lateinit var game: Game
 

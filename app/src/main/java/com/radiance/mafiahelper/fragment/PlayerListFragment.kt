@@ -15,18 +15,14 @@ import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
-class PlayerListFragment : GameFragment(),
+class PlayerListFragment : BaseFragment(),
     Adapter.HolderListener, AddPlayerListener {
-    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
-    }
-
     override val layoutId: Int = R.layout.fragment_player_list
-    private lateinit var players: ArrayList<Player>
-    private lateinit var playerProviders: ArrayList<BasePlayerProvider>
+    protected lateinit var players: ArrayList<Player>
     private lateinit var adapter: Adapter
     private val game: Game = Game()
 
@@ -89,47 +85,37 @@ class PlayerListFragment : GameFragment(),
 
     override fun playerAdded(player: Player) {
         players.add(player)
-        playerProviders.add(createProvider(player))
-        adapter.setData(playerProviders)
+        playerHolders.add(createProvider(player))
+        adapter.setData(playerHolders)
         adapter.notifyItemInserted(players.size - 1)
         adapter.notifyDataSetChanged()
     }
 
-    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
+    override fun onLongClick(playerHolder: PlayerHolder) {
         context?.runOnUiThread {
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.add(R.id.root_layout, PlayerInfoFragment.newInstance(basePlayerProvider.player), "PlayerInfo")
+                ?.add(R.id.root_layout, PlayerInfoFragment.newInstance(playerHolder.player), "PlayerInfo")
                 ?.addToBackStack(null)
                 ?.commit()
         }
     }
 
-    override fun onClick(basePlayerProvider: BasePlayerProvider) {
-        if (basePlayerProvider.isSelected){
-            game.removePlayer(basePlayerProvider.player)
+    override fun onClick(playerHolder: PlayerHolder) {
+        if (playerHolder.isSelected){
+            game.removePlayer(playerHolder.player)
             fpl_select_options.text = "${getString(R.string.select_game_options)} | ${game.playersCont} players"
         } else {
-            game.addPlayer(basePlayerProvider.player)
+            game.addPlayer(playerHolder.player)
         }
 
-        basePlayerProvider.isSelected = !basePlayerProvider.isSelected
+        playerHolder.isSelected = !playerHolder.isSelected
         fpl_select_options.text = "${getString(R.string.select_game_options)} | ${game.playersCont} players"
 
         adapter.notifyDataSetChanged()
     }
 
-    private fun createProviders(players: ArrayList<Player>): ArrayList<BasePlayerProvider>{
-        playerProviders = ArrayList<BasePlayerProvider>()
-
-        for (player in players){
-            playerProviders.add(createProvider(player))
-        }
-
-        return playerProviders
-    }
-
-    private fun createProvider(player: Player): BasePlayerProvider {
+    override fun createProvider(player: Player): PlayerHolder {
         val inactiveBackground = inactiveBackground
         var activeBackground = activeBackground
         var activeIcon = emptyIcon
@@ -158,6 +144,12 @@ class PlayerListFragment : GameFragment(),
             }
         }
 
-        return BasePlayerProvider(player = player, inactiveBackground = inactiveBackground, activeBackground = activeBackground, inactiveIcon = inactiveIcon, activeIcon = activeIcon)
+        return PlayerHolder(
+            player = player,
+            inactiveBackground = inactiveBackground,
+            activeBackground = activeBackground,
+            inactiveIcon = inactiveIcon,
+            activeIcon = activeIcon
+        )
     }
 }

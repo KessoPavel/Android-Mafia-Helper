@@ -1,15 +1,15 @@
 package com.radiance.mafiahelper.adapter
 
 import android.view.View
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_voting_item.view.*
 
 class VotingHolder(view: View, listener: Adapter.HolderListener): BaseHolder(view, listener) {
-    override fun bind(provider: BasePlayerProvider) {
-        super.bind(provider)
+    override fun bind(holder: PlayerHolder) {
+        super.bind(holder)
 
-        view.fvi_count.text = provider.votingCount
-        view.fvi_name.text = provider.name
-        view.fvi_pseudonym.text = provider.pseudonym
+        view.fvi_count.text = holder.votingCount
+        view.fvi_name.text = holder.name
+        view.fvi_pseudonym.text = holder.pseudonym
     }
 }

@@ -9,19 +9,16 @@ import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
-import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
+import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
 
-class DayFragment: GameFragment(), Adapter.HolderListener {
-    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
-    }
-
+class DayFragment: BaseFragment() {
     override val layoutId: Int = R.layout.fragment_day
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter = Adapter(createProviders(), this, this)
+        adapter = Adapter(createProviders(game.players), this, this)
         view.fd_recycler_view.adapter = adapter
         return view
     }
@@ -76,7 +73,7 @@ class DayFragment: GameFragment(), Adapter.HolderListener {
         setCurrentPlayer(player = game.players[nextIndex])
 
         newInVoting.clear()
-        adapter.setData(createProviders())
+        adapter.setData(createProviders(game.players))
         adapter.notifyDataSetChanged()
     }
 
@@ -85,41 +82,38 @@ class DayFragment: GameFragment(), Adapter.HolderListener {
         fd_current_pseudonym.text = player.pseudonym
     }
 
-    private fun createProviders(): ArrayList<BasePlayerProvider>{
-        val answer = ArrayList<BasePlayerProvider>()
-
-        for (player in game.players){
-            if (!player.isDeath){
-                var isClickable = true
-                var number = ""
-                var status = ""
-
-                if (votingList.contains(player)){
-                    isClickable = newInVoting.contains(player)
-                    number = (votingList.indexOf(player) + 1).toString()
-                    status = if (newInVoting.contains(player)) "" else "in voting"
-                }
-
-                answer.add(BasePlayerProvider(player, status = status, isClickable = isClickable, number = number))
-            }
-        }
-
-        return answer
-    }
-
-    override fun onClick(basePlayerProvider: BasePlayerProvider) {
-        if (votingList.contains(basePlayerProvider.player)){
-            votingList.remove(basePlayerProvider.player)
-            newInVoting.remove(basePlayerProvider.player)
+    override fun onClick(playerHolder: PlayerHolder) {
+        if (votingList.contains(playerHolder.player)){
+            votingList.remove(playerHolder.player)
+            newInVoting.remove(playerHolder.player)
         } else {
-            votingList.add(basePlayerProvider.player)
-            newInVoting.add(basePlayerProvider.player)
+            votingList.add(playerHolder.player)
+            newInVoting.add(playerHolder.player)
         }
 
-        adapter.setData(createProviders())
+        adapter.setData(createProviders(game.players))
         adapter.notifyDataSetChanged()
     }
 
-    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
+    override fun createProvider(player: Player): PlayerHolder? {
+        if (!player.isDeath){
+            var isClickable = true
+            var number = ""
+            var status = ""
+
+            if (votingList.contains(player)){
+                isClickable = newInVoting.contains(player)
+                number = (votingList.indexOf(player) + 1).toString()
+                status = if (newInVoting.contains(player)) "" else "in voting"
+            }
+
+            return PlayerHolder(
+                    player,
+                    status = status,
+                    isClickable = isClickable,
+                    number = number)
+        } else {
+            return null
+        }
     }
 }

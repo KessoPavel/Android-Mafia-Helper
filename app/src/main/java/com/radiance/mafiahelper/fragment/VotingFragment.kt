@@ -7,11 +7,15 @@ import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*
 
-class VotingFragment: GameFragment(), Adapter.ClickListener{
+class VotingFragment: GameFragment(), Adapter.HolderListener{
+    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
+    }
+
     override fun onClick(basePlayerProvider: BasePlayerProvider) {
     }
 

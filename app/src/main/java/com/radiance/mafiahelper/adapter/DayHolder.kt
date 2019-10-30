@@ -4,7 +4,7 @@ import android.view.View
 import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_day_item.view.*
 
-class DayHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener {
+class DayHolder(view: View, listener: Adapter.HolderListener): BaseHolder(view, listener), View.OnClickListener {
     init {
         view.setOnClickListener(this)
     }

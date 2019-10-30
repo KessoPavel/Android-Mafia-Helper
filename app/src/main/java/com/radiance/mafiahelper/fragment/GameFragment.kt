@@ -33,5 +33,5 @@ abstract class GameFragment: Fragment() {
         return initUi(view = view, savedInstanceState = savedInstanceState)
     }
 
-    abstract fun initUi(view: View, savedInstanceState: Bundle?): View;
+    abstract fun initUi(view: View, savedInstanceState: Bundle?): View
 }

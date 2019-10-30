@@ -7,7 +7,7 @@ import com.radiance.mafiahelper.fragment.*
 import com.radiance.mafiahelper.inflate
 
 object HolderWrapper {
-    fun createHolder(parent: ViewGroup, listener: Adapter.ClickListener, fragment: GameFragment): BaseHolder {
+    fun createHolder(parent: ViewGroup, listener: Adapter.HolderListener, fragment: GameFragment): BaseHolder {
         val inflationView: View?
         when (fragment) {
             is PlayerListFragment -> {
@@ -25,6 +25,10 @@ object HolderWrapper {
             is VotingFragment -> {
                 inflationView = parent.inflate(R.layout.fragment_voting_item, false)
                 return VotingHolder(inflationView, listener)
+            }
+            is FirstNightFragment -> {
+                inflationView = parent.inflate(R.layout.fragment_first_night_item, false)
+                return FirstNightHolder(inflationView, listener)
             }
             else -> {
                 inflationView = parent.inflate(R.layout.fragment_player_list_item, false)

@@ -4,7 +4,7 @@ import android.view.View
 import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_voting_item.view.*
 
-class VotingHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener) {
+class VotingHolder(view: View, listener: Adapter.HolderListener): BaseHolder(view, listener) {
     override fun bind(provider: BasePlayerProvider) {
         super.bind(provider)
 

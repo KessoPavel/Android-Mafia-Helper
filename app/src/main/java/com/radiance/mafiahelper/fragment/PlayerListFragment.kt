@@ -14,12 +14,16 @@ import com.radiance.mafiahelper.dialogs.dialogAddFragment.AddPlayerListener
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
+import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
 class PlayerListFragment : GameFragment(),
-    Adapter.ClickListener, AddPlayerListener {
+    Adapter.HolderListener, AddPlayerListener {
+    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
+    }
+
     override val layoutId: Int = R.layout.fragment_player_list
     private lateinit var players: ArrayList<Player>
     private lateinit var playerProviders: ArrayList<BasePlayerProvider>

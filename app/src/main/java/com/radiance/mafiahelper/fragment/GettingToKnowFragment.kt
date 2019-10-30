@@ -11,11 +11,15 @@ import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymFragment
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymListener
+import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_getting_to_known.*
 
 class GettingToKnowFragment: GameFragment(),
-    Adapter.ClickListener, SetPseudonymListener {
+    Adapter.HolderListener, SetPseudonymListener {
+    override fun playerRoleChanged(basePlayerProvider: BasePlayerProvider, role: Role) {
+    }
+
     override val layoutId: Int = R.layout.fragment_getting_to_known
     private lateinit var game: Game
     private lateinit var adapter: Adapter

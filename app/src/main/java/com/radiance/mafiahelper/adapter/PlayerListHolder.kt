@@ -6,15 +6,13 @@ import com.radiance.mafiahelper.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 
 class PlayerListHolder(view: View, listener: Adapter.ClickListener): BaseHolder(view, listener), View.OnClickListener, View.OnLongClickListener {
-    private lateinit var provider: BasePlayerProvider
-
     init {
         view.setOnClickListener(this)
         view.setOnLongClickListener(this)
     }
 
     override fun bind(provider: BasePlayerProvider) {
-        this.provider = provider
+        super.bind(provider)
 
         view.fpli_name.text = provider.name
         view.fpli_statistic.text = provider.statistic

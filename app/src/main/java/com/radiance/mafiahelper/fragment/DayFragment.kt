@@ -5,28 +5,26 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.adapter.dayFragment.DayFragmentAdapter
-import com.radiance.mafiahelper.adapter.dayFragment.DayPlayerClickListener
+import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.playerProvider.DayDisplayManager
+import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
 
-class DayFragment: GameFragment(), DayPlayerClickListener {
+class DayFragment: GameFragment(), Adapter.ClickListener {
     override val layoutId: Int = R.layout.fragment_day
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter =
-            DayFragmentAdapter(createDisplayManagers(), this)
+        adapter = Adapter(createProviders(), this, this)
         view.fd_recycler_view.adapter = adapter
         return view
     }
 
     private lateinit var game: Game
     private var currentPlayerIndex = 0
-    private lateinit var adapter: DayFragmentAdapter
+    private lateinit var adapter: Adapter
 
     private val votingList = ArrayList<Player>()
     private val newInVoting = ArrayList<Player>()
@@ -74,7 +72,7 @@ class DayFragment: GameFragment(), DayPlayerClickListener {
         setCurrentPlayer(player = game.players[nextIndex])
 
         newInVoting.clear()
-        adapter.setData(createDisplayManagers())
+        adapter.setData(createProviders())
         adapter.notifyDataSetChanged()
     }
 
@@ -83,8 +81,8 @@ class DayFragment: GameFragment(), DayPlayerClickListener {
         fd_current_pseudonym.text = player.pseudonym
     }
 
-    private fun createDisplayManagers(): ArrayList<DayDisplayManager>{
-        val answer = ArrayList<DayDisplayManager>()
+    private fun createProviders(): ArrayList<BasePlayerProvider>{
+        val answer = ArrayList<BasePlayerProvider>()
 
         for (player in game.players){
             if (!player.isDeath){
@@ -98,23 +96,26 @@ class DayFragment: GameFragment(), DayPlayerClickListener {
                     status = if (newInVoting.contains(player)) "" else "in voting"
                 }
 
-                answer.add(DayDisplayManager(player, status, isClickable, number))
+                answer.add(BasePlayerProvider(player, status = status, isClickable = isClickable, number = number))
             }
         }
 
         return answer
     }
 
-    override fun click(player: Player) {
-        if (votingList.contains(player)){
-            votingList.remove(player)
-            newInVoting.remove(player)
+    override fun onClick(basePlayerProvider: BasePlayerProvider) {
+        if (votingList.contains(basePlayerProvider.player)){
+            votingList.remove(basePlayerProvider.player)
+            newInVoting.remove(basePlayerProvider.player)
         } else {
-            votingList.add(player)
-            newInVoting.add(player)
+            votingList.add(basePlayerProvider.player)
+            newInVoting.add(basePlayerProvider.player)
         }
 
-        adapter.setData(createDisplayManagers())
+        adapter.setData(createProviders())
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
     }
 }

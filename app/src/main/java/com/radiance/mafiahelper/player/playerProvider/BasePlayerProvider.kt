@@ -5,25 +5,22 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
 
 class BasePlayerProvider(
-    override val player: Player,
-    override val isClickable: Boolean = false,
-    override val number: String = "",
-    override val isRed: Boolean = player.role == Role.Red,
-    override val isBlack: Boolean = player.role == Role.Black,
-    override val isDoctor: Boolean = player.role == Role.Doctor,
-    override val isSheriff: Boolean = player.role == Role.Sheriff,
-    override val name: String = player.name,
-    override val statistic: String = "${player.gameCount} / ${player.victoriesCount}",
-    override val pseudonym: String = player.pseudonym,
-    override val inactiveBackground: Drawable? = null,
-    override val activeBackground: Drawable? = null,
-    override val inactiveIcon: Int = 0,
-    override val activeIcon: Int = 0,
-    override var isSelected: Boolean = false,
-    override val votingCount: String = ""
-) : DayProvider,
-    FirstNightProvider,
-    GettingToKnownProvider,
-    PlayerListProvider,
-    VotingProvider {
+    val player: Player,
+    var isClickable: Boolean = false,
+    val number: String = "",
+    val status: String = "",
+    var isRed: Boolean = player.role == Role.Red,
+    var isBlack: Boolean = player.role == Role.Black,
+    var isDoctor: Boolean = player.role == Role.Doctor,
+    var isSheriff: Boolean = player.role == Role.Sheriff,
+    val name: String = player.name,
+    val statistic: String = "${player.gameCount} / ${player.victoriesCount}",
+    val pseudonym: String = player.pseudonym,
+    val inactiveBackground: Drawable? = null,
+    val activeBackground: Drawable? = null,
+    val inactiveIcon: Int = 0,
+    val activeIcon: Int = 0,
+    var isSelected: Boolean = false,
+    val votingCount: String = ""
+)  {
 }

@@ -4,19 +4,25 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.playerProvider.VotingDisplayManager
-import com.radiance.mafiahelper.adapter.VotingAdapter
+import com.radiance.mafiahelper.player.playerProvider.BasePlayerProvider
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*
 
-class VotingFragment: GameFragment(){
+class VotingFragment: GameFragment(), Adapter.ClickListener{
+    override fun onClick(basePlayerProvider: BasePlayerProvider) {
+    }
+
+    override fun onLongClick(basePlayerProvider: BasePlayerProvider) {
+    }
+
     override val layoutId: Int = R.layout.fragment_voting
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
-        adapter = VotingAdapter(createDisplayManagers())
+        adapter = Adapter(createDisplayManagers(), this, this)
         view.fv_recycler_view.adapter = adapter
         return view
     }
@@ -25,7 +31,7 @@ class VotingFragment: GameFragment(){
     private var votingList: ArrayList<Player> = ArrayList<Player>()
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
-    private lateinit var adapter: VotingAdapter
+    private lateinit var adapter: Adapter
 
     companion object{
         const val TAG = "VotingFragment"
@@ -38,11 +44,11 @@ class VotingFragment: GameFragment(){
     }
 
 
-    private fun createDisplayManagers(): java.util.ArrayList<VotingDisplayManager> {
-        val answer = ArrayList<VotingDisplayManager>()
+    private fun createDisplayManagers(): java.util.ArrayList<BasePlayerProvider> {
+        val answer = ArrayList<BasePlayerProvider>()
 
         for (player in game.votingMap.keys){
-            val manager = VotingDisplayManager(player, game.votingMap[player].toString())
+            val manager = BasePlayerProvider(player, votingCount =  game.votingMap[player].toString())
             answer.add(manager)
         }
 

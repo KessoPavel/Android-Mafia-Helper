@@ -4,7 +4,7 @@ import kotlin.random.Random
 
 object PlayersManager {
     fun loadPlayers(): ArrayList<Player>{
-        val players = generateRandomPlayers(12)
+        val players = generateRandomPlayers(40)
         setStatistic(players)
         return players
     }

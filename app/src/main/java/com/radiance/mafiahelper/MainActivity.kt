@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(),
 
         val playerListFragment = PlayerListFragment.newInstance(players)
 
+        toolbar.title = "Select players"
         supportFragmentManager
             .beginTransaction()
             .add(R.id.root_layout, playerListFragment, playerListFragment.tag)

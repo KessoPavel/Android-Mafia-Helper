@@ -81,6 +81,8 @@ class PlayerListFragment : BaseFragment(),
         } }
 
         fpl_select_options.setOnClickListener{ _ -> listener.openGameOption(game)}
+
+
     }
 
     override fun playerAdded(player: Player) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="base_text">#929292</color>
     <color name="sub_text">#969696</color>
@@ -9,4 +9,16 @@
     <color name="red">#FD4949</color>
     <color name="blue">#446CE6</color>
     <color name="green">#128F23</color>
+    <color name="background"    >#A2A2A2</color>
+    <color name="ok"            >#EBEBEB</color>
+    <color name="toolbar"       >#DBDBDB</color>
+    <color name="title_text"    >#292929</color>
+    <color name="no"            >#6F6F6F</color>
+    <color name="inactive"      >#17D6D6D6</color>
+    <color name="unselected"    >#80C2C2C2</color>
+    <color name="selected"      >#B3E7E7E7</color>
+    <color name="game_black"    >#B3E7E7E7</color>
+    <color name="detective"     >#B3E7E7E7</color>
+    <color name="doctor"        >#B3E7E7E7</color>
+    <color name="game_red"      >#B3E7E7E7</color>
 </resources>

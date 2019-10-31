@@ -21,4 +21,5 @@
     <color name="detective"     >#B3E7E7E7</color>
     <color name="doctor"        >#B3E7E7E7</color>
     <color name="game_red"      >#B3E7E7E7</color>
+    <color name="dark_base">#525252</color>
 </resources>

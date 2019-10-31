@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_game_options.*
 
 class GameOptionsFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_game_options
+    override val title: Int = R.string.select_game_options
 
     private lateinit var game: Game
 

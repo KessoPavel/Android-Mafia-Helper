@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.GameListener
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.player.Role
+import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseFragment: Fragment(), Adapter.HolderListener {
     protected lateinit var listener: GameListener
     abstract val layoutId: Int
+    abstract val title: Int
     val fragmentTag: String
         get() = this.javaClass.name
     protected lateinit var playerHolders: ArrayList<PlayerHolder>
@@ -41,7 +44,6 @@ abstract class BaseFragment: Fragment(), Adapter.HolderListener {
     open fun initUi(view: View, savedInstanceState: Bundle?): View {
         return view
     }
-
 
     protected open fun createProviders(players: ArrayList<Player>): ArrayList<PlayerHolder>{
         playerHolders = ArrayList()

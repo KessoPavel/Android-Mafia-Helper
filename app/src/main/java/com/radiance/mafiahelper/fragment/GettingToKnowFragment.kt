@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.fragment_getting_to_known.*
 
 class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
     override val layoutId: Int = R.layout.fragment_getting_to_known
+    override val title: Int = R.string.getting_to_known
+
     private lateinit var game: Game
     private lateinit var adapter: Adapter
     private lateinit var selectedPlayer: Player

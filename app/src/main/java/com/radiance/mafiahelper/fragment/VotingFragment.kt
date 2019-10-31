@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_voting.view.*
 
 class VotingFragment: BaseFragment(){
     override val layoutId: Int = R.layout.fragment_voting
+    override val title: Int = R.string.voting
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fv_recycler_view.layoutManager = LinearLayoutManager(context)

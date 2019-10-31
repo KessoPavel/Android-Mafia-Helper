@@ -20,13 +20,10 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
         val players = PlayersManager.loadPlayers()
-
         val playerListFragment = PlayerListFragment.newInstance(players)
 
-        toolbar.title = "Select players"
         supportFragmentManager
             .beginTransaction()
             .add(R.id.root_layout, playerListFragment, playerListFragment.tag)
@@ -46,50 +43,73 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun openGameOption(game: Game) {
+        val fragment = GameOptionsFragment.newInstance(game)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, GameOptionsFragment.newInstance(game), GameOptionsFragment.TAG)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 
     override fun startGettingToKnown(game: Game) {
+        val fragment = GettingToKnowFragment.newInstance(game)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, GettingToKnowFragment.newInstance(game), GettingToKnowFragment.TAG)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 
     override fun startFirstNight(game: Game) {
+        val fragment = FirstNightFragment.newInstance(game)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, FirstNightFragment.newInstance(game), FirstNightFragment.TAG)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 
     override fun startDay(game: Game) {
+        val fragment = DayFragment.newInstance(game)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, DayFragment.newInstance(game), null)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 
     override fun startVoting(game: Game) {
+        val fragment = VotingFragment.newInstance(game)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, VotingFragment.newInstance(game), null)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 
     override fun startNight(game: Game) {
+        val fragment = DayFragment.newInstance(game)
+
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.root_layout, DayFragment.newInstance(game), null)
+            .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
+
+        main_toolbar.text = getString(fragment.title)
     }
 }

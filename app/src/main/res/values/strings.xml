@@ -28,4 +28,9 @@
     <string name="go_to_first_night">go to first night</string>
     <string name="mafia">Mafia</string>
     <string name="go_to_day">go to day</string>
+    <string name="select_active_players">SELECT ACTIVE PLAYERS</string>
+    <string name="voting">voting</string>
+    <string name="getting_to_known">getting to known</string>
+    <string name="first_night">first night</string>
+    <string name="day">day</string>
 </resources>

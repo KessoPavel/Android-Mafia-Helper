@@ -16,12 +16,14 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
 import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
 class PlayerListFragment : BaseFragment(),
     Adapter.HolderListener, AddPlayerListener {
     override val layoutId: Int = R.layout.fragment_player_list
+    override val title: Int = R.string.select_active_players
     protected lateinit var players: ArrayList<Player>
     private lateinit var adapter: Adapter
     private val game: Game = Game()
@@ -81,8 +83,6 @@ class PlayerListFragment : BaseFragment(),
         } }
 
         fpl_select_options.setOnClickListener{ _ -> listener.openGameOption(game)}
-
-
     }
 
     override fun playerAdded(player: Player) {

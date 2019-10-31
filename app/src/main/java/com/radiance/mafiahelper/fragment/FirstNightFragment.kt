@@ -37,6 +37,8 @@ class FirstNightFragment: BaseFragment() {
     }
 
     override val layoutId: Int = R.layout.fragment_first_night
+    override val title: Int = R.string.first_night
+
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.ffn_player_list.layoutManager = LinearLayoutManager(context)

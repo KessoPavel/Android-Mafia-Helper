@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_day.view.*
 
 class DayFragment: BaseFragment() {
     override val layoutId: Int = R.layout.fragment_day
+    override val title: Int = R.string.day
+
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fd_recycler_view.layoutManager = LinearLayoutManager(context)

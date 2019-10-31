@@ -61,8 +61,6 @@ class MainActivity : AppCompatActivity(),
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
-
-        //main_toolbar.text = getString(fragment.title)
     }
 
     override fun startFirstNight(game: Game) {
@@ -74,8 +72,6 @@ class MainActivity : AppCompatActivity(),
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
-
-       // main_toolbar.text = getString(fragment.title)
     }
 
     override fun startDay(game: Game) {
@@ -87,8 +83,6 @@ class MainActivity : AppCompatActivity(),
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
-
-        //main_toolbar.text = getString(fragment.title)
     }
 
     override fun startVoting(game: Game) {
@@ -100,8 +94,6 @@ class MainActivity : AppCompatActivity(),
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
-
-        //main_toolbar.text = getString(fragment.title)
     }
 
     override fun startNight(game: Game) {
@@ -113,7 +105,5 @@ class MainActivity : AppCompatActivity(),
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
-
-        //main_toolbar.text = getString(fragment.title)
     }
 }

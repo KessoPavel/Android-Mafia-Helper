@@ -7,10 +7,12 @@ import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Role
 import kotlinx.android.synthetic.main.fragment_first_night.view.*
 import android.os.Handler
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.player.PlayerHolder
+import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_first_night.*
 
 
@@ -39,7 +41,6 @@ class FirstNightFragment: BaseFragment() {
     override val layoutId: Int = R.layout.fragment_first_night
     override val title: Int = R.string.first_night
 
-
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.ffn_player_list.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(game.players), this, this)
@@ -64,5 +65,7 @@ class FirstNightFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
+        ffn_toolbar.text = getString(title)
+
     }
 }

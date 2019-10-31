@@ -2,6 +2,7 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
@@ -16,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_day.view.*
 class DayFragment: BaseFragment() {
     override val layoutId: Int = R.layout.fragment_day
     override val title: Int = R.string.day
-
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
         view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
@@ -48,6 +48,8 @@ class DayFragment: BaseFragment() {
             nextPlayer()
         }
         fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
+
+        fd_toolbar.text = getString(title)
     }
 
     private fun nextPlayer(){
@@ -106,7 +108,7 @@ class DayFragment: BaseFragment() {
             if (votingList.contains(player)){
                 isClickable = newInVoting.contains(player)
                 number = (votingList.indexOf(player) + 1).toString()
-                status = if (newInVoting.contains(player)) "" else "in voting"
+                status = if (newInVoting.contains(player)) "" else "enter voting"
             }
 
             return PlayerHolder(

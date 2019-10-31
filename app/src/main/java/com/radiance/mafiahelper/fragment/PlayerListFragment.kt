@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ class PlayerListFragment : BaseFragment(),
     Adapter.HolderListener, AddPlayerListener {
     override val layoutId: Int = R.layout.fragment_player_list
     override val title: Int = R.string.select_active_players
+
     protected lateinit var players: ArrayList<Player>
     private lateinit var adapter: Adapter
     private val game: Game = Game()
@@ -83,6 +85,7 @@ class PlayerListFragment : BaseFragment(),
         } }
 
         fpl_select_options.setOnClickListener{ _ -> listener.openGameOption(game)}
+        fpl_toolbar.text = getString(title)
     }
 
     override fun playerAdded(player: Player) {

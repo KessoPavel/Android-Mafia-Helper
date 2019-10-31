@@ -2,6 +2,7 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
@@ -66,6 +67,8 @@ class VotingFragment: BaseFragment(){
             picker, oldVal, newVal ->
                 currentVotingNumber = newVal
         }
+
+        fv_toolbar.text = getString(title)
     }
 
     private fun nextPlayer(){

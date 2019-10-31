@@ -5,35 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/fd_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ok_button"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/ok_button"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/ok_button">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fd_toolbar">
 
         <TextView
             android:id="@+id/fd_current_pseudonym"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/base_text"
-            android:textSize="@dimen/base_text"
-            android:text="Pseudonym"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp" />
+            android:text="Pseudonym"
+            android:textColor="@color/base_text"
+            android:textSize="@dimen/base_text" />
 
         <TextView
             android:id="@+id/fd_current_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
-            android:textSize="@dimen/sub_text_size"
-            android:textColor="@color/sub_text"
             android:layout_gravity="bottom"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            />
+            android:text="name"
+            android:textColor="@color/sub_text"
+            android:textSize="@dimen/sub_text_size" />
 
         <ImageButton
             android:id="@+id/fd_next_player"
@@ -42,7 +51,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/w_r"/>
+            android:background="@drawable/w_r" />
 
     </FrameLayout>
 
@@ -50,7 +59,7 @@
         android:id="@+id/fd_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="130dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

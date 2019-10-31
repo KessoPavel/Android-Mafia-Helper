@@ -2,6 +2,7 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,8 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
         super.onViewCreated(view, savedInstanceState)
         game.cleatPseudonym()
         fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
+
+        fgtn_toolbar.text = getString(title)
     }
 
     override fun onClick(playerHolder: PlayerHolder) {

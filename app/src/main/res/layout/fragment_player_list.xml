@@ -6,6 +6,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
+        android:id="@+id/fpl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ok_button"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/fpl_select_options"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -32,16 +42,17 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@drawable/dark_background"
         android:id="@+id/fpl_player_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
+        android:background="@drawable/dark_background"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/fpl_toolbar">
 
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,6 +51,8 @@ class GameOptionsFragment : BaseFragment() {
         fgo_number_piker.minValue = game.minBlackCount
 
         game.blackCount = game.minBlackCount
+
+        fgo_toolbar.text =  "${getString(R.string.select_game_options)} | ${game.playersCont} players"
 
         updateCounts()
     }

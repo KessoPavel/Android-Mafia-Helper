@@ -6,6 +6,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
+        android:id="@+id/ffn_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ok_button"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/ffn_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -20,6 +30,7 @@
         android:id="@+id/ffn_player_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

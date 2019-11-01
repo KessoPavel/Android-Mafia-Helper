@@ -20,6 +20,7 @@
 
         <TextView
             android:id="@+id/fpli_name"
+            android:transitionName="@string/player_name_transition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

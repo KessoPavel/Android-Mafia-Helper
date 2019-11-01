@@ -65,6 +65,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/dark_background"
         android:id="@+id/fv_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

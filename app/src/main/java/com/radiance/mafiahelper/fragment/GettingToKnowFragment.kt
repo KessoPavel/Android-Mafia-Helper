@@ -63,10 +63,6 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
         }
     }
 
-    override fun onLongClick(playerHolder: PlayerHolder) {
-    }
-
-
     override fun playerGotAnPseudonym(pseudonym: String) {
         if (selectedPlayer.pseudonym == ""){
             selectedPlayer.pseudonym = pseudonym

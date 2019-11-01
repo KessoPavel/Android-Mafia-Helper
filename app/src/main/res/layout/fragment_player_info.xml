@@ -31,6 +31,7 @@
 
                 <TextView
                     android:id="@+id/fpi_name"
+                    android:transitionName="@string/player_name_transition"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -25,12 +25,11 @@ class PlayerListHolder(view: View, listener: Adapter.HolderListener): BaseHolder
     }
 
     override fun onClick(p0: View?) {
-        view.click(0.95f, 1.005f, 225)
         listener.onClick(holder)
     }
 
     override fun onLongClick(v: View?): Boolean {
-        listener.onLongClick(holder)
+        listener.onLongClick(holder, v!!)
         return true
     }
 

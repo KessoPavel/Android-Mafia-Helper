@@ -2,24 +2,25 @@ package com.radiance.mafiahelper.fragment
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.dialogs.dialogAddFragment.AddPlayerFragment
 import com.radiance.mafiahelper.dialogs.dialogAddFragment.AddPlayerListener
+import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
-import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
+
 
 class PlayerListFragment : BaseFragment(),
     Adapter.HolderListener, AddPlayerListener {
@@ -28,6 +29,7 @@ class PlayerListFragment : BaseFragment(),
 
     protected lateinit var players: ArrayList<Player>
     private lateinit var adapter: Adapter
+    private lateinit var recyclerView: RecyclerView
     private val game: Game = Game()
 
     private lateinit var inactiveBackground: Drawable
@@ -55,7 +57,7 @@ class PlayerListFragment : BaseFragment(),
     }
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
+        recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(players), this, this)
         recyclerView.adapter = adapter
@@ -96,11 +98,13 @@ class PlayerListFragment : BaseFragment(),
         adapter.notifyDataSetChanged()
     }
 
-    override fun onLongClick(playerHolder: PlayerHolder) {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onLongClick(playerHolder: PlayerHolder, view: View) {
         context?.runOnUiThread {
+            val nextFragment: Fragment = PlayerInfoFragment.newInstance(playerHolder.player)
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.add(R.id.root_layout, PlayerInfoFragment.newInstance(playerHolder.player), "PlayerInfo")
+                ?.add(R.id.root_layout, nextFragment, "PlayerInfo")
                 ?.addToBackStack(null)
                 ?.commit()
         }

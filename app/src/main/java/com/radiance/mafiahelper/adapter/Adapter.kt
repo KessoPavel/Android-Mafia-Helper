@@ -1,5 +1,6 @@
 package com.radiance.mafiahelper.adapter
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.fragment.BaseFragment
@@ -29,7 +30,7 @@ class Adapter(
 
     interface HolderListener{
         fun onClick(playerHolder: PlayerHolder)
-        fun onLongClick(playerHolder: PlayerHolder)
+        fun onLongClick(playerHolder: PlayerHolder, view: View)
         fun playerRoleChanged(playerHolder: PlayerHolder, role: Role)
     }
 }

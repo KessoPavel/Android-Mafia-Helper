@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fpl_root"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
@@ -17,6 +18,8 @@
 
     <Button
         android:id="@+id/fpl_select_options"
+        android:transitionName="@string/player_name_transition"
+
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/ok_button"

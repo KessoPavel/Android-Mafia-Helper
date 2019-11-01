@@ -33,4 +33,5 @@
     <string name="getting_to_known">getting to known</string>
     <string name="first_night">first night</string>
     <string name="day">day</string>
+    <string name="player_name_transition">player_name_transition</string>
 </resources>

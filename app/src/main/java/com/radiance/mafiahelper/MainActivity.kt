@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(),
         val fragment = GettingToKnowFragment.newInstance(game)
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity(),
 
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(R.anim.enter, R.anim.out)
+            .setCustomAnimations(R.anim.enter, R.anim.out, R.anim.pop_enter, R.anim.pop_out)
             .replace(R.id.root_layout, fragment, fragment.tag)
             .addToBackStack(null)
             .commit()

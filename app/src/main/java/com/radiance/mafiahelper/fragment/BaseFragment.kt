@@ -69,6 +69,6 @@ abstract class BaseFragment: Fragment(), Adapter.HolderListener {
     override fun onClick(playerHolder: PlayerHolder) {
     }
 
-    override fun onLongClick(playerHolder: PlayerHolder) {
+    override fun onLongClick(playerHolder: PlayerHolder, view: View) {
     }
 }

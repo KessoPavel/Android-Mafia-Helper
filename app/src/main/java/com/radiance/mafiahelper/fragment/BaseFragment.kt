@@ -26,7 +26,8 @@ abstract class BaseFragment: Fragment(), Adapter.HolderListener {
         get() = this.javaClass.name
     protected lateinit var playerHolders: ArrayList<PlayerHolder>
 
-    override fun onAttach(context: Context?) {
+
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
         if (context is GameListener){

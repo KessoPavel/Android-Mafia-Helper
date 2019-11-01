@@ -15,8 +15,8 @@
         android:fromYDelta="-100%"
         android:toYDelta="0%"
 
-        android:duration="1000"
-        android:startOffset="300"
+        android:duration="200"
+        android:startOffset="200"
         />
 
     <scale
@@ -27,7 +27,7 @@
         android:pivotX="50%"
         android:pivotY="50%"
 
-        android:duration="300"
-        android:startOffset="1300"
+        android:duration="200"
+        android:startOffset="400"
     />
 </set>

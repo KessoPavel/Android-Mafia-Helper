@@ -8,6 +8,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
@@ -18,6 +19,7 @@ import com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
+import com.radiance.mafiahelper.player.PlayersManager
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
@@ -64,15 +66,18 @@ class PlayerListFragment : BaseFragment(),
         return view
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        inactiveBackground = ContextCompat.getDrawable(context!!, R.drawable.rounded_figure)!!
+        inactiveBackground = ContextCompat.getDrawable(context, R.drawable.rounded_figure)!!
         activeBackground = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected)!!
         activeBackgroundRed = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_red)!!
         activeBackgroundBlack = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_black)!!
         activeBackgroundSheriff = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_detective)!!
         activeBackgroundDoctor = ContextCompat.getDrawable(context, R.drawable.rounded_figure_selected_doctor)!!
+
+        players = PlayersManager.loadPlayers()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,7 +91,12 @@ class PlayerListFragment : BaseFragment(),
                 ?.commit()
         } }
 
-        fpl_select_options.setOnClickListener{ _ -> listener.openGameOption(game)}
+        fpl_select_options.setOnClickListener{ _ ->
+            val bundle = Bundle()
+            bundle.putSerializable("GAME", game)
+            findNavController().navigate(R.id.action_playerListFragment_to_gameOptionsFragment, bundle)
+            listener.openGameOption(game)
+        }
         fpl_toolbar.text = getString(title)
     }
 

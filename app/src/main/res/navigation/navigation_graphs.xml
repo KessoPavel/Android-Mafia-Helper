@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graphs"
+    app:startDestination="@id/playerListFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/playerListFragment"
+        android:name="com.radiance.mafiahelper.fragment.PlayerListFragment"
+        android:label="PlayerListFragment"
+        tools:layout="@layout/fragment_player_list">
+        <action
+            android:id="@+id/action_playerListFragment_to_gameOptionsFragment"
+            app:destination="@id/gameOptionsFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/out"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_out"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOptionsFragment"
+        android:name="com.radiance.mafiahelper.fragment.GameOptionsFragment"
+        android:label="GameOptionsFragment"
+        tools:layout="@layout/fragment_game_options">
+        <action
+            android:id="@+id/action_gameOptionsFragment_to_gettingToKnowFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/out"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_out"
+            app:destination="@id/gettingToKnowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gettingToKnowFragment"
+        android:name="com.radiance.mafiahelper.fragment.GettingToKnowFragment"
+        android:label="GettingToKnowFragment"
+        tools:layout="@layout/fragment_getting_to_known"/>
+</navigation>

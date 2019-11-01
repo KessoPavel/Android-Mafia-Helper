@@ -3,6 +3,7 @@ package com.radiance.mafiahelper.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,7 +13,7 @@ class GameOptionsFragment : BaseFragment() {
     override val layoutId: Int = R.layout.fragment_game_options
     override val title: Int = R.string.select_game_options
 
-    private lateinit var game: Game
+    private var game: Game = Game()
 
     companion object {
         const val TAG = "GameOptionsFragment"
@@ -24,8 +25,10 @@ class GameOptionsFragment : BaseFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        game = arguments?.getSerializable("GAME") as Game
 
         fgo_number_piker.setOnValueChangedListener { ignored0, ignored1, newVal ->
             game.blackCount = newVal
@@ -44,6 +47,9 @@ class GameOptionsFragment : BaseFragment() {
         }
 
         fgo_start_game.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putSerializable("GAME", game)
+            findNavController().navigate(R.id.action_gameOptionsFragment_to_gettingToKnowFragment, bundle)
             listener.startGettingToKnown(game)
         }
 

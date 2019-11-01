@@ -27,6 +27,8 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
 
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        game = arguments?.getSerializable("GAME") as Game
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.fgtk_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(),this, this)

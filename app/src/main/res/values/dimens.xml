@@ -1,7 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="base_text">30sp</dimen>
+    <dimen name="base_text">26sp</dimen>
     <dimen name="sub_text_size">14sp</dimen>
     <dimen name="input_field_width">250dp</dimen>
     <dimen name="input_field">18sp</dimen>
+    <dimen name="toolbar">24</dimen>
 </resources>

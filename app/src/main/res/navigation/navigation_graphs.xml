@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graphs"
-    app:startDestination="@id/playerListFragment"
+    app:startDestination="@id/playersPicker"
     tools:ignore="UnusedNavigation">
 
     <fragment
@@ -81,4 +81,9 @@
             android:id="@+id/action_votingFragment_to_dayFragment"
             app:destination="@id/dayFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/playersPicker"
+        android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
+        android:label="PlayersPicker"
+        tools:layout="@layout/players_picker_fragment"/>
 </navigation>

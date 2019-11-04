@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.inflate
@@ -29,20 +30,28 @@ class PlayersPickerViewModel : ViewModel() {
     }
 
     fun onPlayerClick(player: Player){
-        game.addPlayer(player)
+        if (game.players.contains(player)){
+            game.removePlayer(player)
+        } else {
+            game.addPlayer(player)
+        }
         adapter.setData(convertPlayerToPlayerHolder(players))
         adapter.notifyDataSetChanged()
     }
 
-    fun onClickAddPlayer(name: String){
-        val player = Player(name = name)
+    fun onAddPlayerClick(){
+        val player = Player(name = "322")
         players.add(player)
 
         adapter.setData(convertPlayerToPlayerHolder(players))
         adapter.notifyDataSetChanged()
     }
 
-    fun onLongPlayerClick(player: Player){
+    fun onPlayerLongClick(player: Player){
+
+    }
+
+    fun onPlayClick(navController: NavController){
 
     }
 

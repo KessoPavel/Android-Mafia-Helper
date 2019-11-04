@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.adapter.Adapter
 import kotlinx.android.synthetic.main.players_picker_fragment.*
 
 class PlayersPicker : Fragment() {
@@ -34,5 +34,13 @@ class PlayersPicker : Fragment() {
 
         pp_recycler.layoutManager = LinearLayoutManager(context)
         pp_recycler.adapter = viewModel.adapter
+
+        pp_add_player.setOnClickListener{
+            viewModel.onAddPlayerClick()
+        }
+
+        pp_play.setOnClickListener{
+            viewModel.onPlayClick(findNavController())
+        }
     }
 }

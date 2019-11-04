@@ -3,7 +3,6 @@ package com.radiance.mafiahelper.view.playersPicker
 import android.view.View
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
-import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 import kotlinx.android.synthetic.main.player_picker_item.view.*
 
 class PlayerPickerViewHolder(view: View,private val viewModel: PlayersPickerViewModel): Holder(view), View.OnClickListener, View.OnLongClickListener {
@@ -28,7 +27,7 @@ class PlayerPickerViewHolder(view: View,private val viewModel: PlayersPickerView
     }
 
     override fun onLongClick(v: View?): Boolean {
-        viewModel.onLongPlayerClick(holder.player)
+        viewModel.onPlayerLongClick(holder.player)
         return true
     }
 

@@ -2,14 +2,12 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_voting.*
 import kotlinx.android.synthetic.main.fragment_voting.view.*
@@ -32,16 +30,6 @@ class VotingFragment: BaseFragment(){
     private var currentPlayerIndex: Int = 0
     private var currentVotingNumber: Int = 0
     private lateinit var adapter: Adapter
-
-    companion object{
-        const val TAG = "VotingFragment"
-
-        fun newInstance(game: Game): VotingFragment {
-            val fragment = VotingFragment()
-            fragment.game = game
-            return fragment
-        }
-    }
 
     private fun createProviders(): java.util.ArrayList<PlayerHolder> {
         val answer = ArrayList<PlayerHolder>()

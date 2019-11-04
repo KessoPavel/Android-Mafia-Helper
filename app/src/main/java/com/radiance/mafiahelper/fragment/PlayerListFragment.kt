@@ -1,5 +1,6 @@
 package com.radiance.mafiahelper.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -23,13 +24,12 @@ import com.radiance.mafiahelper.player.PlayersManager
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import org.jetbrains.anko.runOnUiThread
 
-
 class PlayerListFragment : BaseFragment(),
     Adapter.HolderListener, AddPlayerListener {
     override val layoutId: Int = R.layout.fragment_player_list
     override val title: Int = R.string.select_active_players
 
-    protected lateinit var players: ArrayList<Player>
+    private lateinit var players: ArrayList<Player>
     private lateinit var adapter: Adapter
     private lateinit var recyclerView: RecyclerView
     private val game: Game = Game()
@@ -50,16 +50,8 @@ class PlayerListFragment : BaseFragment(),
     private val inactiveIconDoctor = R.drawable.doctor_gray
     private val emptyIcon = R.drawable.empty
 
-    companion object {
-        fun newInstance(players: ArrayList<Player>): PlayerListFragment {
-            val fragment = PlayerListFragment()
-            fragment.players = players
-            return fragment
-        }
-    }
-
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
-        recyclerView = view.findViewById<RecyclerView>(R.id.fpl_player_list)
+        recyclerView = view.findViewById(R.id.fpl_player_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(players), this, this)
         recyclerView.adapter = adapter
@@ -83,7 +75,8 @@ class PlayerListFragment : BaseFragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fpl_add_player.setOnClickListener{ _ -> context?.runOnUiThread {
+        fpl_add_player.setOnClickListener{
+            context?.runOnUiThread {
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.add(R.id.root_layout, AddPlayerFragment.newInstance(this@PlayerListFragment), "Add Player")
@@ -91,7 +84,7 @@ class PlayerListFragment : BaseFragment(),
                 ?.commit()
         } }
 
-        fpl_select_options.setOnClickListener{ _ ->
+        fpl_select_options.setOnClickListener{
             val bundle = Bundle()
             bundle.putSerializable("GAME", game)
             findNavController().navigate(R.id.action_playerListFragment_to_gameOptionsFragment, bundle)
@@ -119,6 +112,7 @@ class PlayerListFragment : BaseFragment(),
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onClick(playerHolder: PlayerHolder) {
         if (playerHolder.isSelected){
             game.removePlayer(playerHolder.player)

@@ -13,10 +13,7 @@ import com.radiance.mafiahelper.player.Role
 abstract class BaseFragment: Fragment(), Adapter.HolderListener {
     abstract val layoutId: Int
     abstract val title: Int
-    val fragmentTag: String
-        get() = this.javaClass.name
     protected lateinit var playerHolders: ArrayList<PlayerHolder>
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

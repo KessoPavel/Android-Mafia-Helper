@@ -2,18 +2,16 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymFragment
 import com.radiance.mafiahelper.dialogs.dialogSetPseudonym.SetPseudonymListener
-import com.radiance.mafiahelper.player.Role
+import com.radiance.mafiahelper.game.Game
+import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_getting_to_known.*
 
@@ -35,16 +33,6 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
         adapter = Adapter(createProviders(),this, this)
         recyclerView.adapter = adapter
         return view
-    }
-
-    companion object {
-        const val TAG = "GettingToKnowFragment"
-
-        fun newInstance(game: Game): GettingToKnowFragment {
-            val fragment = GettingToKnowFragment()
-            fragment.game = game
-            return fragment
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

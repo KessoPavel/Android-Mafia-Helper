@@ -1,20 +1,18 @@
 package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.player.Role
-import kotlinx.android.synthetic.main.fragment_first_night.view.*
 import android.os.Handler
-import android.widget.Button
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
+import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.PlayerHolder
-import kotlinx.android.synthetic.main.fragment_day.*
+import com.radiance.mafiahelper.player.Role
 import kotlinx.android.synthetic.main.fragment_first_night.*
+import kotlinx.android.synthetic.main.fragment_first_night.view.*
 
 
 class FirstNightFragment: BaseFragment() {
@@ -54,16 +52,6 @@ class FirstNightFragment: BaseFragment() {
 
     private lateinit var adapter: Adapter
     private lateinit var game: Game
-
-    companion object{
-        const val TAG = "FirstNightFragment"
-
-        fun newInstance(game: Game): FirstNightFragment {
-            val fragment = FirstNightFragment()
-            fragment.game = game
-            return fragment
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

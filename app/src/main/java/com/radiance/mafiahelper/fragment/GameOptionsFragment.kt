@@ -1,12 +1,10 @@
 package com.radiance.mafiahelper.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_game_options.*
 
 class GameOptionsFragment : BaseFragment() {
@@ -15,33 +13,24 @@ class GameOptionsFragment : BaseFragment() {
 
     private var game: Game = Game()
 
-    companion object {
-        const val TAG = "GameOptionsFragment"
-
-        fun newInstance(game: Game): GameOptionsFragment {
-            val fragment = GameOptionsFragment()
-            fragment.game = game
-            return fragment
-        }
-    }
-
+    @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         game = arguments?.getSerializable("GAME") as Game
 
-        fgo_number_piker.setOnValueChangedListener { ignored0, ignored1, newVal ->
+        fgo_number_piker.setOnValueChangedListener { _, _, newVal ->
             game.blackCount = newVal
             updateCounts()
         }
 
-        fgo_doctor_check_box.setOnCheckedChangeListener { ignored, isChecked ->
+        fgo_doctor_check_box.setOnCheckedChangeListener { _, isChecked ->
             game.doctorInGame = isChecked
             updateCounts()
 
         }
 
-        fgo_sheriff_check_box.setOnCheckedChangeListener { ignored, isChecked ->
+        fgo_sheriff_check_box.setOnCheckedChangeListener { _, isChecked ->
             game.sheriffInGame = isChecked
             updateCounts()
         }

@@ -32,14 +32,6 @@ class DayFragment: BaseFragment() {
     private val votingList = ArrayList<Player>()
     private val newInVoting = ArrayList<Player>()
 
-    companion object{
-        fun newInstance(game: Game): DayFragment {
-            val fragment = DayFragment()
-            fragment.game = game
-            return fragment
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,7 +60,7 @@ class DayFragment: BaseFragment() {
         }
 
 
-        var nextIndex = if (currentPlayerIndex + game.currentPlayerIndex >= game.playersCont){
+        val nextIndex = if (currentPlayerIndex + game.currentPlayerIndex >= game.playersCont){
             currentPlayerIndex + game.currentPlayerIndex - game.playersCont
         } else {
             currentPlayerIndex + game.currentPlayerIndex

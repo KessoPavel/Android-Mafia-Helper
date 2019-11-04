@@ -1,41 +1,22 @@
 package com.radiance.mafiahelper.fragment
 
-import android.animation.Animator
-import android.animation.AnimatorSet
-import android.animation.ValueAnimator
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
-import com.radiance.mafiahelper.game.GameListener
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.player.Role
-import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseFragment: Fragment(), Adapter.HolderListener {
-    protected lateinit var listener: GameListener
     abstract val layoutId: Int
     abstract val title: Int
     val fragmentTag: String
         get() = this.javaClass.name
     protected lateinit var playerHolders: ArrayList<PlayerHolder>
 
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        if (context is GameListener){
-            listener = context
-        } else {
-            throw ClassCastException(context.toString() + " must implement GameListener.")
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

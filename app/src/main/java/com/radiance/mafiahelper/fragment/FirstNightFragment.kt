@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.fragment_first_night.view.*
 import android.os.Handler
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.player.PlayerHolder
@@ -23,7 +24,9 @@ class FirstNightFragment: BaseFragment() {
         if (game.checkPlayersRoles()){
             ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             ffn_button.setOnClickListener{
-                listener.startDay(game)
+                val args = Bundle()
+                args.putSerializable("GAME", game)
+                findNavController().navigate(R.id.action_firstNightFragment_to_dayFragment, args)
             }
         } else {
             ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
@@ -42,6 +45,7 @@ class FirstNightFragment: BaseFragment() {
     override val title: Int = R.string.first_night
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        game = arguments?.getSerializable("GAME") as Game
         view.ffn_player_list.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(game.players), this, this)
         view.ffn_player_list.adapter = adapter
@@ -66,6 +70,5 @@ class FirstNightFragment: BaseFragment() {
 
         ffn_button.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
         ffn_toolbar.text = getString(title)
-
     }
 }

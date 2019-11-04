@@ -50,7 +50,6 @@ class GameOptionsFragment : BaseFragment() {
             val bundle = Bundle()
             bundle.putSerializable("GAME", game)
             findNavController().navigate(R.id.action_gameOptionsFragment_to_gettingToKnowFragment, bundle)
-            listener.startGettingToKnown(game)
         }
 
         fgo_number_piker.maxValue = game.maxBlackCount

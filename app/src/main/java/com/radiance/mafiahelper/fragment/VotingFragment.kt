@@ -3,6 +3,7 @@ package com.radiance.mafiahelper.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
@@ -18,6 +19,8 @@ class VotingFragment: BaseFragment(){
     override val title: Int = R.string.voting
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        game = arguments?.getSerializable("GAME") as Game
+
         view.fv_recycler_view.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(), this, this)
         view.fv_recycler_view.adapter = adapter
@@ -44,10 +47,7 @@ class VotingFragment: BaseFragment(){
         val answer = ArrayList<PlayerHolder>()
 
         for (player in game.votingMap.keys){
-            val manager = PlayerHolder(
-                player,
-                votingCount = game.votingMap[player].toString()
-            )
+            val manager = PlayerHolder(player, votingCount = game.votingMap[player].toString())
             answer.add(manager)
         }
 
@@ -64,7 +64,7 @@ class VotingFragment: BaseFragment(){
             nextPlayer()
         }
         fv_number_picker.setOnValueChangedListener{
-            picker, oldVal, newVal ->
+            _, _, newVal ->
                 currentVotingNumber = newVal
         }
 
@@ -82,7 +82,10 @@ class VotingFragment: BaseFragment(){
         if (currentPlayerIndex == votingList.size) {
             fv_button.setOnClickListener{
                 game.endVoting()
-                listener.startNight(game)
+
+                val args = Bundle()
+                args.putSerializable("GAME", game)
+                findNavController().navigate(R.id.action_votingFragment_to_dayFragment, args)
             }
             fv_next_player.visibility = View.INVISIBLE
             fv_next_player.setOnClickListener(null)

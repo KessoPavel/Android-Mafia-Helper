@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.radiance.mafiahelper.R
@@ -48,9 +49,9 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         game.cleatPseudonym()
         fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.not_enabled_button)
-
         fgtn_toolbar.text = getString(title)
     }
 
@@ -80,7 +81,11 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
             fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fgtk_first_gay.setOnClickListener{
                 game.players = playerWithPseudonym
-                listener.startFirstNight(game)
+
+                val args = Bundle()
+                args.putSerializable("GAME", game)
+
+                findNavController().navigate(R.id.action_gettingToKnowFragment_to_firstNightFragment, args)
             }
         }
     }

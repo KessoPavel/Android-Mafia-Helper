@@ -37,5 +37,48 @@
         android:id="@+id/gettingToKnowFragment"
         android:name="com.radiance.mafiahelper.fragment.GettingToKnowFragment"
         android:label="GettingToKnowFragment"
-        tools:layout="@layout/fragment_getting_to_known"/>
+        tools:layout="@layout/fragment_getting_to_known">
+        <action
+            android:id="@+id/action_gettingToKnowFragment_to_firstNightFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/out"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_out"
+            app:destination="@id/firstNightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstNightFragment"
+        android:name="com.radiance.mafiahelper.fragment.FirstNightFragment"
+        android:label="FirstNightFragment"
+        tools:layout="@layout/fragment_first_night">
+        <action
+            android:id="@+id/action_firstNightFragment_to_dayFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/out"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_out"
+            app:destination="@id/dayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.radiance.mafiahelper.fragment.DayFragment"
+        android:label="DayFragment"
+        tools:layout="@layout/fragment_day">
+        <action
+            android:id="@+id/action_dayFragment_to_votingFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/out"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_out"
+            app:destination="@id/votingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/votingFragment"
+        android:name="com.radiance.mafiahelper.fragment.VotingFragment"
+        android:label="VotingFragment"
+        tools:layout="@layout/fragment_voting">
+        <action
+            android:id="@+id/action_votingFragment_to_dayFragment"
+            app:destination="@id/dayFragment" />
+    </fragment>
 </navigation>

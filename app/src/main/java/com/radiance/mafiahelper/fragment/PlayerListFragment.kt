@@ -95,7 +95,6 @@ class PlayerListFragment : BaseFragment(),
             val bundle = Bundle()
             bundle.putSerializable("GAME", game)
             findNavController().navigate(R.id.action_playerListFragment_to_gameOptionsFragment, bundle)
-            listener.openGameOption(game)
         }
         fpl_toolbar.text = getString(title)
     }

@@ -2,14 +2,13 @@ package com.radiance.mafiahelper.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.adapter.Adapter
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_day.*
 import kotlinx.android.synthetic.main.fragment_day.view.*
@@ -19,6 +18,7 @@ class DayFragment: BaseFragment() {
     override val title: Int = R.string.day
 
     override fun initUi(view: View, savedInstanceState: Bundle?): View {
+        game = arguments?.getSerializable("GAME") as Game
         view.fd_recycler_view.layoutManager = LinearLayoutManager(context)
         adapter = Adapter(createProviders(game.players), this, this)
         view.fd_recycler_view.adapter = adapter
@@ -61,14 +61,14 @@ class DayFragment: BaseFragment() {
             fd_button.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fd_button.setOnClickListener{
                 game.votingList = votingList
-
-                listener.startVoting(game)
+                val args = Bundle()
+                args.putSerializable("GAME", game)
+                findNavController().navigate(R.id.action_dayFragment_to_votingFragment, args)
             }
         }
 
-        var nextIndex = 0
 
-        nextIndex = if (currentPlayerIndex + game.currentPlayerIndex >= game.playersCont){
+        var nextIndex = if (currentPlayerIndex + game.currentPlayerIndex >= game.playersCont){
             currentPlayerIndex + game.currentPlayerIndex - game.playersCont
         } else {
             currentPlayerIndex + game.currentPlayerIndex

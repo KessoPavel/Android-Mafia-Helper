@@ -20,18 +20,18 @@ class FirstNightHolder(view: View, listener: Adapter.HolderListener): BaseHolder
         view.ffni_is_sheriff.isChecked = holder.isSheriff
 
         view.ffni_is_sheriff.setOnCheckedChangeListener{
-                compoundButton, isCheched ->
-            listener.playerRoleChanged(holder, if (isCheched) Role.Sheriff else Role.Red)
+                _, isChecked ->
+            listener.playerRoleChanged(holder, if (isChecked) Role.Sheriff else Role.Red)
         }
 
         view.ffni_is_doctor.setOnCheckedChangeListener{
-                compoundButton, isCheched ->
-            listener.playerRoleChanged(holder, if (isCheched) Role.Doctor else Role.Red)
+                _, isChecked ->
+            listener.playerRoleChanged(holder, if (isChecked) Role.Doctor else Role.Red)
         }
 
         view.ffni_is_black.setOnCheckedChangeListener{
-                compoundButton, isCheched ->
-            listener.playerRoleChanged(holder, if (isCheched) Role.Black else Role.Red)
+                _, isChecked ->
+            listener.playerRoleChanged(holder, if (isChecked) Role.Black else Role.Red)
         }
     }
 }

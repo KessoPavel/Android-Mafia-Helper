@@ -4,9 +4,9 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
 import java.io.Serializable
 
-class Game(): Serializable {
+class Game : Serializable {
     var players: ArrayList<Player> = ArrayList()
-    var deathPlayers: ArrayList<Player> = ArrayList()
+    private var deathPlayers: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
     val playersCont: Int
@@ -24,7 +24,7 @@ class Game(): Serializable {
 
     var currentPlayerIndex = 0
     var votingList: ArrayList<Player> = ArrayList()
-    var votingMap: HashMap<Player, Int> = HashMap<Player, Int>()
+    var votingMap: HashMap<Player, Int> = HashMap()
 
     val livePlayersCount: Int
         get() {
@@ -97,8 +97,6 @@ class Game(): Serializable {
     }
 
     fun checkPlayersRoles(): Boolean {
-        var gameIsReady = false
-
         var sheriffIsReady = false
         var doctorIsReady = false
         var mafiaReadyCount = 0

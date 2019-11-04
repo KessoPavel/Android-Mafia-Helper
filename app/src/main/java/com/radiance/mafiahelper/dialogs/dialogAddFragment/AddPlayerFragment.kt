@@ -29,18 +29,17 @@ class AddPlayerFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_player, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_add_player, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        fap_main.setOnClickListener{_ ->
+        fap_main.setOnClickListener{
             Log.d("AddPlayerFragment", "Click")
         }
-        fap_ok.setOnClickListener{_ ->
+        fap_ok.setOnClickListener{
             fap_name.clearFocus()
 
             val name = fap_name.text.toString()
@@ -51,7 +50,7 @@ class AddPlayerFragment: Fragment() {
             activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
-        fap_exit.setOnClickListener{_ ->
+        fap_exit.setOnClickListener{
             fap_name.clearFocus()
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }

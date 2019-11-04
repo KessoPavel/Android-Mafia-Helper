@@ -1,7 +1,6 @@
 package com.radiance.mafiahelper.adapter
 
 import android.view.View
-import com.radiance.mafiahelper.click
 import com.radiance.mafiahelper.player.PlayerHolder
 import kotlinx.android.synthetic.main.fragment_player_list_item.view.*
 

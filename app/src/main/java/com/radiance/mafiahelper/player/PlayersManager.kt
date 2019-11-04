@@ -55,10 +55,6 @@ object PlayersManager {
         }
     }
 
-    fun getStatistic(player: Player): String{
-        return "${player.victoriesCount} / ${player.gameCount}"
-    }
-
     //region DEBUG
     private fun generateRandomPlayers(count : Int): ArrayList<Player>{
         val players = ArrayList<Player>()

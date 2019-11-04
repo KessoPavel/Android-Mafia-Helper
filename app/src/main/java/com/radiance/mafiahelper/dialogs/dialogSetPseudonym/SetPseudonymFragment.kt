@@ -55,7 +55,7 @@ class SetPseudonymFragment: Fragment() {
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }
 
-        fsp_exit.setOnClickListener{_ ->
+        fsp_exit.setOnClickListener{
             fsp_pseudonym.clearFocus()
             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
         }

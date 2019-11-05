@@ -3,6 +3,7 @@ package com.radiance.mafiahelper.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.game.Game
 import kotlinx.android.synthetic.main.fragment_game_options.*
@@ -17,7 +18,11 @@ class GameOptionsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        game = arguments?.getSerializable("GAME") as Game
+
+        arguments?.let {
+            val safeArgs = GameOptionsFragmentArgs.fromBundle(it)
+            game = safeArgs.game
+        }
 
         fgo_number_piker.setOnValueChangedListener { _, _, newVal ->
             game.blackCount = newVal

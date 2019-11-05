@@ -33,7 +33,11 @@ class PlayerInfoFragment: Fragment() {
     ): View? {
         val detailsBinding =
             FragmentPlayerInfoBinding.inflate(inflater, container, false)
-        player = arguments!!.getSerializable(PLAYER) as Player
+        arguments?.let {
+            val args = PlayerInfoFragmentArgs.fromBundle(it)
+            player = args.player
+        }
+
         detailsBinding.player = player
         return detailsBinding.root
     }

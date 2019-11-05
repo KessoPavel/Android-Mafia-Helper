@@ -32,6 +32,9 @@
             app:popEnterAnim="@anim/pop_enter"
             app:popExitAnim="@anim/pop_out"
             app:destination="@id/gettingToKnowFragment" />
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
     </fragment>
     <fragment
         android:id="@+id/gettingToKnowFragment"
@@ -85,5 +88,38 @@
         android:id="@+id/playersPicker"
         android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
         android:label="PlayersPicker"
-        tools:layout="@layout/players_picker_fragment"/>
+        tools:layout="@layout/players_picker_fragment">
+        <action
+            android:id="@+id/openGameOptions"
+            app:destination="@id/gameOptionsFragment" />
+        <action
+            android:id="@+id/show_player_info"
+            app:destination="@id/playerInfoFragment" />
+        <argument
+            android:name="newPlayer"
+            app:argType="com.radiance.mafiahelper.player.Player"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/add_new_player"
+            app:destination="@id/addPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerInfoFragment"
+        android:name="com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment"
+        android:label="PlayerInfoFragment"
+        tools:layout="@layout/fragment_player_info">
+        <argument
+            android:name="player"
+            app:argType="com.radiance.mafiahelper.player.Player" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlayerFragment"
+        android:name="com.radiance.mafiahelper.dialogs.dialogAddFragment.AddPlayerFragment"
+        android:label="AddPlayerFragment"
+        tools:layout="@layout/fragment_add_player">
+        <action
+            android:id="@+id/new_player_added"
+            app:destination="@id/playersPicker" />
+    </fragment>
 </navigation>

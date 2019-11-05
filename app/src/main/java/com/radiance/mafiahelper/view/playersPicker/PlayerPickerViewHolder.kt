@@ -27,8 +27,8 @@ class PlayerPickerViewHolder(view: View,private val viewModel: PlayersPickerView
     }
 
     override fun onLongClick(v: View?): Boolean {
-        viewModel.onPlayerLongClick(holder.player)
+        val direction = PlayersPickerDirections.showPlayerInfo(holder.player)
+        viewModel.onPlayerLongClick(direction)
         return true
     }
-
 }

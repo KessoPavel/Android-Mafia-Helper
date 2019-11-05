@@ -4,8 +4,7 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
 import java.io.Serializable
 
-class Game : Serializable {
-    var players: ArrayList<Player> = ArrayList()
+class Game(val players: ArrayList<Player>) : Serializable {
     private var deathPlayers: ArrayList<Player> = ArrayList()
     private var isStarted = false
 
@@ -37,19 +36,6 @@ class Game : Serializable {
 
             return answer
         }
-
-    fun addPlayer(player: Player) {
-        if (!isStarted) {
-            if (!players.contains(player))
-                players.add(player)
-        }
-    }
-
-    fun removePlayer(player: Player) {
-        if (!isStarted) {
-            players.remove(player)
-        }
-    }
 
     fun cleatPseudonym() {
         for (player in players)

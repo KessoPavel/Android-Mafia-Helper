@@ -3,22 +3,18 @@ package com.radiance.mafiahelper.view.playersPicker
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayersManager
-import kotlinx.coroutines.internal.sanitize
 
 class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
-    private val PLAYER_IN_GAME = "PlayersInGame"
-
     var players: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var playersInGame: MutableLiveData<ArrayList<Player>> = MutableLiveData()
-    val savedPlayers = state.get<ArrayList<Player>>(PLAYER_IN_GAME)?: ArrayList()
-    lateinit var navController: NavController
+
+    private val PLAYER_IN_GAME = "PlayersInGame"
+    private lateinit var navController: NavController
 
     init {
         playersInGame.value = state.get<ArrayList<Player>>(PLAYER_IN_GAME)?: ArrayList()
@@ -30,10 +26,7 @@ class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
     }
 
     fun game(): Game{
-        val game = Game()
-        game.players = playersInGame.value!!
-
-        return game
+        return Game(playersInGame.value!!)
     }
 
     fun onPlayerClick(player: Player){

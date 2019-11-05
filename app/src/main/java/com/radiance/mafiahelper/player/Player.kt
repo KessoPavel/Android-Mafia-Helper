@@ -29,4 +29,8 @@ data class Player (
     var isBestBlack: Boolean = false,
     var isBestDoctor: Boolean = false,
     var isBestSheriff: Boolean = false
-    ): Serializable
+    ): Serializable {
+    override fun equals(other: Any?): Boolean {
+        return name == (other as Player).name
+    }
+}

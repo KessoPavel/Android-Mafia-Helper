@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateVMFactory
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -42,7 +45,9 @@ class PlayersPicker : Fragment() {
         activeBackground = context?.getDrawable(R.drawable.list_item)!!
         passiveBackground = context?.getDrawable(R.drawable.unselected_list_item)!!
 
-        viewModel = ViewModelProviders.of(this).get(PlayersPickerViewModel::class.java)
+        viewModel = ViewModelProvider(this, SavedStateVMFactory(this))
+            .get(PlayersPickerViewModel::class.java)
+
         viewModel.init(findNavController())
 
         viewModel.players.observe(this, Observer { _ -> playersUpdated() })
@@ -60,6 +65,13 @@ class PlayersPicker : Fragment() {
         pp_play.setOnClickListener{
             val direction = PlayersPickerDirections.openGameOptions(viewModel.game())
             viewModel.onPlayClick(direction)
+        }
+
+        arguments?.let {
+            val saveArgs = PlayersPickerArgs.fromBundle(it)
+            val player = saveArgs.newPlayer
+
+            viewModel.addPlayer(player)
         }
     }
 

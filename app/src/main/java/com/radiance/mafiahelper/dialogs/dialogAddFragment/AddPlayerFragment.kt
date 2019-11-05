@@ -9,21 +9,12 @@ import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.player.Player
 import kotlinx.android.synthetic.main.fragment_add_player.*
 
 class AddPlayerFragment: Fragment() {
-    private lateinit var listener: AddPlayerListener
-
-    companion object {
-        fun newInstance(listener: AddPlayerListener): AddPlayerFragment {
-            val fragment = AddPlayerFragment()
-            fragment.listener = listener
-            return fragment
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,13 +37,13 @@ class AddPlayerFragment: Fragment() {
             if (name == "")
                 return@setOnClickListener
 
-            listener.playerAdded(Player(name= name))
             activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            val direction = AddPlayerFragmentDirections.newPlayerAdded(Player(name))
+            findNavController().navigate(direction)
         }
         fap_exit.setOnClickListener{
             fap_name.clearFocus()
-            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            findNavController().popBackStack()
         }
     }
 

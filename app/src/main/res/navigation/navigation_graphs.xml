@@ -7,20 +7,6 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/playerListFragment"
-        android:name="com.radiance.mafiahelper.fragment.PlayerListFragment"
-        android:label="PlayerListFragment"
-        tools:layout="@layout/fragment_player_list">
-        <action
-            android:id="@+id/action_playerListFragment_to_gameOptionsFragment"
-            app:destination="@id/gameOptionsFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/out"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_out"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
         android:id="@+id/gameOptionsFragment"
         android:name="com.radiance.mafiahelper.fragment.GameOptionsFragment"
         android:label="GameOptionsFragment"

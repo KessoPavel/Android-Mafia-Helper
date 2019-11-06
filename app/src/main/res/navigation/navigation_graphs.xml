@@ -89,6 +89,9 @@
         <action
             android:id="@+id/add_new_player"
             app:destination="@id/addPlayerFragment" />
+        <action
+            android:id="@+id/action_playersPicker_to_selectionGameOptions"
+            app:destination="@id/selectionGameOptions" />
     </fragment>
     <fragment
         android:id="@+id/playerInfoFragment"
@@ -107,5 +110,14 @@
         <action
             android:id="@+id/new_player_added"
             app:destination="@id/playersPicker" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionGameOptions"
+        android:name="com.radiance.mafiahelper.view.gameOptions.SelectionGameOptions"
+        android:label="game_options_fragment"
+        tools:layout="@layout/game_options_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
     </fragment>
 </navigation>

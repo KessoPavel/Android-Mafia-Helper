@@ -9,13 +9,8 @@ import android.view.ViewGroup
 
 import com.radiance.mafiahelper.R
 
-class GameOptions : Fragment() {
-
-    companion object {
-        fun newInstance() = GameOptions()
-    }
-
-    private lateinit var viewModel: GameOptionsViewModel
+class SelectionGameOptions : Fragment() {
+    private lateinit var viewModel: SelectionGameOptionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +21,8 @@ class GameOptions : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GameOptionsViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this).get(SelectionGameOptionsViewModel::class.java)
+
     }
 
 }

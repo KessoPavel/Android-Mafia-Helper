@@ -7,22 +7,6 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/gameOptionsFragment"
-        android:name="com.radiance.mafiahelper.fragment.GameOptionsFragment"
-        android:label="GameOptionsFragment"
-        tools:layout="@layout/fragment_game_options">
-        <action
-            android:id="@+id/action_gameOptionsFragment_to_gettingToKnowFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/out"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_out"
-            app:destination="@id/gettingToKnowFragment" />
-        <argument
-            android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
-    </fragment>
-    <fragment
         android:id="@+id/gettingToKnowFragment"
         android:name="com.radiance.mafiahelper.fragment.GettingToKnowFragment"
         android:label="GettingToKnowFragment"
@@ -75,9 +59,6 @@
         android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
         android:label="PlayersPicker"
         tools:layout="@layout/players_picker_fragment">
-        <action
-            android:id="@+id/openGameOptions"
-            app:destination="@id/gameOptionsFragment" />
         <action
             android:id="@+id/show_player_info"
             app:destination="@id/playerInfoFragment" />

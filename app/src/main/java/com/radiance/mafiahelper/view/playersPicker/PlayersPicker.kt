@@ -63,7 +63,7 @@ class PlayersPicker : Fragment() {
         }
 
         pp_play.setOnClickListener{
-            val direction = PlayersPickerDirections.openGameOptions(viewModel.game())
+            val direction = PlayersPickerDirections.actionPlayersPickerToSelectionGameOptions(viewModel.game())
             viewModel.onPlayClick(direction)
         }
 

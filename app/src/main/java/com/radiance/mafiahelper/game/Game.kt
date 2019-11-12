@@ -5,6 +5,9 @@ import com.radiance.mafiahelper.player.Role
 import java.io.Serializable
 
 class Game(val players: ArrayList<Player>) : Serializable {
+    var gameOptions: GameOptions = GameOptions()
+
+    //---------------
     private var deathPlayers: ArrayList<Player> = ArrayList()
     private var isStarted = false
 

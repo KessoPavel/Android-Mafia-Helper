@@ -68,7 +68,7 @@ class GettingToKnowFragment: BaseFragment(), SetPseudonymListener {
         if (playerWithPseudonym.size == game.playersCont){
             fgtk_first_gay.background = ContextCompat.getDrawable(context!!, R.drawable.ok_button)
             fgtk_first_gay.setOnClickListener{
-                game.players = playerWithPseudonym
+                //game.players = playerWithPseudonym
 
                 val args = Bundle()
                 args.putSerializable("GAME", game)

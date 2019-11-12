@@ -1,14 +1,15 @@
 package com.radiance.mafiahelper.game
 
 import androidx.databinding.BaseObservable
-class GameOptions: BaseObservable() {
+import java.io.Serializable
+
+class GameOptions: BaseObservable(), Serializable {
     var playersCount: Int = 0
         set(value) {
             field = value
             notifyChange()
         }
-
-    var blackCount: Int = 0
+    var blackCount: Int = 1
         set(value) {
             field = value
             notifyChange()
@@ -24,5 +25,11 @@ class GameOptions: BaseObservable() {
         set(value) {
             field = value
             notifyChange()
+        }
+
+    var redCount: Int = 0
+        get() {
+            field = playersCount - (blackCount + (if (doctorInGame) 1 else 0) + (if (sheriffInGame) 1 else 0))
+            return field
         }
 }

@@ -1,22 +1,18 @@
 package com.radiance.mafiahelper.view.gameOptions
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.NumberPicker
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
-
+import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.emptyGame
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.game.GameOptions
-import com.radiance.mafiahelper.view.playersPicker.PlayersPickerArgs
-import com.radiance.mafiahelper.view.playersPicker.PlayersPickerViewModel
-import kotlinx.android.synthetic.main.fragment_game_options.*
 import kotlinx.android.synthetic.main.game_options_fragment.*
 
 class SelectionGameOptions : Fragment() {
@@ -42,8 +38,10 @@ class SelectionGameOptions : Fragment() {
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this))
             .get(SelectionGameOptionsViewModel::class.java)
 
-        viewModel.gameOptions.observe(this, Observer { gameOptions -> updateGameOptions(gameOptions) })
-        viewModel.init(game = game?: Game(ArrayList()));
+        viewModel.gameOptions.observe(
+            this,
+            Observer { gameOptions -> updateGameOptions(gameOptions) })
+        viewModel.init(game = game ?: emptyGame(), navController = findNavController())
 
         go_number_piker.setOnValueChangedListener { _, _, newVal ->
             viewModel.blackCount(newVal)
@@ -56,6 +54,12 @@ class SelectionGameOptions : Fragment() {
 
         go_sheriff_check_box.setOnCheckedChangeListener { _, isChecked ->
             viewModel.sheriffCheck()
+        }
+
+        go_play.setOnClickListener {
+            val direction =
+                SelectionGameOptionsDirections.actionSelectionGameOptionsToAliasPicker(viewModel.createGame())
+            viewModel.clickPlay(direction)
         }
     }
 

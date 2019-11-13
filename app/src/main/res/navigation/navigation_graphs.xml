@@ -100,5 +100,17 @@
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/action_selectionGameOptions_to_aliasPicker"
+            app:destination="@id/aliasPicker" />
+    </fragment>
+    <fragment
+        android:id="@+id/aliasPicker"
+        android:name="com.radiance.mafiahelper.view.aliasPicker.AliasPicker"
+        android:label="alias_picker_fragment"
+        tools:layout="@layout/alias_picker_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
     </fragment>
 </navigation>

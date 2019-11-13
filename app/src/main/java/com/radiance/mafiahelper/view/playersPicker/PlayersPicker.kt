@@ -1,22 +1,17 @@
 package com.radiance.mafiahelper.view.playersPicker
 
 import android.graphics.drawable.Drawable
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.fragment.GameOptionsFragmentDirections
-import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.inflate
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
@@ -24,7 +19,6 @@ import com.radiance.mafiahelper.view.adapter.Holder
 import com.radiance.mafiahelper.view.adapter.HolderBuilder
 import com.radiance.mafiahelper.view.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.players_picker_fragment.*
-import java.nio.file.OpenOption
 
 class PlayersPicker : Fragment() {
     lateinit var adapter: RecyclerAdapter
@@ -50,8 +44,8 @@ class PlayersPicker : Fragment() {
 
         viewModel.init(findNavController())
 
-        viewModel.players.observe(this, Observer { _ -> playersUpdated() })
-        viewModel.playersInGame.observe(this, Observer { _ -> playersUpdated() })
+        viewModel.players.observe(this, Observer { playersUpdated() })
+        viewModel.playersInGame.observe(this, Observer { playersUpdated() })
 
         adapter = RecyclerAdapter(players = convertPlayerToPlayerHolder() , holderBuilder = PlayerPickerViewHolderBuilder(viewModel))
         pp_recycler.layoutManager = LinearLayoutManager(context)

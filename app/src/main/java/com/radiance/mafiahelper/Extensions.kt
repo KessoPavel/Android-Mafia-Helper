@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import androidx.annotation.LayoutRes
+import com.radiance.mafiahelper.game.Game
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -20,4 +21,8 @@ fun View.click(startScale: Float, endScale: Float, duration: Long){
     )
     anim.duration = duration
     this.startAnimation(anim)
+}
+
+fun emptyGame(): Game{
+    return Game(ArrayList())
 }

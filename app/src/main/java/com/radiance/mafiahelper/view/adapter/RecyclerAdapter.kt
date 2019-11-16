@@ -8,6 +8,7 @@ import com.radiance.mafiahelper.fragment.BaseFragment
 import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
 import kotlin.collections.ArrayList
+import java.util.Collections.swap
 
 class RecyclerAdapter(
     private var players: ArrayList<PlayerHolder>,

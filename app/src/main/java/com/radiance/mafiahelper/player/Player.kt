@@ -31,6 +31,9 @@ data class Player (
     var isBestSheriff: Boolean = false
     ): Serializable {
     override fun equals(other: Any?): Boolean {
-        return name == (other as Player).name
+        other?.let {
+            return name == (other as Player).name
+        }
+        return false;
     }
 }

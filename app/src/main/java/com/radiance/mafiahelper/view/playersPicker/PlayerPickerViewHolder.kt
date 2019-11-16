@@ -5,7 +5,7 @@ import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
 import kotlinx.android.synthetic.main.player_picker_item.view.*
 
-class PlayerPickerViewHolder(view: View,private val viewModel: PlayersPickerViewModel): Holder(view), View.OnClickListener, View.OnLongClickListener {
+class PlayerPickerViewHolder(view: View, private val viewModel: PlayersPickerViewModel): Holder(view), View.OnClickListener, View.OnLongClickListener {
     private lateinit var holder: PlayerHolder
 
     init {

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import java.util.*
@@ -27,5 +28,13 @@ class AliasPickerViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     fun changePlayerPosition(from: Int, to: Int) {
         Collections.swap(players.value, from, to)
+    }
+
+    fun goToFirstNight(direction: NavDirections){
+        navController.navigate(direction)
+    }
+
+    fun createGame(): Game {
+        return game
     }
 }

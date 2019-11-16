@@ -54,6 +54,12 @@ class AliasPicker : Fragment() {
         touchHelper.attachToRecyclerView(ap_recycler)
         ap_recycler.layoutManager = LinearLayoutManager(context)
         ap_recycler.adapter = adapter
+
+        ap_play.setOnClickListener{
+            val game = viewModel.createGame()
+            val direction = AliasPickerDirections.gotToFirstNight(game)
+            viewModel.goToFirstNight(direction)
+        }
     }
 
     fun onItemMove(from: Int, to: Int){

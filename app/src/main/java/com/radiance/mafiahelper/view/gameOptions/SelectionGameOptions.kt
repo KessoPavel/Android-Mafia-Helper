@@ -47,18 +47,18 @@ class SelectionGameOptions : Fragment() {
             viewModel.blackCount(newVal)
         }
 
-        go_doctor_check_box.setOnCheckedChangeListener { _, isChecked ->
+        go_doctor_check_box.setOnCheckedChangeListener { _, _ ->
             viewModel.doctorCheck()
 
         }
 
-        go_sheriff_check_box.setOnCheckedChangeListener { _, isChecked ->
+        go_sheriff_check_box.setOnCheckedChangeListener { _, _ ->
             viewModel.sheriffCheck()
         }
 
         go_play.setOnClickListener {
             val direction =
-                SelectionGameOptionsDirections.actionSelectionGameOptionsToAliasPicker(viewModel.createGame())
+                SelectionGameOptionsDirections.goToAliacePicker(viewModel.createGame())
             viewModel.clickPlay(direction)
         }
     }

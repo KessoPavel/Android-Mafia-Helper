@@ -7,19 +7,6 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/gettingToKnowFragment"
-        android:name="com.radiance.mafiahelper.fragment.GettingToKnowFragment"
-        android:label="GettingToKnowFragment"
-        tools:layout="@layout/fragment_getting_to_known">
-        <action
-            android:id="@+id/action_gettingToKnowFragment_to_firstNightFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/out"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_out"
-            app:destination="@id/firstNightFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/firstNightFragment"
         android:name="com.radiance.mafiahelper.fragment.FirstNightFragment"
         android:label="FirstNightFragment"
@@ -101,7 +88,7 @@
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />
         <action
-            android:id="@+id/action_selectionGameOptions_to_aliasPicker"
+            android:id="@+id/goToAliacePicker"
             app:destination="@id/aliasPicker" />
     </fragment>
     <fragment
@@ -109,6 +96,18 @@
         android:name="com.radiance.mafiahelper.view.aliasPicker.AliasPicker"
         android:label="alias_picker_fragment"
         tools:layout="@layout/alias_picker_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/gotToFirstNight"
+            app:destination="@id/firstNight" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstNight"
+        android:name="com.radiance.mafiahelper.view.firstNight.FirstNight"
+        android:label="first_night_fragment"
+        tools:layout="@layout/first_night_fragment" >
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />

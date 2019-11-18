@@ -7,19 +7,6 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/firstNightFragment"
-        android:name="com.radiance.mafiahelper.fragment.FirstNightFragment"
-        android:label="FirstNightFragment"
-        tools:layout="@layout/fragment_first_night">
-        <action
-            android:id="@+id/action_firstNightFragment_to_dayFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/out"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_out"
-            app:destination="@id/dayFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/dayFragment"
         android:name="com.radiance.mafiahelper.fragment.DayFragment"
         android:label="DayFragment"
@@ -108,6 +95,18 @@
         android:name="com.radiance.mafiahelper.view.firstNight.FirstNight"
         android:label="first_night_fragment"
         tools:layout="@layout/first_night_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/startDay"
+            app:destination="@id/day" />
+    </fragment>
+    <fragment
+        android:id="@+id/day"
+        android:name="com.radiance.mafiahelper.view.day.Day"
+        android:label="day_fragment"
+        tools:layout="@layout/day_fragment" >
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />

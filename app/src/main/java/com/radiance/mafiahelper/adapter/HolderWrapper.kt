@@ -18,13 +18,9 @@ object HolderWrapper {
                 inflationView = parent.inflate(R.layout.fragment_voting_item, false)
                 return VotingHolder(inflationView, listener)
             }
-            is FirstNightFragment -> {
-                inflationView = parent.inflate(R.layout.fragment_first_night_item, false)
-                return FirstNightHolder(inflationView, listener)
-            }
             else -> {
-                inflationView = parent.inflate(R.layout.fragment_first_night_item, false)
-                return FirstNightHolder(inflationView, listener)
+                inflationView = parent.inflate(R.layout.fragment_voting_item, false)
+                return VotingHolder(inflationView, listener)
             }
         }
     }

@@ -43,6 +43,7 @@ class ViewHolder(view: View, private val viewModel: AliasPickerViewModel, privat
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        view.performClick()
         touchHelper.startDrag(this)
         return false
     }

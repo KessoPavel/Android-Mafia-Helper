@@ -7,6 +7,63 @@ import java.io.Serializable
 class Game(val players: ArrayList<Player>) : Serializable {
     var gameOptions: GameOptions = GameOptions()
 
+    fun setPlayerRole(player: Player, role: Role) {
+        if (role == Role.Doctor) {
+            if (gameOptions.doctorInGame) {
+                for (p in players) {
+                    if (p.role == Role.Doctor)
+                        p.role = Role.Red
+                }
+                player.role = role
+            }
+        }
+
+        if (role == Role.Sheriff) {
+            if (gameOptions.sheriffInGame) {
+                for (p in players) {
+                    if (p.role == Role.Sheriff)
+                        p.role = Role.Red
+                }
+                player.role = role
+            }
+        }
+
+        if (role == Role.Black) {
+            var realBlackCount = 0
+
+            for (p in players) {
+                if (p.role == Role.Black) {
+                    if (realBlackCount == gameOptions.blackCount - 1) {
+                        p.role = Role.Red
+                    } else {
+                        realBlackCount++
+                    }
+                }
+            }
+
+            player.role = role
+        }
+        if (role == Role.Red)
+            player.role = role
+    }
+
+    fun checkPlayersRoles(): Boolean {
+        var sheriffIsReady = false
+        var doctorIsReady = false
+        var mafiaReadyCount = 0
+
+        for (player in players) {
+            if (player.role == Role.Doctor) {
+                doctorIsReady = true
+            }
+            if (player.role == Role.Sheriff)
+                sheriffIsReady = true
+            if (player.role == Role.Black)
+                mafiaReadyCount++
+        }
+
+        return (sheriffIsReady or !gameOptions.sheriffInGame) and (doctorIsReady or !gameOptions.doctorInGame) and (mafiaReadyCount == gameOptions.blackCount)
+    }
     //---------------
     private var deathPlayers: ArrayList<Player> = ArrayList()
     private var isStarted = false
@@ -45,63 +102,9 @@ class Game(val players: ArrayList<Player>) : Serializable {
             player.pseudonym = ""
     }
 
-    fun setPlayerRole(player: Player, role: Role) {
-        if (role == Role.Doctor) {
-            if (doctorInGame) {
-                for (p in players) {
-                    if (p.role == Role.Doctor)
-                        p.role = Role.Red
-                }
-                player.role = role
-            }
-        }
 
-        if (role == Role.Sheriff) {
-            if (sheriffInGame) {
-                for (p in players) {
-                    if (p.role == Role.Sheriff)
-                        p.role = Role.Red
-                }
-                player.role = role
-            }
-        }
 
-        if (role == Role.Black) {
-            var realBlackCount = 0
 
-            for (p in players) {
-                if (p.role == Role.Black) {
-                    if (realBlackCount == blackCount - 1) {
-                        p.role = Role.Red
-                    } else {
-                        realBlackCount++
-                    }
-                }
-            }
-
-            player.role = role
-        }
-        if (role == Role.Red)
-            player.role = role
-    }
-
-    fun checkPlayersRoles(): Boolean {
-        var sheriffIsReady = false
-        var doctorIsReady = false
-        var mafiaReadyCount = 0
-
-        for (player in players) {
-            if (player.role == Role.Doctor) {
-                doctorIsReady = true
-            }
-            if (player.role == Role.Sheriff)
-                sheriffIsReady = true
-            if (player.role == Role.Black)
-                mafiaReadyCount++
-        }
-
-        return (sheriffIsReady or !sheriffInGame) and (doctorIsReady or !doctorInGame) and (mafiaReadyCount == blackCount)
-    }
 
     fun endVoting(){
         currentPlayerIndex++

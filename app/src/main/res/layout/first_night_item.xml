@@ -11,7 +11,7 @@
         <TextView
             android:id="@+id/fn_alias"
             android:transitionName="@string/player_name_transition"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -29,5 +29,33 @@
             android:textColor="@color/sub_text"
             android:textSize="@dimen/sub_text_size"
             tools:text="Ivan" />
+
+        <RadioButton
+            android:id="@+id/fn_black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="160dp"
+            android:text=""
+            tools:text=""/>
+
+        <RadioButton
+            android:id="@+id/fn_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="90dp"
+            android:text=""
+            tools:text=""/>
+
+        <RadioButton
+            android:id="@+id/fn_sheriff"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:text=""
+            tools:text=""/>
+
     </FrameLayout>
 </layout>

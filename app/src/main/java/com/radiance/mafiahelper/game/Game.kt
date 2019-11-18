@@ -6,7 +6,15 @@ import java.io.Serializable
 
 class Game(val players: ArrayList<Player>) : Serializable {
     var gameOptions: GameOptions = GameOptions()
+    var day: Day? = null
+        set(value) {
+            value?.let {
+                dayList.add(it)
+            }
+            field = value
+        }
 
+    val dayList = ArrayList<Day>()
     fun setPlayerRole(player: Player, role: Role) {
         if (role == Role.Doctor) {
             if (gameOptions.doctorInGame) {

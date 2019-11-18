@@ -7,27 +7,10 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/dayFragment"
-        android:name="com.radiance.mafiahelper.fragment.DayFragment"
-        android:label="DayFragment"
-        tools:layout="@layout/fragment_day">
-        <action
-            android:id="@+id/action_dayFragment_to_votingFragment"
-            app:enterAnim="@anim/enter"
-            app:exitAnim="@anim/out"
-            app:popEnterAnim="@anim/pop_enter"
-            app:popExitAnim="@anim/pop_out"
-            app:destination="@id/votingFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/votingFragment"
         android:name="com.radiance.mafiahelper.fragment.VotingFragment"
         android:label="VotingFragment"
-        tools:layout="@layout/fragment_voting">
-        <action
-            android:id="@+id/action_votingFragment_to_dayFragment"
-            app:destination="@id/dayFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_voting"/>
     <fragment
         android:id="@+id/playersPicker"
         android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
@@ -104,9 +87,21 @@
     </fragment>
     <fragment
         android:id="@+id/day"
-        android:name="com.radiance.mafiahelper.view.day.Day"
+        android:name="com.radiance.mafiahelper.view.day.DayFragment"
         android:label="day_fragment"
         tools:layout="@layout/day_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/startVoting"
+            app:destination="@id/voting" />
+    </fragment>
+    <fragment
+        android:id="@+id/voting"
+        android:name="com.radiance.mafiahelper.view.voting.Voting"
+        android:label="voting_fragment"
+        tools:layout="@layout/voting_fragment" >
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />

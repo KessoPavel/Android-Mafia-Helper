@@ -14,6 +14,9 @@ class PlayerHolder(
     val name: String = player.name,
     val statistic: String = "${player.gameCount} / ${player.victoriesCount}",
     val pseudonym: String = player.pseudonym,
+
+    val inVoting: Boolean = false,
+
     // old
     val inactiveBackground: Drawable? = null,
     val activeBackground: Drawable? = null,

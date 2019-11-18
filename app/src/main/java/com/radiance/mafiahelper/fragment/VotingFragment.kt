@@ -73,7 +73,6 @@ class VotingFragment: BaseFragment(){
 
                 val args = Bundle()
                 args.putSerializable("GAME", game)
-                findNavController().navigate(R.id.action_votingFragment_to_dayFragment, args)
             }
             fv_next_player.visibility = View.INVISIBLE
             fv_next_player.setOnClickListener(null)

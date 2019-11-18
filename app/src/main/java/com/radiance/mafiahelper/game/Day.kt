@@ -8,4 +8,8 @@ class Day {
     fun addPlayerToVoting(player: Player){
         votingList.add(player)
     }
+
+    fun addAll(players: ArrayList<Player>){
+        votingList.addAll(players)
+    }
 }

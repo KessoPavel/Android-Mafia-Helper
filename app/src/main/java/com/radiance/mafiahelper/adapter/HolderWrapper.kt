@@ -10,10 +10,6 @@ object HolderWrapper {
     fun createHolder(parent: ViewGroup, listener: Adapter.HolderListener, fragment: BaseFragment): BaseHolder {
         val inflationView: View?
         when (fragment) {
-            is DayFragment -> {
-                inflationView = parent.inflate(R.layout.fragment_day_item, false)
-                return DayHolder(inflationView, listener)
-            }
             is VotingFragment -> {
                 inflationView = parent.inflate(R.layout.fragment_voting_item, false)
                 return VotingHolder(inflationView, listener)

@@ -5,6 +5,9 @@ import com.radiance.mafiahelper.player.Role
 import java.io.Serializable
 
 class Game(val players: ArrayList<Player>) : Serializable {
+    val playersCont: Int
+        get() = players.size
+
     var gameOptions: GameOptions = GameOptions()
     var day: Day? = null
         set(value) {
@@ -13,8 +16,17 @@ class Game(val players: ArrayList<Player>) : Serializable {
             }
             field = value
         }
+    var voting: Voting? = null
+        set(value) {
+            value?.let {
+                votingList.add(value)
+            }
+            field = value
+        }
 
     val dayList = ArrayList<Day>()
+    val votingList = ArrayList<Voting>()
+
     fun setPlayerRole(player: Player, role: Role) {
         if (role == Role.Doctor) {
             if (gameOptions.doctorInGame) {
@@ -73,74 +85,5 @@ class Game(val players: ArrayList<Player>) : Serializable {
         return (sheriffIsReady or !gameOptions.sheriffInGame) and (doctorIsReady or !gameOptions.doctorInGame) and (mafiaReadyCount == gameOptions.blackCount)
     }
     //---------------
-    private var deathPlayers: ArrayList<Player> = ArrayList()
-    private var isStarted = false
-
-    val playersCont: Int
-        get() = players.size
-
-    val maxBlackCount: Int
-        get() = playersCont / 4
-
-    val minBlackCount: Int
-        get() = 1
-
-    var blackCount: Int = 0
-    var doctorInGame: Boolean = false
-    var sheriffInGame: Boolean = false
-
-    var currentPlayerIndex = 0
-    var votingList: ArrayList<Player> = ArrayList()
-    var votingMap: HashMap<Player, Int> = HashMap()
-
-    val livePlayersCount: Int
-        get() {
-            var answer = 0
-
-            for (player in players){
-                if (!player.isDeath)
-                    answer++
-            }
-
-            return answer
-        }
-
-    fun cleatPseudonym() {
-        for (player in players)
-            player.pseudonym = ""
-    }
-
-
-
-
-
-    fun endVoting(){
-        currentPlayerIndex++
-        if (currentPlayerIndex == playersCont)
-            currentPlayerIndex = 0
-
-
-        var deathPlayer: Player? = null
-        var max = 0
-        for (player in votingMap.keys){
-            if (votingMap[player]!! > max){
-                max = votingMap[player]!!
-                deathPlayer = player
-            }
-        }
-
-        deathPlayer?.isDeath = true
-        deathPlayers.add(deathPlayer!!)
-
-
-        val position = players.indexOf(deathPlayer)
-        if (position <= currentPlayerIndex - 1)
-            currentPlayerIndex--
-
-        players.remove(deathPlayer)
-
-        votingMap.clear()
-        votingList.clear()
-    }
-
+    var deathPlayers: ArrayList<Player> = ArrayList()
 }

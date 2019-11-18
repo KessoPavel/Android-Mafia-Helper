@@ -7,11 +7,6 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/votingFragment"
-        android:name="com.radiance.mafiahelper.fragment.VotingFragment"
-        android:label="VotingFragment"
-        tools:layout="@layout/fragment_voting"/>
-    <fragment
         android:id="@+id/playersPicker"
         android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
         android:label="PlayersPicker"
@@ -99,9 +94,36 @@
     </fragment>
     <fragment
         android:id="@+id/voting"
-        android:name="com.radiance.mafiahelper.view.voting.Voting"
+        android:name="com.radiance.mafiahelper.view.voting.VotingFragment"
         android:label="voting_fragment"
         tools:layout="@layout/voting_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/action_voting_to_endVoting"
+            app:destination="@id/endVoting" />
+    </fragment>
+    <fragment
+        android:id="@+id/endVoting"
+        android:name="com.radiance.mafiahelper.view.endVoting.EndVoting"
+        android:label="end_voting_fragment"
+        tools:layout="@layout/end_voting_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/startVoting"
+            app:destination="@id/voting" />
+        <action
+            android:id="@+id/startNight"
+            app:destination="@id/nightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nightFragment"
+        android:name="com.radiance.mafiahelper.view.night.NightFragment"
+        android:label="night_fragment"
+        tools:layout="@layout/night_fragment" >
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />

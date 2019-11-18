@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.view.voting
+package com.radiance.mafiahelper.view.night
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,25 +9,23 @@ import android.view.ViewGroup
 
 import com.radiance.mafiahelper.R
 
-class Voting : Fragment() {
+class NightFragment : Fragment() {
 
     companion object {
-        fun newInstance() = Voting()
+        fun newInstance() = NightFragment()
     }
 
-    private lateinit var viewModel: VotingViewModel
+    private lateinit var viewModel: NightViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.voting_fragment, container, false)
+        return inflater.inflate(R.layout.night_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(VotingViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProviders.of(this).get(NightViewModel::class.java)
     }
-
 }

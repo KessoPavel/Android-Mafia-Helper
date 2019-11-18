@@ -1,14 +1,8 @@
 package com.radiance.mafiahelper.view.adapter
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.radiance.mafiahelper.adapter.BaseHolder
-import com.radiance.mafiahelper.fragment.BaseFragment
-import com.radiance.mafiahelper.player.Role
 import com.radiance.mafiahelper.player.PlayerHolder
-import kotlin.collections.ArrayList
-import java.util.Collections.swap
 
 class RecyclerAdapter(
     private var players: ArrayList<PlayerHolder>,

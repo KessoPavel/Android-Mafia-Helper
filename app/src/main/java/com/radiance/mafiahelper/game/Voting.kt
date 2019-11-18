@@ -3,7 +3,10 @@ package com.radiance.mafiahelper.game
 import com.radiance.mafiahelper.player.Player
 
 class Voting(private val votingList: ArrayList<Player>) {
-    private val votingMap: HashMap<Player, Int> = HashMap()
+    val isLastPlayer: Boolean
+        get() = this.currentPlayerIndex == votingList.size - 1
+
+    val votingMap: HashMap<Player, Int> = HashMap()
     private var currentPlayerIndex = -1
 
     fun nextPlayer(): Player?{

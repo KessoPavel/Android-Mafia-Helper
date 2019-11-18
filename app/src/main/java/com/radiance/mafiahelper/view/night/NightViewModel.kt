@@ -3,6 +3,8 @@ package com.radiance.mafiahelper.view.night
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 
@@ -23,5 +25,13 @@ class NightViewModel : ViewModel() {
 
     fun selectPlayer(player: Player) {
         currentPlayer.value = player
+    }
+
+    fun createGame(): Game {
+        return game
+    }
+
+    fun endNight(destination: NavDirections){
+        navController.navigate(destination  )
     }
 }

@@ -1,18 +1,16 @@
 package com.radiance.mafiahelper.view.night
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.emptyGame
 import com.radiance.mafiahelper.inflate
-import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
 import com.radiance.mafiahelper.view.adapter.HolderBuilder
@@ -48,6 +46,10 @@ class NightFragment : Fragment() {
 
         viewModel.init(game, findNavController())
 
+        n_play.setOnClickListener{
+            val direction = NightFragmentDirections.endNight(viewModel.createGame(), viewModel.currentPlayer.value)
+            viewModel.endNight(direction)
+        }
     }
 
     private fun updateCurrentPlayer() {

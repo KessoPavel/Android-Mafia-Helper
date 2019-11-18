@@ -127,5 +127,24 @@
         <argument
             android:name="game"
             app:argType="com.radiance.mafiahelper.game.Game" />
+        <action
+            android:id="@+id/endNight"
+            app:destination="@id/endNight" />
+    </fragment>
+    <fragment
+        android:id="@+id/endNight"
+        android:name="com.radiance.mafiahelper.view.endNight.EndNight"
+        android:label="end_night_fragment"
+        tools:layout="@layout/end_night_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+        <argument
+            android:name="deayhPlayer"
+            app:argType="com.radiance.mafiahelper.player.Player"
+            app:nullable="true" />
+        <action
+            android:id="@+id/startDay"
+            app:destination="@id/day" />
     </fragment>
 </navigation>

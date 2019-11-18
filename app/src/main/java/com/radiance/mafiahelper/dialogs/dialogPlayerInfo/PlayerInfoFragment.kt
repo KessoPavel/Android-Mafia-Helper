@@ -41,12 +41,4 @@ class PlayerInfoFragment: Fragment() {
         detailsBinding.player = player
         return detailsBinding.root
     }
-
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation {
-        return if (enter) {
-            AnimationUtils.loadAnimation(context, R.anim.dialog_enter)
-        } else {
-            AnimationUtils.loadAnimation(context, R.anim.dialog_out)
-        }
-    }
 }

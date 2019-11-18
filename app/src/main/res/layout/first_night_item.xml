@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/fn_frame"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/unselected_list_item">
+
+        <TextView
+            android:id="@+id/fn_alias"
+            android:transitionName="@string/player_name_transition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            tools:text="Vasgen"
+            android:textColor="@color/base_text"
+            android:textSize="@dimen/base_text" />
+
+        <TextView
+            android:id="@+id/fn_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/sub_text"
+            android:textSize="@dimen/sub_text_size"
+            tools:text="Ivan" />
+    </FrameLayout>
+</layout>

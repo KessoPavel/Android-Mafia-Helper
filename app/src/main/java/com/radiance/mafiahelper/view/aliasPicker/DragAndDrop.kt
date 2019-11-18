@@ -3,7 +3,7 @@ package com.radiance.mafiahelper.view.aliasPicker
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemMoveCallback(private val fragment: AliasPicker): ItemTouchHelper.Callback() {
+class DragAndDrop(private val fragment: AliasPicker): ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
@@ -11,10 +11,6 @@ class ItemMoveCallback(private val fragment: AliasPicker): ItemTouchHelper.Callb
     ): Int {
         val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         return makeMovementFlags(dragFlags, 0)
-    }
-
-    override fun isLongPressDragEnabled(): Boolean {
-        return true
     }
 
     override fun onMove(

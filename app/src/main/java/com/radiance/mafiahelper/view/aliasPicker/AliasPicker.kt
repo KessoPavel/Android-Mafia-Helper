@@ -48,10 +48,10 @@ class AliasPicker : Fragment() {
         viewModel.init(game, findNavController())
         viewModel.players.observe(this, Observer { adapter.setData(covertPlayerToPlayerHolder()) })
 
-        adapter = RecyclerAdapter(players = covertPlayerToPlayerHolder(), holderBuilder = AliasPickerViewHolderBuilder(viewModel))
-        val move = ItemMoveCallback(this)
+        val move = DragAndDrop(this)
         val touchHelper = ItemTouchHelper(move)
         touchHelper.attachToRecyclerView(ap_recycler)
+        adapter = RecyclerAdapter(players = covertPlayerToPlayerHolder(), holderBuilder = AliasPickerViewHolderBuilder(viewModel, touchHelper))
         ap_recycler.layoutManager = LinearLayoutManager(context)
         ap_recycler.adapter = adapter
 
@@ -85,11 +85,12 @@ class AliasPicker : Fragment() {
     }
 
 
-    private class AliasPickerViewHolderBuilder(private val viewModel: AliasPickerViewModel):
+    private class AliasPickerViewHolderBuilder(private val viewModel: AliasPickerViewModel,
+                                               private val touchHelper: ItemTouchHelper):
             HolderBuilder {
         override fun build(parent: ViewGroup): Holder {
             val inflateView = parent.inflate(R.layout.alias_picker_item, false)
-            return ViewHolder(inflateView, viewModel)
+            return ViewHolder(inflateView, viewModel, touchHelper)
         }
 
     }

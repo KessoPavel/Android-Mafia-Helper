@@ -14,9 +14,9 @@ class VotingViewModel : ViewModel() {
     private lateinit var voting: Voting
     var players: MutableLiveData<HashMap<Player, Int>> = MutableLiveData()
     val currentPlayer: MutableLiveData<Player> = MutableLiveData()
+    var gameIsReady: MutableLiveData<Boolean> = MutableLiveData()
 
     private var votingCount: Int = 0
-
 
     fun init(game: Game, navController: NavController) {
         this.game = game
@@ -25,6 +25,8 @@ class VotingViewModel : ViewModel() {
         voting = Voting(game.day!!.votingList)
         currentPlayer.value = voting.nextPlayer()
         players.value = voting.votingMap
+        gameIsReady.value = false
+
     }
 
     fun nextPlayer(votingValue: Int){
@@ -32,6 +34,10 @@ class VotingViewModel : ViewModel() {
         voting.votingResault(votingValue)
         currentPlayer.value = voting.nextPlayer()
         players.value = voting.votingMap
+
+        if (currentPlayer.value == null){
+            gameIsReady.value = true
+        }
     }
 
     fun minVotingCount(): Int {

@@ -21,6 +21,7 @@ class DayViewModel(private val state: SavedStateHandle) : ViewModel() {
     var playersInNomination: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var currentPLayer: MutableLiveData<Player> = MutableLiveData()
     var gameIsReady: MutableLiveData<Boolean> = MutableLiveData()
+    var playersEnd: MutableLiveData<Boolean> = MutableLiveData()
 
     private var day = Day()
 
@@ -32,6 +33,8 @@ class DayViewModel(private val state: SavedStateHandle) : ViewModel() {
         this.playersInVoting.value = ArrayList()
         this.playersInNomination.value = ArrayList()
         this.currentPLayer.value = game.players[currentIndex]
+        this.gameIsReady.value = false
+        this.playersEnd.value = false
     }
 
     fun playerInNomination(player: Player){
@@ -47,12 +50,19 @@ class DayViewModel(private val state: SavedStateHandle) : ViewModel() {
 
             playersInNomination.value = playersInNomination.value
         }
+
+        if (playersInVoting.value?.size == 0) {
+            if (currentIndex == game.playersCont - 1) {
+                gameIsReady.value = playersInNomination.value?.size != 0
+            }
+        }
     }
 
     fun nextPlayer(){
         currentIndex++
         if (currentIndex == game.playersCont - 1) {
-            gameIsReady.value = true
+            gameIsReady.value = true && playersInVoting.value?.size != 0
+            playersEnd.value = true
         }
 
         playersInVoting.value?.addAll(playersInNomination.value!!)

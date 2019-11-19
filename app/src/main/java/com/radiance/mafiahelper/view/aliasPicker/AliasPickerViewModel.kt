@@ -35,6 +35,11 @@ class AliasPickerViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun createGame(): Game {
+        for (player in game.players){
+            if (player.pseudonym == "")
+                player.pseudonym = player.name
+        }
+
         return game
     }
 }

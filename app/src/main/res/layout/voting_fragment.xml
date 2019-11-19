@@ -25,16 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Ivan" />
 
-        <ImageButton
-            android:id="@+id/v_next_player"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/baseline_keyboard_arrow_right_24"
-            android:background="#00FFFFFF"/>
-
         <NumberPicker
             android:id="@+id/v_voting_count"
             android:layout_width="wrap_content"
@@ -54,6 +44,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="100dp"
         tools:listitem="@layout/voting_item"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/v_next_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/baseline_keyboard_arrow_right_24"
+        app:backgroundTint="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@id/v_play"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/v_play"
         android:layout_width="wrap_content"

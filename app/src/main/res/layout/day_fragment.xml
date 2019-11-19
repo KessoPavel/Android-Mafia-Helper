@@ -24,16 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="Ivan" />
-
-        <ImageButton
-            android:id="@+id/d_next_player"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/baseline_keyboard_arrow_right_24"
-            android:background="#00FFFFFF"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,6 +32,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/day_item"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/d_next_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/baseline_keyboard_arrow_right_24"
+        app:backgroundTint="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@id/d_play"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/d_play"

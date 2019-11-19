@@ -10,9 +10,7 @@ import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.emptyGame
-import com.radiance.mafiahelper.inflate
+import com.radiance.mafiahelper.*
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
 import com.radiance.mafiahelper.view.adapter.HolderBuilder
@@ -23,6 +21,9 @@ class DayFragment : Fragment() {
     private lateinit var viewModel: DayViewModel
     private var game = emptyGame()
     private lateinit var adapter: RecyclerAdapter
+    private var savedIsReady = true
+    private var savedIsPlayersEnd= true
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +41,12 @@ class DayFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(DayViewModel::class.java)
+
         viewModel.currentPLayer.observe(this, Observer { nextPlayer() })
         viewModel.playersInNomination.observe(this, Observer { nextPlayer() })
         viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameStatusChanged(gameIsReady) })
+        viewModel.playersEnd.observe(this, Observer { playerEnd -> playersEndUpdate(playerEnd) })
+
         viewModel.init(game, findNavController())
 
         adapter = RecyclerAdapter(players = createPlayerHolders(), holderBuilder = DayViewHolderBuilder(viewModel))
@@ -58,12 +62,34 @@ class DayFragment : Fragment() {
         }
     }
 
-    private fun gameStatusChanged(gameIsReady: Boolean?) {
-        gameIsReady?.let {
-            d_next_player.visibility = if (it) View.INVISIBLE else View.VISIBLE
-            d_play.isClickable = gameIsReady
+    private fun gameStatusChanged(isReady: Boolean) {
+        d_play.isClickable = isReady
+
+        if (savedIsReady != isReady){
+            savedIsReady = isReady
+
+            if (isReady) {
+                d_play.enter()
+            } else {
+                d_play.out()
+            }
         }
     }
+
+    private fun playersEndUpdate(isReady: Boolean) {
+        d_next_player.isClickable = !isReady
+
+        if (savedIsPlayersEnd != isReady){
+            savedIsPlayersEnd = isReady
+
+            if (isReady) {
+                d_next_player.out()
+            } else {
+                d_next_player.enter()
+            }
+        }
+    }
+
 
     private fun nextPlayer() {
         viewModel.currentPLayer.value?.let {

@@ -11,10 +11,8 @@ import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.radiance.mafiahelper.*
 
-import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.emptyGame
-import com.radiance.mafiahelper.inflate
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
@@ -46,6 +44,7 @@ class VotingFragment : Fragment() {
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(VotingViewModel::class.java)
         viewModel.players.observe(this, Observer { players -> updatePlayers(players) })
         viewModel.currentPlayer.observe(this, Observer { player -> newPlayer(player) })
+        viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameIsReady(gameIsReady) })
 
         adapter = RecyclerAdapter(ArrayList(), VotingViewHolderBuilder(viewModel))
         v_recycler.layoutManager = LinearLayoutManager(context)
@@ -57,15 +56,27 @@ class VotingFragment : Fragment() {
         v_next_player.setOnClickListener{
             viewModel.nextPlayer(v_voting_count.value)
         }
+        v_play.setOnClickListener{
+            val direction = VotingFragmentDirections.actionVotingToEndVoting(viewModel.createGame())
+            viewModel.endVoting(direction)
+        }
+    }
+
+    private fun gameIsReady(gameIsReady: Boolean){
+        v_play.isClickable = gameIsReady
+        v_next_player.isClickable = !gameIsReady
+
+        if (gameIsReady) {
+            v_play.enter()
+            v_next_player.out()
+        } else {
+            v_play.out()
+            v_next_player.enter()
+        }
     }
 
     private fun newPlayer(player: Player?) {
         if (player == null){
-            v_next_player.visibility = View.INVISIBLE
-            v_play.setOnClickListener{
-                val direction = VotingFragmentDirections.actionVotingToEndVoting(viewModel.createGame())
-                viewModel.endVoting(direction)
-            }
             return
         }
 

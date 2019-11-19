@@ -12,9 +12,7 @@ import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.emptyGame
-import com.radiance.mafiahelper.inflate
+import com.radiance.mafiahelper.*
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
@@ -26,6 +24,7 @@ class FirstNight : Fragment() {
     private var game = emptyGame()
     private lateinit var viewModel: FirstNightViewModel
     lateinit var adapter: RecyclerAdapter
+    private var savedIsReady = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,30 +62,15 @@ class FirstNight : Fragment() {
         }
     }
 
-    private var savedIsReady = true
     private fun gameIsReady(isReady: Boolean) {
         fn_play.isClickable = isReady
 
         if (savedIsReady != isReady) {
             savedIsReady = isReady
             if (isReady) {
-                val valueAnimator = ValueAnimator.ofFloat(300f, 0f)
-                valueAnimator.addUpdateListener {
-                    fn_play.translationX = it.animatedValue as Float
-                }
-                valueAnimator.interpolator = LinearInterpolator()
-                valueAnimator.duration = 1000
-                valueAnimator.startDelay = 500
-                valueAnimator.start()
+                fn_play.enter()
             } else {
-                val valueAnimator = ValueAnimator.ofFloat(0f, 300f)
-                valueAnimator.addUpdateListener {
-                    fn_play.translationX = it.animatedValue as Float
-                }
-                valueAnimator.interpolator = LinearInterpolator()
-                valueAnimator.duration = 1000
-                valueAnimator.startDelay = 0
-                valueAnimator.start()
+                fn_play.out()
             }
         }
     }

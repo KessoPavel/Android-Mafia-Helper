@@ -27,4 +27,6 @@
     <color name="unselected_list_item_border">#80D5D5D5</color>
     <color name="list_item_border">#C5E2C9</color>
     <color name="main">#EEEEEE</color>
+    <color name="red_team">#DD7777</color>
+    <color name="black_victory_text">#F1F1F1</color>
 </resources>

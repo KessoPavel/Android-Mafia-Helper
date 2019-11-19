@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
+import com.radiance.mafiahelper.player.Role
 
 class EndVotingViewModel : ViewModel() {
     private lateinit var game: Game
@@ -18,6 +19,12 @@ class EndVotingViewModel : ViewModel() {
     }
 
     fun createGame() : Game{
+        return game
+    }
+
+    fun endVoting(): ArrayList<Player> {
+        votingResault = game.voting!!.endVoting()
+
         if (votingResault.size == 1){
             game.players.remove(votingResault[0])
             game.deathPlayers.add(votingResault[0])
@@ -25,11 +32,6 @@ class EndVotingViewModel : ViewModel() {
             game.day!!.votingList = votingResault
         }
 
-        return game
-    }
-
-    fun endVoting(): ArrayList<Player> {
-        votingResault = game.voting!!.endVoting()
         return votingResault
     }
 
@@ -39,5 +41,16 @@ class EndVotingViewModel : ViewModel() {
 
     fun startVoting(direction: NavDirections){
         navController.navigate(direction)
+    }
+
+    fun gameIsEnded(): Boolean {
+        return game.blackCount >= game.redCount || game.blackCount == 0
+    }
+
+    fun winnersTeam(): Role {
+        if (game.blackCount == 0)
+            return Role.Red
+        else
+            return Role.Black
     }
 }

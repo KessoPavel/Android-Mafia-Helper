@@ -1,9 +1,11 @@
 package com.radiance.mafiahelper.view.firstNight
 
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateVMFactory
@@ -51,13 +53,41 @@ class FirstNight : Fragment() {
         fn_recycler.adapter = adapter
 
         viewModel.players.observe(this, Observer { players -> updatePlayers(players) })
-        viewModel.gameIsReady.observe(this, Observer { gameIsReady -> fn_play.isClickable = gameIsReady })
+        viewModel.gameIsReady.observe(this, Observer { isReady -> gameIsReady(isReady) })
         viewModel.init(game, findNavController())
 
-        fn_play.setOnClickListener{
+        fn_play.setOnClickListener {
             val game = viewModel.createGame()
             val direction = FirstNightDirections.startDay(game)
             viewModel.startDay(direction)
+        }
+    }
+
+    private var savedIsReady = true
+    private fun gameIsReady(isReady: Boolean) {
+        fn_play.isClickable = isReady
+
+        if (savedIsReady != isReady) {
+            savedIsReady = isReady
+            if (isReady) {
+                val valueAnimator = ValueAnimator.ofFloat(300f, 0f)
+                valueAnimator.addUpdateListener {
+                    fn_play.translationX = it.animatedValue as Float
+                }
+                valueAnimator.interpolator = LinearInterpolator()
+                valueAnimator.duration = 1000
+                valueAnimator.startDelay = 500
+                valueAnimator.start()
+            } else {
+                val valueAnimator = ValueAnimator.ofFloat(0f, 300f)
+                valueAnimator.addUpdateListener {
+                    fn_play.translationX = it.animatedValue as Float
+                }
+                valueAnimator.interpolator = LinearInterpolator()
+                valueAnimator.duration = 1000
+                valueAnimator.startDelay = 0
+                valueAnimator.start()
+            }
         }
     }
 
@@ -69,16 +99,16 @@ class FirstNight : Fragment() {
     private fun createPlayerHolders(players: ArrayList<Player>): ArrayList<PlayerHolder> {
         val answer: ArrayList<PlayerHolder> = ArrayList()
 
-        for (player in players){
+        for (player in players) {
             answer.add(
-                PlayerHolder(player= player)
+                PlayerHolder(player = player)
             )
         }
 
         return answer
     }
 
-    private class FirstNightViewHolderBuilder(private val viewModel: FirstNightViewModel):
+    private class FirstNightViewHolderBuilder(private val viewModel: FirstNightViewModel) :
         HolderBuilder {
         override fun build(parent: ViewGroup): Holder {
             val inflateView = parent.inflate(R.layout.first_night_item, false)

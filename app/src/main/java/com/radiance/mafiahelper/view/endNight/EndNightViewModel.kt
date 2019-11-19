@@ -16,18 +16,29 @@ class EndNightViewModel : ViewModel() {
         this.game = game
         this.player = player
         this.navController = navController
-    }
 
-    fun createGame(): Game {
         player?.let {
             game.players.remove(it)
             game.deathPlayers.add(it)
         }
+    }
 
+    fun createGame(): Game {
         return game
     }
 
     fun startDay(direction: NavDirections) {
         navController.navigate(direction)
+    }
+
+    fun gameIsEnded(): Boolean {
+        return game.blackCount >= game.redCount || game.blackCount == 0
+    }
+
+    fun winnersTeam(): Role {
+        if (game.blackCount == 0)
+            return Role.Red
+        else
+            return Role.Black
     }
 }

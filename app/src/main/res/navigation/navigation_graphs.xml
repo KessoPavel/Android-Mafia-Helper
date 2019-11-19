@@ -126,6 +126,12 @@
         <action
             android:id="@+id/startNight"
             app:destination="@id/nightFragment" />
+        <action
+            android:id="@+id/redWinners"
+            app:destination="@id/redWinners" />
+        <action
+            android:id="@+id/blackWinners"
+            app:destination="@id/blackWinners" />
     </fragment>
     <fragment
         android:id="@+id/nightFragment"
@@ -154,5 +160,29 @@
         <action
             android:id="@+id/startDay"
             app:destination="@id/day" />
+        <action
+            android:id="@+id/redWinners"
+            app:destination="@id/redWinners" />
+        <action
+            android:id="@+id/blackWinners"
+            app:destination="@id/blackWinners" />
+    </fragment>
+    <fragment
+        android:id="@+id/redWinners"
+        android:name="com.radiance.mafiahelper.view.redWinners.RedWinners"
+        android:label="red_winners_fragment"
+        tools:layout="@layout/red_winners_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
+    </fragment>
+    <fragment
+        android:id="@+id/blackWinners"
+        android:name="com.radiance.mafiahelper.view.blackWinners.BlackWinners"
+        android:label="black_winners_fragment"
+        tools:layout="@layout/black_winners_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.radiance.mafiahelper.game.Game" />
     </fragment>
 </navigation>

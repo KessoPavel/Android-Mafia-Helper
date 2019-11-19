@@ -24,6 +24,26 @@ class Game(val players: ArrayList<Player>) : Serializable {
             field = value
         }
 
+    val redCount: Int
+        get() {
+            var count = 0
+            for (player in players){
+                if (player.role != Role.Black)
+                    count++
+            }
+            return count
+        }
+
+    val blackCount: Int
+        get() {
+            var count = 0
+            for (player in players){
+                if (player.role == Role.Black)
+                    count++
+            }
+            return count
+        }
+
     val dayList = ArrayList<Day>()
     val votingList = ArrayList<Voting>()
 

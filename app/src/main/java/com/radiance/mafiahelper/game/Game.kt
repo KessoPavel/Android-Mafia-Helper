@@ -4,7 +4,7 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
 import java.io.Serializable
 
-class Game(val players: ArrayList<Player>) : Serializable {
+class Game(var players: ArrayList<Player>) : Serializable {
     val playersCont: Int
         get() = players.size
 

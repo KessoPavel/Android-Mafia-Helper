@@ -7,6 +7,7 @@ import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.player.Role
+import com.radiance.mafiahelper.shift
 
 class EndVotingViewModel : ViewModel() {
     private lateinit var game: Game
@@ -26,11 +27,16 @@ class EndVotingViewModel : ViewModel() {
         votingResault = game.voting!!.endVoting()
 
         if (votingResault.size == 1){
+            game.players = shift(game.players, 1)
+
             game.players.remove(votingResault[0])
             game.deathPlayers.add(votingResault[0])
+
         } else {
             game.day!!.votingList = votingResault
         }
+
+
 
         return votingResault
     }

@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.Role
+import com.radiance.mafiahelper.shift
 
 class EndNightViewModel : ViewModel() {
     private lateinit var game: Game

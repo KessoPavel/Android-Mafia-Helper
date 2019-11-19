@@ -9,6 +9,7 @@ import androidx.navigation.NavDirections
 import com.radiance.mafiahelper.game.Day
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
+import com.radiance.mafiahelper.shift
 
 class DayViewModel(private val state: SavedStateHandle) : ViewModel() {
     private lateinit var game: Game
@@ -30,7 +31,7 @@ class DayViewModel(private val state: SavedStateHandle) : ViewModel() {
         this.players.value = game.players
         this.playersInVoting.value = ArrayList()
         this.playersInNomination.value = ArrayList()
-        this.currentPLayer.value = game.players.get(currentIndex)
+        this.currentPLayer.value = game.players[currentIndex]
     }
 
     fun playerInNomination(player: Player){

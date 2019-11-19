@@ -24,7 +24,6 @@ import java.util.HashMap
 class VotingFragment : Fragment() {
     private var game = emptyGame()
     private lateinit var viewModel: VotingViewModel
-    private lateinit var adapter: RecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,13 +41,8 @@ class VotingFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(VotingViewModel::class.java)
-        viewModel.players.observe(this, Observer { players -> updatePlayers(players) })
         viewModel.currentPlayer.observe(this, Observer { player -> newPlayer(player) })
         viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameIsReady(gameIsReady) })
-
-        adapter = RecyclerAdapter(ArrayList(), VotingViewHolderBuilder(viewModel))
-        v_recycler.layoutManager = LinearLayoutManager(context)
-        v_recycler.adapter = adapter
 
         viewModel.init(game, findNavController())
 
@@ -87,26 +81,5 @@ class VotingFragment : Fragment() {
 
         if (v_voting_count.maxValue == v_voting_count.minValue)
             v_voting_count.value = v_voting_count.minValue
-    }
-
-    private fun updatePlayers(players: HashMap<Player, Int>?) {
-        val answer = ArrayList<PlayerHolder>()
-
-        for (player in players!!.keys){
-            answer.add(
-                PlayerHolder(player= player, votingCount = players[player].toString())
-            )
-        }
-
-        adapter.setData(answer)
-        adapter.notifyDataSetChanged()
-    }
-
-    private class VotingViewHolderBuilder(private val viewModel: VotingViewModel): HolderBuilder{
-        override fun build(parent: ViewGroup): Holder {
-            val inflateView = parent.inflate(R.layout.voting_item, false)
-            return VotingViewHolder(inflateView, viewModel)
-        }
-
     }
 }

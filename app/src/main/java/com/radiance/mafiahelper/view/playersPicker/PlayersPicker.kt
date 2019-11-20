@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.enter
 import com.radiance.mafiahelper.inflate
+import com.radiance.mafiahelper.out
 import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayerHolder
 import com.radiance.mafiahelper.view.adapter.Holder
@@ -46,6 +48,7 @@ class PlayersPicker : Fragment() {
 
         viewModel.players.observe(this, Observer { playersUpdated() })
         viewModel.playersInGame.observe(this, Observer { playersUpdated() })
+        viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameIsReady(gameIsReady) })
 
         adapter = RecyclerAdapter(players = convertPlayerToPlayerHolder() , holderBuilder = PlayerPickerViewHolderBuilder(viewModel))
         pp_recycler.layoutManager = LinearLayoutManager(context)
@@ -74,6 +77,16 @@ class PlayersPicker : Fragment() {
     private fun playersUpdated(){
         adapter.setData(convertPlayerToPlayerHolder())
         adapter.notifyDataSetChanged()
+    }
+
+    private fun gameIsReady(isReady: Boolean){
+        pp_play.isClickable = isReady
+
+        if (isReady){
+            pp_play.enter()
+        } else {
+            pp_play.out()
+        }
     }
 
     private fun convertPlayerToPlayerHolder(): ArrayList<PlayerHolder>{

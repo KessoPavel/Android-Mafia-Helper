@@ -64,7 +64,7 @@ class SelectionGameOptions : Fragment() {
     }
 
     private fun updateGameOptions(gameOptions: GameOptions) {
-        go_number_piker.maxValue = gameOptions.playersCount
+        go_number_piker.maxValue = gameOptions.playersCount / 4
         go_number_piker.minValue = 1
 
         go_doctor_check_box.isChecked = gameOptions.doctorInGame

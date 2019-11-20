@@ -1,15 +1,46 @@
 package com.radiance.mafiahelper.player
 
+import android.content.Context
+import androidx.room.Room
+import com.radiance.mafiahelper.room.PlayerDataBase
+import com.radiance.mafiahelper.room.PlayerEntity
 import kotlin.random.Random
 
 object PlayersManager {
-    fun loadPlayers(): ArrayList<Player>{
-        val players = generateRandomPlayers(7)
-        setStatistic(players)
-        return players
+    const val dataBaseName = "player_database"
+    var db: PlayerDataBase? = null
+
+    fun init(context: Context){
+        db = Room.databaseBuilder(context, PlayerDataBase::class.java, dataBaseName).allowMainThreadQueries().build()
     }
 
-    private fun setStatistic(players: ArrayList<Player>){
+    fun loadPlayers(): ArrayList<Player> {
+        val playerEntity = db!!.playerDao().getAll()
+        return setStatistic(playerEntity)
+    }
+
+    fun addPlayer(player: Player) {
+        db!!.playerDao().insert(
+            PlayerEntity(
+                name = player.name,
+                gamesForBlacks = player.gamesForBlacks,
+                gamesForReds = player.gamesForReds,
+                gamesPerDoctor = player.gamesPerDoctor,
+                gamesPerSheriff = player.gamesPerSheriff,
+                victoriesForBlacks = player.victoriesForBlacks,
+                victoriesForReds = player.victoriesForReds,
+                victoriesPerDoctor = player.victoriesPerDoctor,
+                victoriesPerSheriff = player.victoriesPerSheriff,
+                firstNightDeaths = player.firstNightDeaths,
+                firstVotingDeaths = player.firstVotingDeaths,
+                votingDeaths = player.votingDeaths,
+                nightDeaths = player.nightDeaths
+        ))
+    }
+
+    private fun setStatistic(players: List<PlayerEntity>): ArrayList<Player> {
+        val answer = ArrayList<Player>()
+
         var bestRedIndex = 0
         var bestRedVictories = 0
         var bestBlackIndex = 0
@@ -19,61 +50,58 @@ object PlayersManager {
         var bestSheriffIndex = 0
         var bestSheriffVictories = 0
 
-        for (player in players){
+        for (player in players) {
             if (player.victoriesForReds > bestRedVictories) {
                 bestRedIndex = players.indexOf(player)
                 bestRedVictories = player.victoriesForReds
             }
-            if (player.victoriesForBlacks > bestBlackVictories){
+            if (player.victoriesForBlacks > bestBlackVictories) {
                 bestBlackIndex = players.indexOf(player)
                 bestBlackVictories = player.victoriesForBlacks
             }
-            if (player.victoriesPerDoctor > bestDoctorVictories){
+            if (player.victoriesPerDoctor > bestDoctorVictories) {
                 bestDoctorIndex = players.indexOf(player)
                 bestDoctorVictories = player.victoriesPerDoctor
             }
-            if (player.victoriesPerSheriff > bestSheriffVictories){
+            if (player.victoriesPerSheriff > bestSheriffVictories) {
                 bestSheriffIndex = players.indexOf(player)
                 bestSheriffVictories = player.victoriesPerSheriff
             }
 
-            player.gameCount = player.gamesForBlacks +
-                    player.gamesForReds +
-                    player.gamesPerDoctor +
-                    player.gamesPerSheriff
-            player.victoriesCount = player.victoriesForBlacks +
-                    player.victoriesForBlacks +
-                    player.victoriesPerDoctor +
-                    player.victoriesPerSheriff
+            answer.add(
+                Player(
+                    name = player.name,
+                    gamesForBlacks = player.gamesForBlacks,
+                    gamesForReds = player.gamesForReds,
+                    gamesPerDoctor = player.gamesPerDoctor,
+                    gamesPerSheriff = player.gamesPerSheriff,
+                    victoriesForBlacks = player.victoriesForBlacks,
+                    victoriesForReds = player.victoriesForReds,
+                    victoriesPerDoctor = player.victoriesPerDoctor,
+                    victoriesPerSheriff = player.victoriesPerSheriff,
+                    firstNightDeaths = player.firstNightDeaths,
+                    firstVotingDeaths = player.firstVotingDeaths,
+                    votingDeaths = player.votingDeaths,
+                    nightDeaths = player.nightDeaths,
+                    gameCount = player.gamesForBlacks +
+                            player.gamesForReds +
+                            player.gamesPerDoctor +
+                            player.gamesPerSheriff,
+                    victoriesCount = player.victoriesForBlacks +
+                            player.victoriesForBlacks +
+                            player.victoriesPerDoctor +
+                            player.victoriesPerSheriff
+                )
+            )
         }
 
-        if (players.isNotEmpty()) {
-            players[bestRedIndex].isBestRed = true
-            players[bestBlackIndex].isBestBlack = true
-            players[bestDoctorIndex].isBestDoctor = true
-            players[bestSheriffIndex].isBestSheriff = true
+        if (answer.isNotEmpty()) {
+            answer[bestRedIndex].isBestRed = true
+            answer[bestBlackIndex].isBestBlack = true
+            answer[bestDoctorIndex].isBestDoctor = true
+            answer[bestSheriffIndex].isBestSheriff = true
         }
+
+        return answer
     }
-
-    //region DEBUG
-    private fun generateRandomPlayers(count : Int): ArrayList<Player>{
-        val players = ArrayList<Player>()
-
-        for (i in 0 until count){
-            val player = Player()
-            player.name = "Player${i}"
-            player.gamesPerSheriff = Random.nextInt(0, 50)
-            player.gamesPerDoctor = Random.nextInt(0, 50)
-            player.gamesForReds = Random.nextInt(0, 50)
-            player.gamesForBlacks = Random.nextInt(0, 50)
-            player.victoriesPerSheriff = Random.nextInt(0, 50)
-            player.victoriesPerDoctor = Random.nextInt(0, 50)
-            player.victoriesForBlacks = Random.nextInt(0, 50)
-            player.victoriesForReds = Random.nextInt(0, 50)
-            players.add(player)
-        }
-
-        return players
-    }
-    //endregion
 }

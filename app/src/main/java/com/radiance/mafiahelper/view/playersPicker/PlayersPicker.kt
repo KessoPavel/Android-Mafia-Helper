@@ -42,7 +42,7 @@ class PlayersPicker : Fragment() {
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this))
             .get(PlayersPickerViewModel::class.java)
 
-        viewModel.init(findNavController())
+        viewModel.init(findNavController(), context!!)
 
         viewModel.players.observe(this, Observer { playersUpdated() })
         viewModel.playersInGame.observe(this, Observer { playersUpdated() })
@@ -66,6 +66,8 @@ class PlayersPicker : Fragment() {
             val player = saveArgs.newPlayer
 
             viewModel.addPlayer(player)
+
+            it.clear()
         }
     }
 

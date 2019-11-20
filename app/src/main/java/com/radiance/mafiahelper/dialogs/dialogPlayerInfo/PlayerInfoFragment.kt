@@ -14,18 +14,6 @@ import com.radiance.mafiahelper.player.Player
 class PlayerInfoFragment: Fragment() {
     private lateinit var player: Player
 
-    companion object {
-        private const val PLAYER = "PLAYER"
-
-        fun newInstance(player: Player): PlayerInfoFragment {
-            val args = Bundle()
-            args.putSerializable(PLAYER, player)
-            val fragment = PlayerInfoFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

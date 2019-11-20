@@ -1,5 +1,6 @@
 package com.radiance.mafiahelper.view.playersPicker
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -20,8 +21,9 @@ class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
         playersInGame.value = state.get<ArrayList<Player>>(PLAYER_IN_GAME)?: ArrayList()
     }
 
-    fun init(navController: NavController){
+    fun init(navController: NavController, context: Context){
         this.navController = navController
+        PlayersManager.init(context)
         players.value = PlayersManager.loadPlayers()
     }
 
@@ -54,8 +56,8 @@ class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
 
     fun addPlayer(player: Player?) {
         player?.let {
-            players.value?.add(it)
-            players.value = players.value
+            PlayersManager.addPlayer(it)
+            players.value = PlayersManager.loadPlayers()
         }
     }
 }

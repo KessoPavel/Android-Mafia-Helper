@@ -10,6 +10,7 @@ import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
 import com.radiance.mafiahelper.R
 import com.radiance.mafiahelper.enter
 import com.radiance.mafiahelper.inflate
@@ -42,6 +43,25 @@ class PlayersPicker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+            var isShow = false
+            var scrollRange = -1
+
+            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+//                if (scrollRange == -1) {
+//                    scrollRange = appBarLayout.getTotalScrollRange()
+//                }
+//                if (scrollRange + verticalOffset == 0) {
+//                    isShow = true;
+//                    showOption(R.id.action_info);
+//                } else if (isShow) {
+//                    isShow = false;
+//                    hideOption(R.id.action_info);
+//                }
+            }
+
+        });
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

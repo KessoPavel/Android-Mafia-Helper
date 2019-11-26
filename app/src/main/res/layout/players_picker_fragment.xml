@@ -70,7 +70,7 @@
                     android:textColor="@color/base_text"
                     android:layout_gravity="center"
                     android:text="Mafia"
-                    android:gravity="center"/>
+                android:gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,8 +87,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    android:layout_gravity="bottom">
+                    android:layout_gravity="bottom"
+                    android:theme="@style/ToolBar"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

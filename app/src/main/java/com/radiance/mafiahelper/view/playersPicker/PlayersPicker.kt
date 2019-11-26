@@ -1,10 +1,9 @@
 package com.radiance.mafiahelper.view.playersPicker
 
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.view.*
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateVMFactory
@@ -26,7 +25,6 @@ class PlayersPicker : Fragment() {
     lateinit var adapter: RecyclerAdapter
     private lateinit var activeBackground: Drawable
     private lateinit var passiveBackground: Drawable
-
     private lateinit var viewModel: PlayersPickerViewModel
 
     override fun onCreateView(
@@ -34,6 +32,21 @@ class PlayersPicker : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.players_picker_fragment, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.pick_player_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,17 +63,21 @@ class PlayersPicker : Fragment() {
         viewModel.playersInGame.observe(this, Observer { playersUpdated() })
         viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameIsReady(gameIsReady) })
 
-        adapter = RecyclerAdapter(players = convertPlayerToPlayerHolder() , holderBuilder = PlayerPickerViewHolderBuilder(viewModel))
+        adapter = RecyclerAdapter(
+            players = convertPlayerToPlayerHolder(),
+            holderBuilder = PlayerPickerViewHolderBuilder(viewModel)
+        )
         pp_recycler.layoutManager = LinearLayoutManager(context)
         pp_recycler.adapter = adapter
 
-        pp_add_player.setOnClickListener{
+        pp_add_player.setOnClickListener {
             val direction = PlayersPickerDirections.addNewPlayer()
             viewModel.onAddPlayerClick(direction)
         }
 
-        pp_play.setOnClickListener{
-            val direction = PlayersPickerDirections.actionPlayersPickerToSelectionGameOptions(viewModel.game())
+        pp_play.setOnClickListener {
+            val direction =
+                PlayersPickerDirections.actionPlayersPickerToSelectionGameOptions(viewModel.game())
             viewModel.onPlayClick(direction)
         }
 
@@ -74,30 +91,33 @@ class PlayersPicker : Fragment() {
         }
     }
 
-    private fun playersUpdated(){
+    private fun playersUpdated() {
         adapter.setData(convertPlayerToPlayerHolder())
         adapter.notifyDataSetChanged()
     }
 
-    private fun gameIsReady(isReady: Boolean){
+    private fun gameIsReady(isReady: Boolean) {
         pp_play.isClickable = isReady
 
-        if (isReady){
+        if (isReady) {
             pp_play.enter()
         } else {
             pp_play.out()
         }
     }
 
-    private fun convertPlayerToPlayerHolder(): ArrayList<PlayerHolder>{
+    private fun convertPlayerToPlayerHolder(): ArrayList<PlayerHolder> {
         val answer = ArrayList<PlayerHolder>()
 
-        for (player in viewModel.players.value!!){
+        for (player in viewModel.players.value!!) {
             answer.add(
-                PlayerHolder(player = player,
+                PlayerHolder(
+                    player = player,
                     background = getBackGround(player, viewModel.playersInGame.value!!),
                     icon = getIcon(player),
-                    isSelected = viewModel.playersInGame.value!!.contains(player)))
+                    isSelected = viewModel.playersInGame.value!!.contains(player)
+                )
+            )
         }
 
         return answer
@@ -118,7 +138,7 @@ class PlayersPicker : Fragment() {
     }
 
 
-    private class PlayerPickerViewHolderBuilder(private val viewModel: PlayersPickerViewModel):
+    private class PlayerPickerViewHolderBuilder(private val viewModel: PlayersPickerViewModel) :
         HolderBuilder {
         override fun build(parent: ViewGroup): Holder {
             val inflationView = parent.inflate(R.layout.player_picker_item, false)

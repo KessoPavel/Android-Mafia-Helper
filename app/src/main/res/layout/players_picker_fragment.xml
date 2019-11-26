@@ -1,35 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="playerPickerViewModel"
-            type="com.radiance.mafiahelper.view.playersPicker.PlayersPickerViewModel"
-            />
+            type="com.radiance.mafiahelper.view.playersPicker.PlayersPickerViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.playersPicker.PlayersPicker"
-        android:background="@color/main">
-
-        <android.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="top"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="jhsadgjfasjdfhasjdgfjasghdfgasgjfdgja"
-                android:textColor="@color/base_text"/>
-        </android.widget.Toolbar>
+        android:background="@color/main"
+        tools:context=".view.playersPicker.PlayersPicker">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pp_recycler"
@@ -37,9 +23,7 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/player_picker_item" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-
             android:id="@+id/pp_add_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +35,6 @@
             app:backgroundTint="@android:color/background_light"
             app:layout_constraintBottom_toTopOf="@id/pp_play"
             app:layout_constraintEnd_toEndOf="parent" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/pp_play"
             android:layout_width="wrap_content"
@@ -66,28 +49,47 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
-            android:background="@color/main"
             android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:layout_height="300dp">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
                 android:fitsSystemWindows="true"
-                app:expandedTitleGravity="top"
-                app:layout_scrollFlags="scroll">
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/base_text"
+                    android:textSize="36dp"
                     android:textColor="@color/base_text"
                     android:layout_gravity="center"
-                    android:text="Mafia\nPick players"
+                    android:text="Mafia"
                     android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginTop="36dp"
+                    android:textColor="@color/sub_text"
+                    android:layout_gravity="center"
+                    android:text="pick players:"
+                    android:gravity="center"/>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    android:layout_gravity="bottom">
+                </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

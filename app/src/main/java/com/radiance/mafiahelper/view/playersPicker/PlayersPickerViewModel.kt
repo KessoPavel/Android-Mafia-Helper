@@ -11,6 +11,13 @@ import com.radiance.mafiahelper.player.Player
 import com.radiance.mafiahelper.player.PlayersManager
 
 class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
+    var filter: String = ""
+        set(value) {
+            players.value = ArrayList(loadedPlayers.filter {
+                it.name.contains(value, ignoreCase = true)
+            })
+        }
+    var loadedPlayers = ArrayList<Player>()
     var players: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var playersInGame: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var gameIsReady: MutableLiveData<Boolean> = MutableLiveData()
@@ -25,7 +32,8 @@ class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
     fun init(navController: NavController, context: Context){
         this.navController = navController
         PlayersManager.init(context)
-        players.value = PlayersManager.loadPlayers()
+        loadedPlayers = PlayersManager.loadPlayers()
+        players.value = loadedPlayers
         gameIsReady.value = playersInGame.value?.size!! >= minPlayersCount
     }
 

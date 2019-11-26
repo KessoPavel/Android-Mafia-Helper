@@ -1,8 +1,13 @@
 package com.radiance.mafiahelper.view.playersPicker
 
+import android.app.SearchManager
+import android.content.ComponentName
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,6 +26,7 @@ import com.radiance.mafiahelper.view.adapter.Holder
 import com.radiance.mafiahelper.view.adapter.HolderBuilder
 import com.radiance.mafiahelper.view.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.players_picker_fragment.*
+import java.time.LocalDate
 
 class PlayersPicker : Fragment() {
     lateinit var adapter: RecyclerAdapter
@@ -66,6 +72,21 @@ class PlayersPicker : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.pick_player_menu, menu)
+
+        val search = menu.findItem(R.id.search)
+        val actionView = search.actionView as SearchView
+        actionView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.filter = query?: ""
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filter = newText ?: ""
+                return true
+            }
+        })
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -113,6 +134,7 @@ class PlayersPicker : Fragment() {
 
     private fun playersUpdated() {
         adapter.setData(convertPlayerToPlayerHolder())
+
         adapter.notifyDataSetChanged()
     }
 

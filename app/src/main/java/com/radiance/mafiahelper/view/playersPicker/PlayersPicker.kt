@@ -32,6 +32,8 @@ class PlayersPicker : Fragment() {
     lateinit var adapter: RecyclerAdapter
     private lateinit var activeBackground: Drawable
     private lateinit var passiveBackground: Drawable
+    private lateinit var selectedIcon: Drawable
+    private lateinit var emptyIcon: Drawable
     private lateinit var viewModel: PlayersPickerViewModel
 
     override fun onCreateView(
@@ -94,6 +96,8 @@ class PlayersPicker : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activeBackground = context?.getDrawable(R.drawable.list_item)!!
         passiveBackground = context?.getDrawable(R.drawable.unselected_list_item)!!
+        selectedIcon = context?.getDrawable(R.drawable.baseline_done_24)!!
+        emptyIcon = context?.getDrawable(R.drawable.empty)!!
 
         viewModel = ViewModelProvider(this, SavedStateVMFactory(this))
             .get(PlayersPickerViewModel::class.java)
@@ -176,7 +180,7 @@ class PlayersPicker : Fragment() {
     }
 
     private fun getBackGround(player: Player, game: ArrayList<Player>): Drawable {
-        return if (game.contains(player)) activeBackground else passiveBackground
+        return if (game.contains(player)) selectedIcon else emptyIcon
     }
 
 

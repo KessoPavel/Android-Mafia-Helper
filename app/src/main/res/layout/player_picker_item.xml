@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
+        android:background="#00FFFFFF"
         android:id="@+id/ppi_frame"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/unselected_list_item">
+        android:layout_height="50dp">
 
         <ImageView
             android:id="@+id/ppi_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:paddingEnd="10dp"
             android:layout_gravity="end"
             android:adjustViewBounds="true"
@@ -22,21 +23,39 @@
             android:transitionName="@string/player_name_transition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
             tools:text="Ivan Grigoryev"
             android:textColor="@color/base_text"
-            android:textSize="@dimen/base_text" />
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/ppi_statistic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="50dp"
             android:textColor="@color/sub_text"
             android:textSize="@dimen/sub_text_size"
             tools:text="44/60" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/empty"
+            app:civ_border_color="@color/sub_text"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="@color/sub_text"/>
+
+        <TextView
+            android:id="@+id/icon_title"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="K"
+            android:textSize="18dp"
+            android:textColor="@color/sub_text"/>
     </FrameLayout>
 </layout>

@@ -3,6 +3,7 @@ package com.radiance.mafiahelper.view.playersPicker
 import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -159,9 +160,10 @@ class PlayersPicker : Fragment() {
             answer.add(
                 PlayerHolder(
                     player = player,
-                    background = getBackGround(player, viewModel.playersInGame.value!!),
                     icon = getIcon(player),
-                    isSelected = viewModel.playersInGame.value!!.contains(player)
+                    isSelected = viewModel.playersInGame.value!!.contains(player),
+                    title = player.name[0].toString().toUpperCase(),
+                    titleColor = getBackGround(player, viewModel.playersInGame.value!!)
                 )
             )
         }
@@ -179,8 +181,8 @@ class PlayersPicker : Fragment() {
         }
     }
 
-    private fun getBackGround(player: Player, game: ArrayList<Player>): Drawable {
-        return if (game.contains(player)) selectedIcon else emptyIcon
+    private fun getBackGround(player: Player, game: ArrayList<Player>): Int {
+        return if (game.contains(player)) Color.parseColor("#C5E2C9") else Color.parseColor("#969696")
     }
 
 

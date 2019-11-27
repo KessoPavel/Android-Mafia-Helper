@@ -17,15 +17,10 @@ class PlayerHolder(
 
     val inVoting: Boolean = false,
 
-    // old
-    val inactiveBackground: Drawable? = null,
-    val activeBackground: Drawable? = null,
-    val inactiveIcon: Int = 0,
-    val activeIcon: Int = 0,
     // new
-    val background: Drawable? = null,
     val icon: Int = 0,
     var isSelected: Boolean = false,
-    val votingCount: String = ""
+    var titleColor: Int = 0,
+    var title: String = ""
 )  {
 }

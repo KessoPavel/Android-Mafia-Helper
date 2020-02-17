@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,11 +37,11 @@ class FirstNight : Fragment() {
 
         arguments?.let {
             val args = FirstNightArgs.fromBundle(it)
-            game = args.game
+            //game = args.game
         }
 
-        viewModel =
-            ViewModelProvider(this, SavedStateVMFactory(this)).get(FirstNightViewModel::class.java)
+//        viewModel =
+//            ViewModelProvider(this, SavedStateVMFactory(this)).get(FirstNightViewModel::class.java)
 
         adapter = RecyclerAdapter(
             players = ArrayList(),

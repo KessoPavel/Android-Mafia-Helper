@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.room
+package com.bsvt.storage.playerStorage.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -11,6 +11,7 @@ data class PlayerEntity(
     @ColumnInfo(name = "games_for_blacks") val gamesForBlacks: Int,
     @ColumnInfo(name = "games_per_sheriff") val gamesPerSheriff: Int,
     @ColumnInfo(name = "games_per_doctor") val gamesPerDoctor: Int,
+
     @ColumnInfo(name = "victories_for_reds") val victoriesForReds: Int,
     @ColumnInfo(name = "victories_for_blacks") val victoriesForBlacks: Int,
     @ColumnInfo(name = "victories_per_sheriff") val victoriesPerSheriff: Int,

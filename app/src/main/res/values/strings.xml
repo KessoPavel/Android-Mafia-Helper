@@ -22,7 +22,6 @@
     <string name="doctor">Doctor</string>
     <string name="sheriff">Sheriff</string>
     <string name="deliver">/</string>
-    <string name="select_game_options">select game options</string>
     <string name="go_to_first_day">go to first day</string>
     <string name="pseudonym">Alias :</string>
     <string name="go_to_first_night">go to first night</string>
@@ -37,4 +36,6 @@
     <string name="red_victory">RED VICTORY</string>
     <string name="black_victory">BLACK VICTORY</string>
     <string name="search">search</string>
+    <string name="select_game_options">select game options</string>
+    <string name="choose_the_order_of_the_players">choose the order of the players</string>
 </resources>

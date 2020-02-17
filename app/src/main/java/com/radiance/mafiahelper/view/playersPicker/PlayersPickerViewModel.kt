@@ -4,75 +4,78 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.PlayersManager
+import com.bsvt.core.character.Character
+import com.bsvt.core.game.Game
+import com.bsvt.core.player.Player
+import com.bsvt.storage.AppStorage
+import com.bsvt.storage.playerStorage.PlayerStorage
+import com.radiance.mafiahelper.view.playersPicker.adapter.PlayerItem
+import com.radiance.mafiahelper.view.playersPicker.adapter.PlayerPickerAdapter
 
-class PlayersPickerViewModel(val state : SavedStateHandle) : ViewModel() {
+class PlayersPickerViewModel(private val state : SavedStateHandle) : ViewModel(), PlayerPickerAdapter.Holder.ClickListener {
     var filter: String = ""
         set(value) {
-            players.value = ArrayList(loadedPlayers.filter {
+            filteredPlayers.value = ArrayList(savedPlayers.filter {
                 it.name.contains(value, ignoreCase = true)
             })
         }
-    var loadedPlayers = ArrayList<Player>()
-    var players: MutableLiveData<ArrayList<Player>> = MutableLiveData()
+
+    var filteredPlayers: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var playersInGame: MutableLiveData<ArrayList<Player>> = MutableLiveData()
     var gameIsReady: MutableLiveData<Boolean> = MutableLiveData()
 
-    private val PLAYER_IN_GAME = "PlayersInGame"
-    private lateinit var navController: NavController
+    private lateinit var playerStorage: PlayerStorage
+    private var savedPlayers = ArrayList<Player>()
+
+    private val PlayersInGame = "PlayersInGame"
 
     init {
-        playersInGame.value = state.get<ArrayList<Player>>(PLAYER_IN_GAME)?: ArrayList()
+        playersInGame.value = state.get<ArrayList<Player>>(PlayersInGame)?: ArrayList()
     }
 
-    fun init(navController: NavController, context: Context){
-        this.navController = navController
-        PlayersManager.init(context)
-        loadedPlayers = PlayersManager.loadPlayers()
-        players.value = loadedPlayers
-        gameIsReady.value = playersInGame.value?.size!! >= minPlayersCount
-    }
-
-    fun game(): Game{
-        return Game(playersInGame.value!!)
-    }
-
-    fun onPlayerClick(player: Player){
-        if (playersInGame.value!!.contains(player)){
-            playersInGame.value?.remove(player)
-        } else {
-            playersInGame.value?.add(player)
+    override fun onClick(playerItem: PlayerItem) {
+        playersInGame.value?.let { inGames ->
+            if (inGames.contains(playerItem.player)) {
+                inGames.remove(playerItem.player)
+            } else {
+                inGames.add(playerItem.player)
+            }
         }
-
-        state.set(PLAYER_IN_GAME, playersInGame.value)
         playersInGame.value = playersInGame.value
+        state.set(PlayersInGame, playersInGame.value)
 
         if (gameIsReady.value != (playersInGame.value?.size!! >= minPlayersCount)) {
             gameIsReady.value = playersInGame.value?.size!! >= minPlayersCount
         }
     }
 
-    fun onAddPlayerClick(direction: NavDirections){
-        navController.navigate(direction)
+    fun init(context: Context){
+        playerStorage = AppStorage().getPlayerStorage(context)
+
+        savedPlayers = playerStorage.getPlayers()
+        filteredPlayers.value = savedPlayers
+        gameIsReady.value = playersInGame.value?.size!! >= minPlayersCount
     }
 
-    fun onPlayerLongClick(direction: NavDirections){
-        navController.navigate(direction)
-    }
-
-    fun onPlayClick(direction: NavDirections){
-        navController.navigate(direction)
+    fun game(): Game {
+        return Game().apply { characters = playersToCharacters(playersInGame.value) }
     }
 
     fun addPlayer(player: Player?) {
         player?.let {
-            PlayersManager.addPlayer(it)
-            players.value = PlayersManager.loadPlayers()
+            playerStorage.savePlayer(it)
+            filteredPlayers.value = playerStorage.getPlayers()
         }
+    }
+
+    private fun playersToCharacters(players: ArrayList<Player>?): ArrayList<Character> {
+        val answer = ArrayList<Character>()
+
+        for (player in players?:ArrayList()) {
+            answer.add(Character(player))
+        }
+
+        return answer
     }
 
     companion object {

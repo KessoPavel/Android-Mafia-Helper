@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.ScaleAnimation
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
 import kotlinx.android.synthetic.main.day_fragment.*
@@ -64,4 +66,13 @@ fun View.out() {
     valueAnimator.duration = 200
     valueAnimator.startDelay = 0
     valueAnimator.start()
+}
+
+fun Fragment.showFragment(@IdRes container: Int, fragment: Fragment) {
+    activity?.supportFragmentManager?.let {
+        it.beginTransaction()
+            .add(container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }

@@ -26,7 +26,6 @@ class AddPlayerFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         fap_main.setOnClickListener{
             Log.d("AddPlayerFragment", "Click")
         }
@@ -38,7 +37,7 @@ class AddPlayerFragment: Fragment() {
                 return@setOnClickListener
 
             activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-            val direction = AddPlayerFragmentDirections.newPlayerAdded(Player(name))
+            val direction = AddPlayerFragmentDirections.newPlayerAdded(name)
             findNavController().navigate(direction)
         }
         fap_exit.setOnClickListener{

@@ -11,33 +11,17 @@
         android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
         android:label="PlayersPicker"
         tools:layout="@layout/players_picker_fragment">
-        <action
-            android:id="@+id/show_player_info"
-            app:destination="@id/playerInfoFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
         <argument
-            android:name="newPlayer"
-            app:argType="com.radiance.mafiahelper.player.Player"
+            android:name="playerName"
+            app:argType="string"
             app:nullable="true"
-            android:defaultValue="@null" />
+            android:defaultValue="default" />
         <action
             android:id="@+id/add_new_player"
             app:destination="@id/addPlayerFragment" />
         <action
             android:id="@+id/action_playersPicker_to_selectionGameOptions"
             app:destination="@id/selectionGameOptions" />
-    </fragment>
-    <fragment
-        android:id="@+id/playerInfoFragment"
-        android:name="com.radiance.mafiahelper.dialogs.dialogPlayerInfo.PlayerInfoFragment"
-        android:label="PlayerInfoFragment"
-        tools:layout="@layout/fragment_player_info">
-        <argument
-            android:name="player"
-            app:argType="com.radiance.mafiahelper.player.Player" />
     </fragment>
     <fragment
         android:id="@+id/addPlayerFragment"
@@ -59,7 +43,7 @@
         tools:layout="@layout/game_options_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/goToAliacePicker"
             app:destination="@id/aliasPicker" />
@@ -71,7 +55,7 @@
         tools:layout="@layout/alias_picker_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/gotToFirstNight"
             app:destination="@id/firstNight" />
@@ -83,7 +67,7 @@
         tools:layout="@layout/first_night_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/startDay"
             app:destination="@id/day" />

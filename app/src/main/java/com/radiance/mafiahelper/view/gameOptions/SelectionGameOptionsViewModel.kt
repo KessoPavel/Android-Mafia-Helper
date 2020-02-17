@@ -1,25 +1,20 @@
 package com.radiance.mafiahelper.view.gameOptions
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.game.GameOptions
+import com.bsvt.core.game.Game
+import com.bsvt.core.game.GameOptions
 import com.radiance.mafiahelper.tools.MutableLiveObject
 
 class SelectionGameOptionsViewModel(private val state : SavedStateHandle) : ViewModel() {
     var gameOptions: MutableLiveObject<GameOptions> = MutableLiveObject()
     lateinit var game: Game
-    lateinit var navController: NavController
 
-    fun init(game: Game, navController: NavController){
+    fun init(game: Game){
         this.game = game
-        this.navController = navController
 
         gameOptions.value = state.get(GAME_OPTIONS)?: GameOptions()
-        gameOptions.value?.playersCount = game.players.size
+        gameOptions.value?.playersCount = game.characters.size
     }
 
     fun doctorCheck(){
@@ -37,12 +32,9 @@ class SelectionGameOptionsViewModel(private val state : SavedStateHandle) : View
         saveGameOptions()
     }
 
-    fun clickPlay(direction: NavDirections){
-        navController.navigate(direction)
-    }
 
     fun createGame(): Game {
-        game.gameOptions = gameOptions.value?: GameOptions()
+        game.gameOptions.set(gameOptions.value?: GameOptions())
         return game
     }
 

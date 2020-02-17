@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,7 +39,7 @@ class VotingFragment : Fragment() {
             game = args.game
         }
 
-        viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(VotingViewModel::class.java)
+//        viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(VotingViewModel::class.java)
         viewModel.currentPlayer.observe(this, Observer { player -> newPlayer(player) })
         viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameIsReady(gameIsReady) })
 

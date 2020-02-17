@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateVMFactory
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bsvt.core.game.Game
+import com.bsvt.core.game.GameOptions
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.emptyGame
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.game.GameOptions
 import kotlinx.android.synthetic.main.game_options_fragment.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class SelectionGameOptions : Fragment() {
-    private lateinit var viewModel: SelectionGameOptionsViewModel
+    private val viewModel: SelectionGameOptionsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +35,10 @@ class SelectionGameOptions : Fragment() {
             game = saveArgs.game
         }
 
-        viewModel = ViewModelProvider(this, SavedStateVMFactory(this))
-            .get(SelectionGameOptionsViewModel::class.java)
-
         viewModel.gameOptions.observe(
             this,
             Observer { gameOptions -> updateGameOptions(gameOptions) })
-        viewModel.init(game = game ?: emptyGame(), navController = findNavController())
+        viewModel.init(game ?: Game())
 
         go_number_piker.setOnValueChangedListener { _, _, newVal ->
             viewModel.blackCount(newVal)
@@ -59,7 +56,16 @@ class SelectionGameOptions : Fragment() {
         go_play.setOnClickListener {
             val direction =
                 SelectionGameOptionsDirections.goToAliacePicker(viewModel.createGame())
-            viewModel.clickPlay(direction)
+            findNavController().navigate(direction)
+        }
+
+        (activity as AppCompatActivity).setSupportActionBar(gameOptionToolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.select_game_options)
+
+        gameOptionToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

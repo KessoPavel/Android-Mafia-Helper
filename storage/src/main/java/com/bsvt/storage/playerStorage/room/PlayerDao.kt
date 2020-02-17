@@ -1,4 +1,4 @@
-package com.radiance.mafiahelper.room
+package com.bsvt.storage.playerStorage.room
 
 import androidx.room.Dao
 import androidx.room.Delete

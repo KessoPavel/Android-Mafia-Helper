@@ -6,7 +6,7 @@
 
         <variable
             name="player"
-            type="com.radiance.mafiahelper.player.Player" />
+            type="com.bsvt.core.player.Player" />
     </data>
 
     <ScrollView
@@ -65,7 +65,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.gamesForReds)}" />
+                    android:text="@{Integer.toString(player.gameStatistics.gamesForReds)}" />
             </LinearLayout>
 
             <!--            val gamesForBlack: Int,-->
@@ -90,7 +90,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.gamesForBlacks)}" />
+                    android:text="@{Integer.toString(player.gameStatistics.gamesForBlacks)}" />
             </LinearLayout>
 
             <!--            val gamesPerSheriff: Int,-->
@@ -115,7 +115,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.gamesPerSheriff)}" />
+                    android:text="@{Integer.toString(player.gameStatistics.gamesPerSheriff)}" />
             </LinearLayout>
 
             <!--            val gamesPerDoctor: Int,-->
@@ -140,7 +140,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.gamesPerDoctor)}" />
+                    android:text="@{Integer.toString(player.gameStatistics.gamesPerDoctor)}" />
             </LinearLayout>
 
             <!--            val victoriesForReds: Int,-->
@@ -165,7 +165,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.victoriesForReds)}" />
+                    android:text="@{Integer.toString(player.victoriesStatistics.victoriesForReds)}" />
             </LinearLayout>
 
             <!--            val victoriesForBlack: Int,-->
@@ -190,7 +190,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.victoriesForBlacks)}" />
+                    android:text="@{Integer.toString(player.victoriesStatistics.victoriesForBlacks)}" />
             </LinearLayout>
 
             <!--            val victoriesPerSheriff: Int,-->
@@ -215,7 +215,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.victoriesPerSheriff)}" />
+                    android:text="@{Integer.toString(player.victoriesStatistics.victoriesPerSheriff)}" />
             </LinearLayout>
 
             <!--            val victoriesPerDoctor: Int,-->
@@ -240,7 +240,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.victoriesPerDoctor)}" />
+                    android:text="@{Integer.toString(player.victoriesStatistics.victoriesPerDoctor)}" />
             </LinearLayout>
 
             <!--            var firstNightDeaths: Int,-->
@@ -265,7 +265,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.firstNightDeaths)}" />
+                    android:text="@{Integer.toString(player.deathStatistics.firstNightDeaths)}" />
             </LinearLayout>
 
             <!--            var firstVotingDeaths: Int,-->
@@ -290,7 +290,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.firstVotingDeaths)}" />
+                    android:text="@{Integer.toString(player.deathStatistics.firstVotingDeaths)}" />
             </LinearLayout>
 
             <!--            var nightDeaths: Int,-->
@@ -315,7 +315,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.nightDeaths)}" />
+                    android:text="@{Integer.toString(player.deathStatistics.nightDeaths)}" />
             </LinearLayout>
 
             <!--            var votingDeaths: Int-->
@@ -341,7 +341,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@{Integer.toString(player.votingDeaths)}" />
+                    android:text="@{Integer.toString(player.deathStatistics.votingDeaths)}" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

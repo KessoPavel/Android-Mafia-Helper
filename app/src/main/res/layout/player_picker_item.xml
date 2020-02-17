@@ -7,27 +7,19 @@
         android:background="#00FFFFFF"
         android:id="@+id/ppi_frame"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-        <ImageView
-            android:id="@+id/ppi_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingEnd="10dp"
-            android:layout_gravity="end"
-            android:adjustViewBounds="true"
-            android:contentDescription="@null" />
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/ppi_name"
-            android:transitionName="@string/player_name_transition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
             android:layout_gravity="center_vertical"
-            tools:text="Ivan Grigoryev"
+            android:layout_marginStart="70dp"
             android:textColor="@color/base_text"
-            android:textSize="24dp" />
+
+            android:textSize="24dp"
+            android:transitionName="@string/player_name_transition"
+            tools:text="Ivan Grigoryev" />
 
         <TextView
             android:id="@+id/ppi_statistic"
@@ -42,15 +34,17 @@
         <ImageView
             android:id="@+id/icon"
             android:src="@drawable/baseline_panorama_fish_eye_24"
-            android:layout_width="70dp"
-            android:layout_height="70dp"/>
+            android:layout_width="50dp"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"/>
         <TextView
             android:id="@+id/icon_title"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="K"
             android:textSize="26dp"
+            android:layout_margin="5dp"
             android:textColor="@color/sub_text"/>
     </FrameLayout>
 </layout>

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,7 +39,7 @@ class DayFragment : Fragment() {
             game = args.game
         }
 
-        viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(DayViewModel::class.java)
+//        viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(DayViewModel::class.java)
 
         viewModel.currentPLayer.observe(this, Observer { nextPlayer() })
         viewModel.playersInNomination.observe(this, Observer { nextPlayer() })

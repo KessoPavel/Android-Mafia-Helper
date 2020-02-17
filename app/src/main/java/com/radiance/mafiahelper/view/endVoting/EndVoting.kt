@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.SavedStateVMFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -35,8 +34,8 @@ class EndVoting : Fragment() {
             game = args.game
         }
 
-        viewModel =
-            ViewModelProvider(this, SavedStateVMFactory(this)).get(EndVotingViewModel::class.java)
+//        viewModel =
+//            ViewModelProvider(this, SavedStateVMFactory(this)).get(EndVotingViewModel::class.java)
         viewModel.init(game, findNavController())
 
 

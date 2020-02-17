@@ -7,6 +7,8 @@
     tools:context=".view.gameOptions.SelectionGameOptions"
     android:background="#EEEEEE">
 
+    <include layout="@layout/toolbar"/>
+
     <LinearLayout
         android:id="@+id/go_linear_layout"
         android:layout_width="wrap_content"

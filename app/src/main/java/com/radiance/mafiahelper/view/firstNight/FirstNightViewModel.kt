@@ -3,9 +3,8 @@ package com.radiance.mafiahelper.view.firstNight
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import com.bsvt.core.character.Character
+import com.bsvt.core.character.role.Role
 import com.bsvt.core.game.Game
 import com.radiance.mafiahelper.view.firstNight.adapter.FirstNightAdapter
 
@@ -18,8 +17,7 @@ class FirstNightViewModel(private val state: SavedStateHandle) : ViewModel(), Fi
         this.game = game
 
         players.value = game.characters
-        //todo
-        //gameIsReady.value
+        gameIsReady.value = game.checkRole()
     }
 
     fun createGame(): Game{
@@ -27,11 +25,12 @@ class FirstNightViewModel(private val state: SavedStateHandle) : ViewModel(), Fi
     }
 
     override fun setRole(role: com.bsvt.core.character.role.Role, character: Character) {
-        character.role = role
-
-        //todo
-        //game.setRole()
-        //gameIsReady.value = game.checkPlayersRoles()
+        if (character.role == role) {
+            character.role = Role.Red
+        } else {
+            game.setRole(role, character)
+        }
+        gameIsReady.value = game.checkRole()
 
         players.value = players.value
     }

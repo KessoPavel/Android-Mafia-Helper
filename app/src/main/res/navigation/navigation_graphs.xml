@@ -79,7 +79,7 @@
         tools:layout="@layout/day_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/startVoting"
             app:destination="@id/voting" />

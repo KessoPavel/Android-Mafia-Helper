@@ -6,6 +6,6 @@ import com.bsvt.core.character.role.Role
 
 class Character (val player: Player) {
     var name: String = ""
-    var role: Role = Role.Unknown
+    var role: Role = Role.Red
     var status: GameStatus = GameStatus.Active
 }

@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.radiance.mafiahelper.*
-import com.radiance.mafiahelper.player.PlayerHolder
+import com.bsvt.core.game.Game
+import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.enter
+import com.radiance.mafiahelper.out
 import com.radiance.mafiahelper.view.adapter.Holder
 import com.radiance.mafiahelper.view.adapter.HolderBuilder
 import com.radiance.mafiahelper.view.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.day_fragment.*
 
 class DayFragment : Fragment() {
-    private lateinit var viewModel: DayViewModel
-    private var game = emptyGame()
+    private val viewModel: DayViewModel by viewModels()
+    private var game = Game()
     private lateinit var adapter: RecyclerAdapter
     private var savedIsReady = true
     private var savedIsPlayersEnd= true
@@ -36,7 +37,7 @@ class DayFragment : Fragment() {
 
         arguments?.let {
             val args = DayFragmentArgs.fromBundle(it)
-            game = args.game
+            //game = args.game
         }
 
 //        viewModel = ViewModelProvider(this, SavedStateVMFactory(this)).get(DayViewModel::class.java)
@@ -46,7 +47,7 @@ class DayFragment : Fragment() {
         viewModel.gameIsReady.observe(this, Observer { gameIsReady -> gameStatusChanged(gameIsReady) })
         viewModel.playersEnd.observe(this, Observer { playerEnd -> playersEndUpdate(playerEnd) })
 
-        viewModel.init(game, findNavController())
+        viewModel.init(game)
 
         adapter = RecyclerAdapter(players = createPlayerHolders(), holderBuilder = DayViewHolderBuilder(viewModel))
         d_recycler.layoutManager = LinearLayoutManager(context)
@@ -98,32 +99,6 @@ class DayFragment : Fragment() {
         }
     }
 
-    private fun createPlayerHolders(): ArrayList<PlayerHolder> {
-        val answer = ArrayList<PlayerHolder>()
-
-        for (player in viewModel.playersInVoting.value!!) {
-            if (!viewModel.currentPLayer.value!!.equals(player)) {
-                answer.add(
-                    PlayerHolder(player = player, inVoting = true)
-                )
-            }
-        }
-
-        for (player in viewModel.players.value!!) {
-            if (!viewModel.currentPLayer.value!!.equals(player)) {
-                if (!viewModel.playersInVoting.value!!.contains(player)) {
-                    answer.add(
-                        PlayerHolder(
-                            player = player,
-                            inVoting = viewModel.playersInNomination.value!!.contains(player)
-                        )
-                    )
-                }
-            }
-        }
-
-        return answer
-    }
 
     private class DayViewHolderBuilder(private val viewModel: DayViewModel):
         HolderBuilder {

@@ -48,9 +48,9 @@ class FirstNight : Fragment() {
         viewModel.init(game)
 
         fn_play.setOnClickListener {
-//            val game = viewModel.createGame()
-//            val direction = FirstNightDirections.startDay(game)
-//            findNavController().navigate(direction)
+            val game = viewModel.createGame()
+            val direction = FirstNightDirections.startDay(game)
+            findNavController().navigate(direction)
         }
 
         setUpToolbar(gameOptionToolbar, R.string.select_game_role)

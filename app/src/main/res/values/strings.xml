@@ -38,4 +38,5 @@
     <string name="search">search</string>
     <string name="select_game_options">select game options</string>
     <string name="choose_the_order_of_the_players">choose the order of the players</string>
+    <string name="select_game_role">select game role</string>
 </resources>

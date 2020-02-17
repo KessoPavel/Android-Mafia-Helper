@@ -5,35 +5,34 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.player.Player
-import com.radiance.mafiahelper.player.Role
+import com.bsvt.core.character.Character
+import com.bsvt.core.game.Game
+import com.radiance.mafiahelper.view.firstNight.adapter.FirstNightAdapter
 
-class FirstNightViewModel(private val state: SavedStateHandle) : ViewModel() {
+class FirstNightViewModel(private val state: SavedStateHandle) : ViewModel(), FirstNightAdapter.Holder.RoleListener {
     private lateinit var game: Game
-    private lateinit var navController: NavController
-    var players: MutableLiveData<ArrayList<Player>> = MutableLiveData()
+    var players: MutableLiveData<ArrayList<Character>> = MutableLiveData()
     var gameIsReady: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun init(game: Game, navController: NavController) {
+    fun init(game: Game) {
         this.game = game
-        this.navController = navController
 
-        players.value = game.players
-        gameIsReady.value = game.checkPlayersRoles()
+        players.value = game.characters
+        //todo
+        //gameIsReady.value
     }
 
     fun createGame(): Game{
         return game
     }
 
-    fun changeRole(player: Player, role: Role) {
-        game.setPlayerRole(player, if (player.role == role) Role.Red else role)
-        gameIsReady.value = game.checkPlayersRoles()
-        players.value = players.value
-    }
+    override fun setRole(role: com.bsvt.core.character.role.Role, character: Character) {
+        character.role = role
 
-    fun startDay(direction: NavDirections) {
-        navController.navigate(direction)
+        //todo
+        //game.setRole()
+        //gameIsReady.value = game.checkPlayersRoles()
+
+        players.value = players.value
     }
 }

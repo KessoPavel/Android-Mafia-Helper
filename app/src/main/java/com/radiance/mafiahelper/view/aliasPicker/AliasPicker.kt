@@ -4,26 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bsvt.core.game.Game
 import com.radiance.mafiahelper.R
-import com.radiance.mafiahelper.inflate
-import com.radiance.mafiahelper.player.PlayerHolder
-import com.radiance.mafiahelper.view.adapter.Holder
-import com.radiance.mafiahelper.view.adapter.HolderBuilder
-import com.radiance.mafiahelper.view.adapter.RecyclerAdapter
+import com.radiance.mafiahelper.setUpToolbar
 import com.radiance.mafiahelper.view.aliasPicker.adapter.AliasAdapter
 import kotlinx.android.synthetic.main.alias_picker_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class AliasPicker : Fragment() {
     lateinit var adapter: AliasAdapter
@@ -65,14 +56,7 @@ class AliasPicker : Fragment() {
             findNavController().navigate(direction)
         }
 
-        (activity as AppCompatActivity).setSupportActionBar(gameOptionToolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.choose_the_order_of_the_players)
-
-        gameOptionToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        setUpToolbar(gameOptionToolbar, R.string.choose_the_order_of_the_players)
     }
 
     fun onItemMove(from: Int, to: Int){

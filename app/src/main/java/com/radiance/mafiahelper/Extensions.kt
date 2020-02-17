@@ -9,10 +9,13 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.ScaleAnimation
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.radiance.mafiahelper.game.Game
 import com.radiance.mafiahelper.player.Player
-import kotlinx.android.synthetic.main.day_fragment.*
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -74,5 +77,16 @@ fun Fragment.showFragment(@IdRes container: Int, fragment: Fragment) {
             .add(container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+}
+
+fun Fragment.setUpToolbar(toolbar: Toolbar?, @StringRes title: Int) {
+    (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+    (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    (activity as AppCompatActivity).supportActionBar?.setTitle(title)
+
+    toolbar?.setNavigationOnClickListener {
+        findNavController().popBackStack()
     }
 }

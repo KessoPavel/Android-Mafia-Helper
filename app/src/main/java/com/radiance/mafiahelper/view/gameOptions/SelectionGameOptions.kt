@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.bsvt.core.game.Game
 import com.bsvt.core.game.GameOptions
 import com.radiance.mafiahelper.R
+import com.radiance.mafiahelper.setUpToolbar
 import kotlinx.android.synthetic.main.game_options_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -59,14 +60,7 @@ class SelectionGameOptions : Fragment() {
             findNavController().navigate(direction)
         }
 
-        (activity as AppCompatActivity).setSupportActionBar(gameOptionToolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.select_game_options)
-
-        gameOptionToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        setUpToolbar(gameOptionToolbar, R.string.select_game_options)
     }
 
     private fun updateGameOptions(gameOptions: GameOptions) {

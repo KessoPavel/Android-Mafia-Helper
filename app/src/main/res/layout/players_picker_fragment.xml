@@ -9,14 +9,14 @@
 
         <variable
             name="playerPickerViewModel"
-            type="com.radiance.mafiahelper.view.playersPicker.PlayersPickerViewModel" />
+            type="com.radiance.mafiahelper.view.gameSettings.playersPicker.PlayerPickerViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/main"
-        tools:context=".view.playersPicker.PlayersPicker">
+        tools:context=".view.gameSettings.playersPicker.PlayersPicker">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pp_recycler"

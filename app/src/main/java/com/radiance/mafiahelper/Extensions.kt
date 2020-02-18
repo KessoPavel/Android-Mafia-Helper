@@ -14,8 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.radiance.mafiahelper.game.Game
-import com.radiance.mafiahelper.player.Player
+import com.bsvt.core.character.Character
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -32,12 +31,8 @@ fun View.click(startScale: Float, endScale: Float, duration: Long){
     this.startAnimation(anim)
 }
 
-fun emptyGame(): Game{
-    return Game(ArrayList())
-}
-
-fun shift(array: ArrayList<Player>, position: Int): ArrayList<Player> {
-    val answer = ArrayList<Player>()
+fun shift(array: ArrayList<Character>, position: Int): ArrayList<Character> {
+    val answer = ArrayList<Character>()
 
     for (i in position until array.size){
         answer.add(array[i])

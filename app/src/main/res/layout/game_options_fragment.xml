@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.gameOptions.SelectionGameOptions"
+    tools:context=".view.gameSettings.gameOptions.SelectionGameOptions"
     android:background="#EEEEEE">
 
     <include layout="@layout/toolbar"/>

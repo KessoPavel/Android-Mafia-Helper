@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.redWinners.RedWinners"
+    tools:context=".view.gameEnd.redWinners.RedWinners"
     android:background="@color/red_team">
 
 

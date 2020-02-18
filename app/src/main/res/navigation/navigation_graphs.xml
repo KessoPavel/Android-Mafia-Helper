@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/playersPicker"
-        android:name="com.radiance.mafiahelper.view.playersPicker.PlayersPicker"
+        android:name="com.radiance.mafiahelper.view.gameSettings.playersPicker.PlayersPicker"
         android:label="PlayersPicker"
         tools:layout="@layout/players_picker_fragment">
         <argument
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectionGameOptions"
-        android:name="com.radiance.mafiahelper.view.gameOptions.SelectionGameOptions"
+        android:name="com.radiance.mafiahelper.view.gameSettings.gameOptions.SelectionGameOptions"
         android:label="game_options_fragment"
         tools:layout="@layout/game_options_fragment" >
         <argument
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/aliasPicker"
-        android:name="com.radiance.mafiahelper.view.aliasPicker.AliasPicker"
+        android:name="com.radiance.mafiahelper.view.gameSettings.aliasPicker.AliasPicker"
         android:label="alias_picker_fragment"
         tools:layout="@layout/alias_picker_fragment" >
         <argument
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstNight"
-        android:name="com.radiance.mafiahelper.view.firstNight.FirstNight"
+        android:name="com.radiance.mafiahelper.view.night.firstNight.FirstNight"
         android:label="first_night_fragment"
         tools:layout="@layout/first_night_fragment" >
         <argument
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/day"
-        android:name="com.radiance.mafiahelper.view.day.DayFragment"
+        android:name="com.radiance.mafiahelper.view.day.day.DayFragment"
         android:label="day_fragment"
         tools:layout="@layout/day_fragment" >
         <argument
@@ -86,24 +86,24 @@
     </fragment>
     <fragment
         android:id="@+id/voting"
-        android:name="com.radiance.mafiahelper.view.voting.VotingFragment"
+        android:name="com.radiance.mafiahelper.view.day.voting.VotingFragment"
         android:label="voting_fragment"
         tools:layout="@layout/voting_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/action_voting_to_endVoting"
             app:destination="@id/endVoting" />
     </fragment>
     <fragment
         android:id="@+id/endVoting"
-        android:name="com.radiance.mafiahelper.view.endVoting.EndVoting"
+        android:name="com.radiance.mafiahelper.view.day.endVoting.EndVoting"
         android:label="end_voting_fragment"
         tools:layout="@layout/end_voting_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/startVoting"
             app:destination="@id/voting" />
@@ -119,27 +119,27 @@
     </fragment>
     <fragment
         android:id="@+id/nightFragment"
-        android:name="com.radiance.mafiahelper.view.night.NightFragment"
+        android:name="com.radiance.mafiahelper.view.night.night.NightFragment"
         android:label="night_fragment"
         tools:layout="@layout/night_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <action
             android:id="@+id/endNight"
             app:destination="@id/endNight" />
     </fragment>
     <fragment
         android:id="@+id/endNight"
-        android:name="com.radiance.mafiahelper.view.endNight.EndNight"
+        android:name="com.radiance.mafiahelper.view.night.endNight.EndNight"
         android:label="end_night_fragment"
         tools:layout="@layout/end_night_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
         <argument
             android:name="deayhPlayer"
-            app:argType="com.radiance.mafiahelper.player.Player"
+            app:argType="com.bsvt.core.character.Character"
             app:nullable="true" />
         <action
             android:id="@+id/startDay"
@@ -153,20 +153,20 @@
     </fragment>
     <fragment
         android:id="@+id/redWinners"
-        android:name="com.radiance.mafiahelper.view.redWinners.RedWinners"
+        android:name="com.radiance.mafiahelper.view.gameEnd.redWinners.RedWinners"
         android:label="red_winners_fragment"
         tools:layout="@layout/red_winners_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
     </fragment>
     <fragment
         android:id="@+id/blackWinners"
-        android:name="com.radiance.mafiahelper.view.blackWinners.BlackWinners"
+        android:name="com.radiance.mafiahelper.view.gameEnd.blackWinners.BlackWinners"
         android:label="black_winners_fragment"
         tools:layout="@layout/black_winners_fragment" >
         <argument
             android:name="game"
-            app:argType="com.radiance.mafiahelper.game.Game" />
+            app:argType="com.bsvt.core.game.Game" />
     </fragment>
 </navigation>

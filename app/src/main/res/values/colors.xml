@@ -22,11 +22,15 @@
     <color name="detective"     >#B3E7E7E7</color>
     <color name="doctor"        >#B3E7E7E7</color>
     <color name="game_red"      >#B3E7E7E7</color>
-    <color name="dark_base">#525252</color>
+    <color name="dark_base">#888888</color>
     <color name="unselected_list_item">#FFFFFF</color>
+    <color name="unselected_list_item_dark">#804E4E4E</color>
     <color name="unselected_list_item_border">#80D5D5D5</color>
+    <color name="unselected_list_item_border_dark">#FF727171</color>
     <color name="list_item_border">#C5E2C9</color>
     <color name="main">#EEEEEE</color>
     <color name="red_team">#DD7777</color>
     <color name="black_victory_text">#F1F1F1</color>
+    <color name="sheriff_night">#5E6086</color>
+    <color name="white">#FFFFFF</color>
 </resources>

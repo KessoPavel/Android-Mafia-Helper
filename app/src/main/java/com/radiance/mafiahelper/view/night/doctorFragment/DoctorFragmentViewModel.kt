@@ -1,31 +1,29 @@
-package com.radiance.mafiahelper.view.night.night
+package com.radiance.mafiahelper.view.night.doctorFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bsvt.core.character.Character
 import com.bsvt.core.game.Game
-import com.radiance.mafiahelper.view.night.night.adapter.NightAdapter
+import com.radiance.mafiahelper.view.night.doctorFragment.adapter.DoctorAdapter
 
-class NightViewModel : ViewModel(), NightAdapter.Holder.Listener {
+class DoctorFragmentViewModel : ViewModel(), DoctorAdapter.Holder.Listener {
     private lateinit var game: Game
     var currentPlayer: MutableLiveData<Character> = MutableLiveData()
-    var players = ArrayList<Character>()
-
+    var characters: MutableLiveData<ArrayList<Character>> = MutableLiveData()
 
     fun init(game: Game) {
         this.game = game
 
-        players = game.characters
+        characters.value = game.characters
         currentPlayer.value = null
     }
 
-    override fun clickPlayer(character: Character) {
+    override fun characterClick(character: Character) {
         currentPlayer.value = character
-
     }
 
     fun createGame(): Game {
-        game.mafiaChoice = currentPlayer.value
+        game.doctorChoice = currentPlayer.value
         return game
     }
 }

@@ -36,3 +36,4 @@ fun ArrayList<Character>.clearRole(role: Role, count: Int) {
         }
     }
 }
+

@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.end_night_fragment.*
 class EndNight : Fragment() {
     private val viewModel: EndNightViewModel by viewModels()
     private var game = Game()
-    private var player: Character? = null
     private lateinit var direction: NavDirections
 
     override fun onCreateView(
@@ -35,15 +34,18 @@ class EndNight : Fragment() {
         arguments?.let {
             val args = EndNightArgs.fromBundle(it)
             game = args.game
-            player = args.deayhPlayer
         }
 
-        viewModel.init(game, player)
+        viewModel.init(game)
 
-        if (player == null){
+        if (game.mafiaChoice == null){
             night_resault.text = "Night ended"
         } else {
-            night_resault.text = player?.name + "  died"
+            if (game.mafiaChoice == game.doctorChoice) {
+                night_resault.text = game.mafiaChoice?.name + " not died"
+            } else {
+                night_resault.text = game.mafiaChoice?.name + "  died"
+            }
         }
 
         if (viewModel.gameIsEnded()){
@@ -60,6 +62,7 @@ class EndNight : Fragment() {
         }
 
         en_play.setOnClickListener{
+            viewModel.clearChouce()
             findNavController().navigate(direction)
         }
     }

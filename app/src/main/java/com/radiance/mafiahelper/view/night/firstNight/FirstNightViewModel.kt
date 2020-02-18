@@ -24,7 +24,7 @@ class FirstNightViewModel(private val state: SavedStateHandle) : ViewModel(), Fi
         return game
     }
 
-    override fun setRole(role: com.bsvt.core.character.role.Role, character: Character) {
+    override fun setRole(role: Role, character: Character) {
         if (character.role == role) {
             character.role = Role.Red
         } else {

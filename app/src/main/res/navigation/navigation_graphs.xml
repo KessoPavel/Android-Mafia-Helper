@@ -128,6 +128,12 @@
         <action
             android:id="@+id/endNight"
             app:destination="@id/endNight" />
+        <action
+            android:id="@+id/sheriff_check"
+            app:destination="@id/sheriffCheck" />
+        <action
+            android:id="@+id/doctorChoice"
+            app:destination="@id/doctorChoice" />
     </fragment>
     <fragment
         android:id="@+id/endNight"
@@ -137,10 +143,6 @@
         <argument
             android:name="game"
             app:argType="com.bsvt.core.game.Game" />
-        <argument
-            android:name="deayhPlayer"
-            app:argType="com.bsvt.core.character.Character"
-            app:nullable="true" />
         <action
             android:id="@+id/startDay"
             app:destination="@id/day" />
@@ -168,5 +170,32 @@
         <argument
             android:name="game"
             app:argType="com.bsvt.core.game.Game" />
+    </fragment>
+    <fragment
+        android:id="@+id/sheriffCheck"
+        android:name="com.radiance.mafiahelper.view.night.sheriffCheck.SheriffCheck"
+        android:label="sheriff_check_fragment"
+        tools:layout="@layout/sheriff_check_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.bsvt.core.game.Game" />
+        <action
+            android:id="@+id/doctorChoce"
+            app:destination="@id/doctorChoice" />
+        <action
+            android:id="@+id/endNight"
+            app:destination="@id/endNight" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorChoice"
+        android:name="com.radiance.mafiahelper.view.night.doctorFragment.DoctorFragment"
+        android:label="doctor_choise_fragment"
+        tools:layout="@layout/doctor_choise_fragment" >
+        <argument
+            android:name="game"
+            app:argType="com.bsvt.core.game.Game" />
+        <action
+            android:id="@+id/endNight"
+            app:destination="@id/endNight" />
     </fragment>
 </navigation>

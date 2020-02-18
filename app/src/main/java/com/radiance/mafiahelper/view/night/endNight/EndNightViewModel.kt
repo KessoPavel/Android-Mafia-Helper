@@ -1,24 +1,19 @@
 package com.radiance.mafiahelper.view.night.endNight
 
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import com.bsvt.core.character.Character
 import com.bsvt.core.character.role.Role
 import com.bsvt.core.game.Game
 import com.bsvt.core.roleCount
 
 class EndNightViewModel : ViewModel() {
     private lateinit var game: Game
-    private var player: Character? = null
 
-    fun init(game: Game, player: Character?) {
+    fun init(game: Game) {
         this.game = game
-        this.player = player
 
-        player?.let {
-            game.characters.remove(it)
-            game.deathCharacters.add(it)
+        game.mafiaChoice.takeIf { it != game.doctorChoice  }?.let { dead ->
+            game.characters.remove(dead)
+            game.deathCharacters.add(dead)
         }
     }
 
@@ -36,5 +31,10 @@ class EndNightViewModel : ViewModel() {
             return Role.Red
         else
             return Role.Black
+    }
+
+    fun clearChouce() {
+        game.mafiaChoice = null
+        game.doctorChoice = null
     }
 }

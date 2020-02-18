@@ -3,24 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <FrameLayout
-        android:id="@+id/n_frame"
+        android:id="@+id/dc_frame"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/unselected_list_item_dark">
+        android:background="@drawable/unselected_list_item">
 
         <TextView
-            android:id="@+id/n_alias"
+            android:id="@+id/dc_alias"
             android:transitionName="@string/player_name_transition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             tools:text="Ivan Grigoryev"
-            android:textColor="@color/white"
+            android:textColor="@color/base_text"
             android:textSize="@dimen/base_text" />
 
         <TextView
-            android:id="@+id/n_name"
+            android:id="@+id/dc_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -31,11 +31,13 @@
             tools:text="Ivan " />
 
         <RadioButton
-            android:id="@+id/n_is_death"
+            android:id="@+id/dc_is_death"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_marginEnd="30dp"
             android:gravity="center"/>
     </FrameLayout>
+
+
 </layout>

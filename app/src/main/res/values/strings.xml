@@ -41,4 +41,8 @@
     <string name="select_game_role">select game role</string>
     <string name="voting_nomanation">voting nomination</string>
     <string name="night">night</string>
+    <string name="sheriff_check">Sheriff check</string>
+    <string name="doctor_choice">doctor choice</string>
+    <string name="sheriff_is_dead">Sheriff is dead</string>
+    <string name="doctor_is_dead">Doctor is dead</string>
 </resources>

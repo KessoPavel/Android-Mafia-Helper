@@ -6,4 +6,5 @@ fun GameOptions.set(options: GameOptions) {
     playersCount = options.playersCount
     blackCount = options.blackCount
     sheriffInGame = options.sheriffInGame
+    doctorInGame = options.doctorInGame
 }

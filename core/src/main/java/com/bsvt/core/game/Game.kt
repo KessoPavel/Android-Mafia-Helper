@@ -55,4 +55,6 @@ class Game: Serializable {
             field = value
         }
 
+    var mafiaChoice: Character? = null
+    var doctorChoice: Character? = null
 }

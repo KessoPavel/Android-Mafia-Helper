@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bsvt.core.game.Game
@@ -15,6 +16,7 @@ import com.radiance.mafiahelper.view.night.night.adapter.NightAdapter
 import com.radiance.mafiahelper.view.night.night.adapter.NightItem
 import kotlinx.android.synthetic.main.night_fragment.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar_dark.*
 
 class NightFragment : Fragment() {
     private val viewModel: NightViewModel by viewModels()
@@ -44,11 +46,19 @@ class NightFragment : Fragment() {
         viewModel.init(game)
 
         n_play.setOnClickListener {
-            val direction = NightFragmentDirections.endNight(viewModel.createGame(), viewModel.currentPlayer.value)
+            val direction: NavDirections
+
+            if (game.gameOptions.sheriffInGame) {
+                direction = NightFragmentDirections.sheriffCheck(viewModel.createGame())
+            } else if (game.gameOptions.doctorInGame) {
+                direction = NightFragmentDirections.doctorChoice(viewModel.createGame())
+            } else {
+                direction = NightFragmentDirections.endNight(viewModel.createGame())
+            }
             findNavController().navigate(direction)
         }
 
-        setUpToolbar(mainToolbar, R.string.night)
+        setUpToolbar(mainToolbarDark, R.string.night)
     }
 
     private fun updateCurrentPlayer() {
